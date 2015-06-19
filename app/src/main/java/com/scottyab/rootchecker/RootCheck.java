@@ -2,6 +2,7 @@ package com.scottyab.rootchecker;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 
 import com.scottyab.rootchecker.util.QLog;
 
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -171,8 +173,8 @@ public class RootCheck {
     public boolean checkForDangerousProps() {
 
         final Map<String, String> dangerousProps = new HashMap<String, String>();
-        dangerousProps.put("ro.debuggable", "1");
-        dangerousProps.put("ro.secure", "0");
+            dangerousProps.put("ro.debuggable", "1");
+            dangerousProps.put("ro.secure", "0");
 
         boolean result = false;
 
@@ -224,6 +226,20 @@ public class RootCheck {
         } finally {
             if (process != null) process.destroy();
         }
+    }
+
+
+
+    public static boolean isSelinuxFlagInEnabled() {
+        String selinux = null;
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method get = c.getMethod("get", String.class);
+            selinux = (String) get.invoke(c, "ro.build.selinux");
+        } catch (Exception ignored) {
+        }
+
+        return "1".equals(selinux) ? true : false;
     }
 
 }
