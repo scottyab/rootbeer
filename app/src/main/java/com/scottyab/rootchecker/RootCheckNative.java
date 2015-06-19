@@ -14,7 +14,7 @@ public class RootCheckNative {
      *
      */
     static {
-        System.loadLibrary("root-checker");
+        System.loadLibrary("tool-checker");
     }
 
 
