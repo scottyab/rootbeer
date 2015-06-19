@@ -57,6 +57,9 @@ public class MainActivity extends ActionBarActivity {
         b.append("\ncheckForDangerousProps: ");
         b.append(check.checkForDangerousProps());
 
+        b.append("\ncheckForRootNative: ");
+        b.append(check.checkForRootNative());
+
         results.setText(b.toString());
     }
 

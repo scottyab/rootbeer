@@ -2,7 +2,6 @@ package com.scottyab.rootchecker;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.text.TextUtils;
 
 import com.scottyab.rootchecker.util.QLog;
 
@@ -228,8 +227,7 @@ public class RootCheck {
         }
     }
 
-
-
+    //untested
     public static boolean isSelinuxFlagInEnabled() {
         String selinux = null;
         try {
@@ -240,6 +238,13 @@ public class RootCheck {
         }
 
         return "1".equals(selinux) ? true : false;
+    }
+
+
+    public boolean checkForRootNative() {
+        RootCheckNative rootCheckNative = new RootCheckNative();
+        boolean nativeRoot = rootCheckNative.checkForRoot() > 0;
+        return nativeRoot;
     }
 
 }
