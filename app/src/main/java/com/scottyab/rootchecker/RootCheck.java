@@ -2,6 +2,7 @@ package com.scottyab.rootchecker;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 import com.scottyab.rootchecker.util.QLog;
 
@@ -224,6 +225,12 @@ public class RootCheck {
         } finally {
             if (process != null) process.destroy();
         }
+    }
+
+    public boolean checkForRootNative() {
+        RootCheckNative rootCheckNative = new RootCheckNative();
+        boolean nativeRoot = rootCheckNative.checkForRoot()>0;
+        return nativeRoot;
     }
 
 }
