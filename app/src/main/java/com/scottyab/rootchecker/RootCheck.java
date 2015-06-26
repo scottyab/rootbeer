@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -196,8 +197,8 @@ public class RootCheck {
     public boolean checkForDangerousProps() {
 
         final Map<String, String> dangerousProps = new HashMap<String, String>();
-        dangerousProps.put("ro.debuggable", "1");
-        dangerousProps.put("ro.secure", "0");
+            dangerousProps.put("ro.debuggable", "1");
+            dangerousProps.put("ro.secure", "0");
 
         boolean result = false;
 
@@ -251,9 +252,23 @@ public class RootCheck {
         }
     }
 
+    //untested
+    public static boolean isSelinuxFlagInEnabled() {
+        String selinux = null;
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method get = c.getMethod("get", String.class);
+            selinux = (String) get.invoke(c, "ro.build.selinux");
+        } catch (Exception ignored) {
+        }
+
+        return "1".equals(selinux) ? true : false;
+    }
+
+
     public boolean checkForRootNative() {
         RootCheckNative rootCheckNative = new RootCheckNative();
-        boolean nativeRoot = rootCheckNative.checkForRoot()>0;
+        boolean nativeRoot = rootCheckNative.checkForRoot() > 0;
         return nativeRoot;
     }
 
