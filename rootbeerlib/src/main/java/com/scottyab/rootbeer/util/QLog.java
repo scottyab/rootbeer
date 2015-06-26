@@ -18,7 +18,7 @@ public final class QLog {
     /*
      * For filtering app specific output
      */
-    private static final String TAG = "rootchecker";
+    private static final String TAG = "RootBeer";
     /*
      * So any important logs can be outputted in non filtered output also
      */
