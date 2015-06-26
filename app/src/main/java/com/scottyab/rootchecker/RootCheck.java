@@ -1,7 +1,10 @@
 package com.scottyab.rootchecker;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.scottyab.rootchecker.util.QLog;
@@ -11,7 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -57,12 +63,9 @@ public class RootCheck {
 
         boolean result = false;
 
-        final String[] knownRootAppsPackages = { "com.noshufou.android.su",
-                "eu.chainfire.supersu", "com.koushikdutta.superuser" };
-
         PackageManager pm = mContext.getPackageManager();
 
-        for (String packageName : knownRootAppsPackages) {
+        for (String packageName : Const.knownRootAppsPackages) {
             try {
                 // Root app detected
                 pm.getPackageInfo(packageName, 0);
@@ -79,18 +82,39 @@ public class RootCheck {
 
     public boolean detectPotentiallyDangerousApps() {
 
-        final String[] knownRootAppsPackages = { "com.koushikdutta.rommanager",
-                "com.dimonvideo.luckypatcher", "com.chelpus.lackypatch" };
+
 
         boolean result = false;
 
         PackageManager pm = mContext.getPackageManager();
 
-        for (String packageName : knownRootAppsPackages) {
+        for (String packageName : Const.knownDangerousAppsPackages) {
             try {
                 // app detected
                 pm.getPackageInfo(packageName, 0);
                 QLog.e(packageName + " potentially dangerous app detected!");
+                result = true;
+            } catch (PackageManager.NameNotFoundException e) {
+                // Exception thrown, package is not installed into the system
+                continue;
+            }
+        }
+
+        return result;
+    }
+
+    public boolean detectRootCloakingApps() {
+
+        boolean result = false;
+
+
+        PackageManager pm = mContext.getPackageManager();
+
+        for (String packageName : Const.knownRootCloakingPackages) {
+            try {
+                // Root app detected
+                pm.getPackageInfo(packageName, 0);
+                QLog.e(packageName + " ROOT Cloaking app detected!");
                 result = true;
             } catch (PackageManager.NameNotFoundException e) {
                 // Exception thrown, package is not installed into the system

@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -59,6 +61,9 @@ public class MainActivity extends ActionBarActivity {
 
         b.append("\ncheckForRootNative: ");
         b.append(check.checkForRootNative());
+
+        b.append("\ndetectRootCloakingApps: ");
+        b.append(check.detectRootCloakingApps());
 
         results.setText(b.toString());
     }
