@@ -5,26 +5,13 @@ package com.scottyab.rootbeer;
  */
 public class RootBeerNative {
 
-    /****************************************************************************
-     *>>>>>>>>>>>>>>>>>>>>>>>>> Static Libraries   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<*
-     ****************************************************************************/
-
     /**
      * Loads the C/C++ libraries statically
-     *
      */
     static {
         System.loadLibrary("tool-checker");
     }
 
-
-
-    /****************************************************************************
-     *>>>>>>>>>>>>>>>>>>>>>>>>> Imported Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<*
-     ****************************************************************************/
-
-    public native String stringFromJNI();
-    public native String getNDKVersionString();
     public native int checkForRoot();
 
 }
