@@ -1,14 +1,13 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.scottyab.rootbeer.sample"
         minSdkVersion 10
         targetSdkVersion 22
-        versionCode 2
+        versionCode 1
         versionName "1.0"
     }
     buildTypes {
@@ -21,6 +20,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project (':rootbeerlib')
     compile 'com.android.support:appcompat-v7:22.2.0'
 }

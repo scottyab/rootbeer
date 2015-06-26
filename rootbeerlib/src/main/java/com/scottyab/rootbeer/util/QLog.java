@@ -1,4 +1,4 @@
-package com.scottyab.rootchecker.util;
+package com.scottyab.rootbeer.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

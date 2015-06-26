@@ -1,4 +1,4 @@
-package com.scottyab.rootchecker;
+package com.scottyab.rootbeer;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

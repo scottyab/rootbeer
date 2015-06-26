@@ -1,24 +1,17 @@
-package com.scottyab.rootchecker;
+package com.scottyab.rootbeer;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 
-import com.scottyab.rootchecker.util.QLog;
+import com.scottyab.rootbeer.util.QLog;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -26,11 +19,11 @@ import java.util.Scanner;
 /**
  * Created by scottab on 19/06/2015.
  */
-public class RootCheck {
+public class RootBeer {
 
     final Context mContext;
 
-    public RootCheck(Context context) {
+    public RootBeer(Context context) {
         mContext = context;
     }
 
@@ -267,8 +260,8 @@ public class RootCheck {
 
 
     public boolean checkForRootNative() {
-        RootCheckNative rootCheckNative = new RootCheckNative();
-        boolean nativeRoot = rootCheckNative.checkForRoot() > 0;
+        RootBeerNative rootBeerNative = new RootBeerNative();
+        boolean nativeRoot = rootBeerNative.checkForRoot() > 0;
         return nativeRoot;
     }
 

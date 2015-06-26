@@ -15,10 +15,10 @@ int attachThreadToVM();
 
 void detachThreadFromVM();
 
-jstring Java_com_scottyab_rootchecker_RootCheckNative_getNDKVersionString( JNIEnv* env, jobject thiz );
+jstring Java_com_scottyab_rootbeer_RootBeerNative_getNDKVersionString( JNIEnv* env, jobject thiz );
 
-jstring Java_com_scottyab_rootchecker_RootCheckNative_stringFromJNI( JNIEnv* env, jobject thiz );
+jstring Java_com_scottyab_rootbeer_RootBeerNative_stringFromJNI( JNIEnv* env, jobject thiz );
 
-int Java_com_scottyab_rootchecker_RootCheckNative_checkForRoot( JNIEnv* env, jobject thiz );
+int Java_com_scottyab_rootbeer_RootBeerNative_checkForRoot( JNIEnv* env, jobject thiz );
 
 }

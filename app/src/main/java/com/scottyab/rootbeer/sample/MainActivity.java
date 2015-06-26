@@ -1,4 +1,4 @@
-package com.scottyab.rootchecker;
+package com.scottyab.rootbeer.sample;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,7 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.io.IOException;
+import com.scottyab.rootbeer.sample.R;
+import com.scottyab.rootbeer.RootBeer;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -31,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void doRootCheck() {
-        RootCheck check = new RootCheck(this);
+        RootBeer check = new RootBeer(this);
         StringBuilder b = new StringBuilder();
         b.append("If any of the below are true the root check \'might\' indicate device is rooted\n");
 

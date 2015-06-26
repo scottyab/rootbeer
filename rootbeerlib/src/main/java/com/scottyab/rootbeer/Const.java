@@ -1,4 +1,4 @@
-package com.scottyab.rootchecker;
+package com.scottyab.rootbeer;
 
 /**
  * Created by mat on 19/06/15.
