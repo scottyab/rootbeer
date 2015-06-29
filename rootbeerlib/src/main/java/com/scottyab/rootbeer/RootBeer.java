@@ -34,7 +34,7 @@ public class RootBeer {
         boolean suBinary = checkForBinary("su");
         boolean busyboxBinary = checkForBinary("busybox");
         boolean dangerousProps = checkForDangerousProps();
-        boolean rwSystem = checkForRWSystem();
+        boolean rwSystem = checkForRWPaths();
         boolean testKeys = detectTestKeys();
         boolean testSuExists = checkSuExists();
 
@@ -130,9 +130,7 @@ public class RootBeer {
 
     public boolean checkForBinary(String filename) {
 
-        String[] pathsArray = { "/sbin/", "/system/bin/", "/system/xbin/",
-                "/data/local/xbin/", "/data/local/bin/", "/system/sd/xbin/",
-                "/system/bin/failsafe/", "/data/local/" };
+        String[] pathsArray = Const.suPaths;
 
         boolean result = false;
 
@@ -158,11 +156,10 @@ public class RootBeer {
         }
         String propval = "";
         try {
-
             propval = new Scanner(inputstream).useDelimiter("\\A").next();
 
         } catch (NoSuchElementException e) {
-            e.printStackTrace();
+            QLog.e("Error getprop, NoSuchElementException: " +e.getMessage(), e);
         }
 
         return propval.split("\n");
@@ -211,18 +208,19 @@ public class RootBeer {
         return result;
     }
 
-    public boolean checkForRWSystem() {
+    public boolean checkForRWPaths() {
 
         boolean result = false;
 
         String[] lines = mountReader();
-
         for (String line : lines) {
-            if (line.contains("/system")) {
-                if (line.contains(" rw,")) {
-                    QLog.v("System partition mounted with rw permissions!");
-                    result = true;
-                    break;
+            for(String pathToCheck: Const.pathsThatShouldNotBeWrtiable) {
+                if (line.contains(pathToCheck)) {
+                    if (line.contains(" rw,")) {
+                        QLog.v(pathToCheck+" path is mounted with rw permissions!");
+                        result = true;
+                        break;
+                    }
                 }
             }
         }
@@ -246,13 +244,14 @@ public class RootBeer {
     }
 
     //untested
-    public static boolean isSelinuxFlagInEnabled() {
+    public boolean isSelinuxFlagInEnabled() {
         String selinux = null;
         try {
             Class<?> c = Class.forName("android.os.SystemProperties");
             Method get = c.getMethod("get", String.class);
             selinux = (String) get.invoke(c, "ro.build.selinux");
         } catch (Exception ignored) {
+
         }
 
         return "1".equals(selinux) ? true : false;
