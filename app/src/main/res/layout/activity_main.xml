@@ -20,6 +20,8 @@
         android:layout_below="@+id/rootCheckButton"
         android:id="@+id/rootResults"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        />
 
 </RelativeLayout>

@@ -60,6 +60,9 @@ TODO screen shot and link to play store
 
 There must be more root checks to make this more complete. If you have one please do send us a pull request.
 
+Thanks to 
+* TODO: link to SO posts
+* https://blog.netspi.com/android-root-detection-techniques/
 
 
 ##Other libraries

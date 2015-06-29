@@ -1,19 +1,25 @@
 package com.scottyab.rootbeer.sample;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.scottyab.rootbeer.sample.R;
 import com.scottyab.rootbeer.RootBeer;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private static String GITHUB_LINK = "https://github.com/scottyab/rootbeer";
+
     private TextView results;
+    private AlertDialog infoDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +60,8 @@ public class MainActivity extends ActionBarActivity {
         b.append("\ncheckSuExists: ");
         b.append(check.checkSuExists());
 
-        b.append("\ncheckForRWSystem: ");
-        b.append(check.checkForRWSystem());
+        b.append("\ncheckForRWPaths: ");
+        b.append(check.checkForRWPaths());
 
         b.append("\ncheckForDangerousProps: ");
         b.append(check.checkForDangerousProps());
@@ -65,6 +71,10 @@ public class MainActivity extends ActionBarActivity {
 
         b.append("\ndetectRootCloakingApps: ");
         b.append(check.detectRootCloakingApps());
+
+        b.append("\nisSelinuxFlagInEnabled? ");
+        b.append(check.isSelinuxFlagInEnabled());
+
 
         results.setText(b.toString());
     }
@@ -78,16 +88,43 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_github) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(GITHUB_LINK));
+            startActivity(i);
+            return true;
+        }else  if (id == R.id.action_info) {
+            showInfoDialog();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showInfoDialog() {
+        if(infoDialog!=null && infoDialog.isShowing()){
+            //do nothing if already showing
+        }else {
+            infoDialog = new AlertDialog.Builder(this)
+                    .setTitle(R.string.app_name)
+                    .setMessage(R.string.info_details)
+                    .setCancelable(true)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNegativeButton("More info", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            startActivity(new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse(GITHUB_LINK)));
+                        }
+                    })
+                    .create();
+            infoDialog.show();
+        }
     }
 }
