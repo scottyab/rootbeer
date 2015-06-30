@@ -1,12 +1,11 @@
 # RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
 
-A tasty root checker library and sample app. We've scoured the internets for different methods of assessing has this device got root? and added some of our own checks. 
+A tasty root checker library and sample app. We've scoured the internets for different methods of answering that age old question... **Has this device got root?**  
 
 #Root checks
+These are the current checks/tricks we are using to give an indication of root.  
 
 **Java checks**
-
-These are the current checks/tricks we are using to give an indication of root.  
 
 * CheckRootManagementApps  
 * CheckPotentiallyDangerousAppss
@@ -27,11 +26,11 @@ We call through to our native root checker to run some of it's own checks. Nativ
 
 ##Disclaimer and limitations!
 
-We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/steathcopter) (the main contributors) use rooted devices. But we appreciate sometimes you might want to have a indication your app is running on a rooted handset. Plus we wanted to see if we could beat the root cloakers. So that's what this library gives you, an *indication* of root. 
+We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the main contributors) use rooted devices. But we appreciate sometimes you might want to have a indication your app is running on a rooted handset. Plus we wanted to see if we could beat the root cloakers. So that's what this library gives you, an *indication* of root. 
 
 Remember **root==god**, so there's no 100% way to check for root.
 
-TODO picture of god/jesus drinking root beer i.e http://www.purederry.com/wp-content/uploads/2014/04/buddy-beer-jesus.jpg
+<img src="./art/rootbeerjesus.png" width=200 />
 
 
 ### Root cloakers
@@ -87,7 +86,7 @@ There must be more root checks to make this more complete. If you have one pleas
  If you dig this, you might like:
  
  * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
- * Scott Alexander-Bown's SafetyNet Helper library - coupled with server side validation this is one of the best root detection approaches
+ * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
 
 #Licence
 
