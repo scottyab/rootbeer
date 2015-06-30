@@ -2,13 +2,7 @@
 
 A tasty root checker library and sample app. We've scoured the internets for different methods of assessing has this device got root? and added some of our own checks. 
 
-
-<<<<<<< HEAD
-#Checks
-Native checks are typically harder to cloak. We found that even naming the shared object rootChecker prevent it being loaded by some cloaking methods and so we renamed it toolChecker.so
-=======
 #Root checks
->>>>>>> e1741cf2dcd0653649df59001601e41180062c2e
 
 **Java checks**
 
@@ -65,7 +59,7 @@ Tested cloakers (requires both to be installed and active):
 
 ```
 
-You can also call each of the checks indivdually as the sample app does. 
+You can also call each of the checks individually as the sample app does. 
 
 ###Dependency
 
@@ -93,7 +87,7 @@ There must be more root checks to make this more complete. If you have one pleas
  If you dig this, you might like:
  
  * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
- * Scott Alexander-Bown's SafetyNet Helper library - coupled with server side valdiation this is one of the best root detection approaches
+ * Scott Alexander-Bown's SafetyNet Helper library - coupled with server side validation this is one of the best root detection approaches
 
 #Licence
 
