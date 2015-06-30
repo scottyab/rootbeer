@@ -4,7 +4,7 @@ A tasty root checker library and sample app. We've scoured the internets for dif
 
 
 #Checks
-Native checks are typically harder to cloak, so some root cloak apps just block the loading of native libraries that contain certain key words.. RootCheck is one! so you might want to change the native lib name. 
+Native checks are typically harder to cloak. We found that even naming the shared object rootChecker prevent it being loaded by some cloaking methods and so we renamed it toolChecker.so
 
 **Java checks**
 
@@ -35,12 +35,12 @@ TODO picture of god/jesus drinking root beer i.e http://www.purederry.com/wp-con
 
 
 ### Root cloakers
-Rootbeer can be defeated by using a combienation of some of the root cloaks apps in that require xposded / cyida frameworks. 
+Rootbeer can be defeated by using a combination of some of the root cloaks apps in that require xposded / cyida frameworks. 
 
 Tested cloakers (requires both to be installed and active):
 
 * [RootCloak Plus (Cydia)](https://play.google.com/store/apps/details?id=com.devadvance.rootcloakplus&hl=en_GB) requires [Cydia Substrate](http://play.google.com/store/apps/details?id=com.saurik.substrate)
-* [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires Xposed Framework 
+* [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires [Xposed Framework](http://repo.xposed.info/module/de.robv.android.xposed.installer)
 
 
 
