@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.scottyab.rootbeer.RootBeer;
+import com.scottyab.rootbeer.util.Utils;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -73,7 +74,7 @@ public class MainActivity extends ActionBarActivity {
         b.append(check.detectRootCloakingApps());
 
         b.append("\nisSelinuxFlagInEnabled? ");
-        b.append(check.isSelinuxFlagInEnabled());
+        b.append(Utils.isSelinuxFlagInEnabled());
 
 
         results.setText(b.toString());

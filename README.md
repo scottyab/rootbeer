@@ -8,7 +8,7 @@ Native checks are typically harder to cloak, so some root cloak apps just block 
 
 **Java checks**
 
-* CheckRootManagementApps
+* CheckRootManagementApps - 
 * CheckPotentiallyDangerousAppss
 * CheckTestKeys 
 * checkForDangerousProps
@@ -20,7 +20,7 @@ Native checks are typically harder to cloak, so some root cloak apps just block 
 
 **Native checks**
  
-* checkForSuBinary
+* checkForSuBinary - 
 
 
 ##Disclaimer and limitations!
@@ -60,9 +60,11 @@ TODO screen shot and link to play store
 
 There must be more root checks to make this more complete. If you have one please do send us a pull request.
 
-Thanks to 
-* TODO: link to SO posts
-* https://blog.netspi.com/android-root-detection-techniques/
+###Thanks
+
+* Kevin Kowalewski and others from this popular [Stackoverflow post](https://stackoverflow.com/questions/1101380/determine-if-running-on-a-rooted-device?rq=1)
+* Eric Gruber's - Android Root Detection Techniques [article](https://blog.netspi.com/android-root-detection-techniques/)
+
 
 
 ##Other libraries
