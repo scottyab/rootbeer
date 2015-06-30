@@ -12,7 +12,7 @@ public class RootBeerNative {
         System.loadLibrary("tool-checker");
     }
 
-    public native int checkForRoot();
+    public native int checkForRoot(Object[] pathArray);
     public native int setLogDebugMessages(boolean logDebugMessages);
 
 }

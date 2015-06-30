@@ -295,9 +295,16 @@ public class RootBeer {
      * @return true if we found su | false if not
      */
     public boolean checkForRootNative() {
+
+        String binaryName = "su";
+        String[] paths = new String[Const.suPaths.length];
+        for (int i = 0; i < paths.length; i++) {
+            paths[i] = Const.suPaths[i]+binaryName;
+        }
+
         RootBeerNative rootBeerNative = new RootBeerNative();
         rootBeerNative.setLogDebugMessages(true);
-        boolean nativeRoot = rootBeerNative.checkForRoot() > 0;
+        boolean nativeRoot = rootBeerNative.checkForRoot(paths) > 0;
         return nativeRoot;
     }
 

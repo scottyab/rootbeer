@@ -36,20 +36,6 @@
 /* Set to 1 to enable debug log traces. */
 static int DEBUG = 1;
 
-const char *paths[10] = { 
-    "/data/local/",
-    "/data/local/bin/",
-    "/data/local/xbin/",
-    "/sbin/",
-    "/system/bin/",
-    "/system/bin/.ext/",
-    "/system/bin/failsafe/",
-    "/system/sd/xbin/",
-    "/system/usr/we-need-root/",
-    "/system/xbin/"
-};
-
-
 /*****************************************************************************  
  * Description: Sets if we should log debug messages
  *
@@ -102,14 +88,22 @@ int exists(const char *fname)
  * Return value: int number of su binaries found
  *
  *****************************************************************************/
-int Java_com_scottyab_rootbeer_RootBeerNative_checkForRoot( JNIEnv* env, jobject thiz )
+int Java_com_scottyab_rootbeer_RootBeerNative_checkForRoot( JNIEnv* env, jobject thiz, jobjectArray pathsArray )
 {
     
-  int binariesFound = 0;
-  for(int i = 0 ; i < 8; i ++){
-    binariesFound+=exists(paths[i]);
-  }
+    int binariesFound = 0;
+  
+    int stringCount = (env)->GetArrayLength(pathsArray);
 
+    for (int i=0; i<stringCount; i++) {
+        jstring string = (jstring) (env)->GetObjectArrayElement(pathsArray, i);
+        const char *pathString = (env)->GetStringUTFChars(string, 0);
+	
+	binariesFound+=exists(pathString);
+	
+	(env)->ReleaseStringUTFChars(string, pathString);
+    }
+  
     return binariesFound>0;
 }
 
