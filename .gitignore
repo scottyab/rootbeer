@@ -31,4 +31,4 @@ proguard/
 .idea/libraries/support_v4_22_2_0.xml
 
 # out puts for ndk
-obj/
+obj

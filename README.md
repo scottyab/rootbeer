@@ -67,9 +67,16 @@ dependencies {
     compile('com.scottyab:rootbeerlib:0.0.1')
 }
 ```
+
+### Building 
+The native libs are included however if you want to change them you'll need the [ndk](https://developer.android.com/tools/sdk/ndk/index.html)
+
+For those unfamilar with NDK builds, if you make changes to the native code you'll have to run `build.sh` (in the `/rootbeerlib/jni/` folder) to compile the native libraries and copy to `/libs`.  *Hopefully with the new Android Studio support for NDK this step will be part of the gradle build.* 
+
+
 ### Sample app
 
-TODO screen shot and link to play store
+**TODO** add screen shot and [play store](https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample)
 
 ##Contributing
 
