@@ -260,6 +260,7 @@ public class RootBeer {
 
     public boolean checkForRootNative() {
         RootBeerNative rootBeerNative = new RootBeerNative();
+        rootBeerNative.setLogDebugMessages(true);
         boolean nativeRoot = rootBeerNative.checkForRoot() > 0;
         return nativeRoot;
     }
