@@ -7,9 +7,11 @@ public class Const {
 
     public static final String[] knownRootAppsPackages = {
             "com.noshufou.android.su",
+            "com.noshufou.android.su.elite",
             "eu.chainfire.supersu",
             "com.koushikdutta.superuser",
             "com.thirdparty.superuser",
+            "com.yellowes.su",
 
     };
 
@@ -25,7 +27,9 @@ public class Const {
             "de.robv.android.xposed.installer",
             "com.saurik.substrate",
             "com.devadvance.rootcloakplus",
-            "com.zachspong.temprootremovejb"
+            "com.zachspong.temprootremovejb",
+            "com.amphoras.hidemyroot",
+            "com.formyhm.hideroot"
     };
 
     public static final String[] suPaths ={
