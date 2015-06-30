@@ -29,13 +29,14 @@
  ****************************************************************************/
 
 // LOGCAT
-/* Set to 1 to enable debug log traces. */
-#define DEBUG 1
 #define  LOG_TAG    "RootBeer"
 #define  LOGD(...)  if (DEBUG) __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__);
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__);
 
-const char *paths[8] = { 
+/* Set to 1 to enable debug log traces. */
+static int DEBUG = 1;
+
+const char *paths[10] = { 
     "/data/local/",
     "/data/local/bin/",
     "/data/local/xbin/",
@@ -47,6 +48,25 @@ const char *paths[8] = {
     "/system/usr/we-need-root/",
     "/system/xbin/"
 };
+
+
+/*****************************************************************************  
+ * Description: Sets if we should log debug messages
+ *
+ * Parameters: env - Java environment pointer
+ *      thiz - javaobject
+ * 	bool - true to log debug messages
+ *
+ *****************************************************************************/
+void Java_com_scottyab_rootbeer_RootBeerNative_setLogDebugMessages( JNIEnv* env, jobject thiz, jboolean debug)
+{
+  if (debug){
+    DEBUG = 1;
+  }
+  else{
+    DEBUG = 0;
+  }
+}
 
 
 /*****************************************************************************  

@@ -13,5 +13,6 @@ public class RootBeerNative {
     }
 
     public native int checkForRoot();
+    public native int setLogDebugMessages(boolean logDebugMessages);
 
 }
