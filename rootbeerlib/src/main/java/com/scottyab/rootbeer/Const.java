@@ -47,8 +47,6 @@ public class Const {
 
 
     public static final String[] pathsThatShouldNotBeWrtiable = {
-            "/data",
-            "/",
             "/system",
             "/system/bin",
             "/system/sbin",
