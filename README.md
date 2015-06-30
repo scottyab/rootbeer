@@ -1,12 +1,18 @@
-# RootBeer
+# RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
 
 A tasty root checker library and sample app. We've scoured the internets for different methods of assessing has this device got root? and added some of our own checks. 
 
 
+<<<<<<< HEAD
 #Checks
 Native checks are typically harder to cloak. We found that even naming the shared object rootChecker prevent it being loaded by some cloaking methods and so we renamed it toolChecker.so
+=======
+#Root checks
+>>>>>>> e1741cf2dcd0653649df59001601e41180062c2e
 
 **Java checks**
+
+These are the current checks/tricks we are using to give an indication of root.  
 
 * CheckRootManagementApps  
 * CheckPotentiallyDangerousAppss
@@ -20,7 +26,7 @@ Native checks are typically harder to cloak. We found that even naming the share
 
 **Native checks**
 
-Native checks are often harder to cloak/trick so here we call through to our native root checker to run some of it's own checks.
+We call through to our native root checker to run some of it's own checks. Native checks are typically harder to cloak, so some root cloak apps just block the loading of native libraries that contain certain key words. 
  
 * checkForSuBinary 
 
@@ -59,6 +65,7 @@ Tested cloakers (requires both to be installed and active):
 
 ```
 
+You can also call each of the checks indivdually as the sample app does. 
 
 ###Dependency
 
