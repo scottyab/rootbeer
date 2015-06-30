@@ -36,15 +36,16 @@
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__);
 
 const char *paths[8] = { 
-  "/sbin/su", 
-  "/system/bin/su", 
-  "/system/xbin/su",
-  "/data/local/xbin/su", 
-  "/data/local/bin/su", 
-  "/system/sd/xbin/su",
-  "/system/bin/failsafe/su", 
-  "/data/local/su"
-  
+    "/data/local/",
+    "/data/local/bin/",
+    "/data/local/xbin/",
+    "/sbin/",
+    "/system/bin/",
+    "/system/bin/.ext/",
+    "/system/bin/failsafe/",
+    "/system/sd/xbin/",
+    "/system/usr/we-need-root/",
+    "/system/xbin/"
 };
 
 
