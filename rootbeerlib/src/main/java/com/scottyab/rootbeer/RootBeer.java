@@ -32,7 +32,7 @@ public class RootBeer {
      * Run all the checks
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
-    public boolean detectThreats() {
+    public boolean isRooted() {
         boolean rootManagement = detectRootManagementApps();
         boolean potentiallyDangerousApps = detectPotentiallyDangerousApps();
         boolean suBinary = checkForBinary("su");

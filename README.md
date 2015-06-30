@@ -8,19 +8,21 @@ Native checks are typically harder to cloak, so some root cloak apps just block 
 
 **Java checks**
 
-* CheckRootManagementApps - 
+* CheckRootManagementApps  
 * CheckPotentiallyDangerousAppss
+* CheckRootCloakingApps
 * CheckTestKeys 
 * checkForDangerousProps
 * checkForBusyBoxBinary
 * checkForSuBinary
 * checkSuExists
 * checkForRWSystem
-* CheckRootCloakingApps
 
 **Native checks**
+
+Native checks are often harder to cloak/trick so here we call through to our native root checker to run some of it's own checks.
  
-* checkForSuBinary - 
+* checkForSuBinary 
 
 
 ##Disclaimer and limitations!
@@ -33,16 +35,29 @@ TODO picture of god/jesus drinking root beer i.e http://www.purederry.com/wp-con
 
 
 ### Root cloakers
-Rootbeer can be defected but some of the root cloaks apps in combienation with xposded / cyida frameworks.
+Rootbeer can be defeated by using a combienation of some of the root cloaks apps in that require xposded / cyida frameworks. 
 
-Tested cloakers
+Tested cloakers (requires both to be installed and active):
 
-TODO list
+* [RootCloak Plus (Cydia)](https://play.google.com/store/apps/details?id=com.devadvance.rootcloakplus&hl=en_GB) requires [Cydia Substrate](http://play.google.com/store/apps/details?id=com.saurik.substrate)
+* [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires Xposed Framework 
+
 
 
 ##Usage
 
-TODO
+
+```java
+        RootBeer rootBeer = new RootBeer(context);
+        if(rootBeer.isRooted()){
+            //we found indication of root
+
+        }else{
+            //we didn't find indication of root
+
+        }
+
+```
 
 
 ###Dependency

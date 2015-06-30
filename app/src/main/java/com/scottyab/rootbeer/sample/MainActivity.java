@@ -1,5 +1,6 @@
 package com.scottyab.rootbeer.sample;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -76,8 +77,19 @@ public class MainActivity extends ActionBarActivity {
         b.append("\nisSelinuxFlagInEnabled? ");
         b.append(Utils.isSelinuxFlagInEnabled());
 
-
         results.setText(b.toString());
+    }
+
+
+    public void checkForRoot(Context context){
+        RootBeer rootBeer = new RootBeer(context);
+        if(rootBeer.isRooted()){
+            //we found indication of root
+
+        }else{
+            //we didn't find indication of root
+
+        }
     }
 
     @Override
