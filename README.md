@@ -61,12 +61,16 @@ Tested cloakers (requires both to be installed and active):
 You can also call each of the checks individually as the sample app does. 
 
 ###Dependency
+(once it's propergated on maven central)
 
 ```java
 dependencies {
     compile('com.scottyab:rootbeerlib:0.0.1')
 }
 ```
+
+Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
+
 
 ### Building 
 The native libs are included however if you want to change them you'll need the [ndk](https://developer.android.com/tools/sdk/ndk/index.html)
