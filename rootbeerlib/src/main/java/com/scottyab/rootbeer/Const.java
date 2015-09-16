@@ -52,11 +52,11 @@ public class Const {
             "/system/sbin",
             "/system/xbin",
             "/vendor/bin",
-            "/sys",
+            //"/sys",
             "/sbin",
             "/etc",
-            "/proc",
-            "/dev"
+            //"/proc",
+            //"/dev"
     };
 
 
