@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <color name="pass">#8BC34A</color>
+  <color name="fail">#FF5252</color>
+  <color name="problem">#0097A7</color>
+
+
+</resources>

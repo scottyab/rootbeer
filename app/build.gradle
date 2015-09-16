@@ -9,10 +9,33 @@ android {
         minSdkVersion 10
         targetSdkVersion 22
         versionCode 2
-        versionName "1.0"
+        versionName "0.2"
     }
+
+
+    //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
+    if(project.hasProperty("ROOTBEER_SAMPLE_STORE")) {
+        signingConfigs {
+            //from ~/user/.gradle/gradle.properties
+            release {
+                storeFile file(ROOTBEER_SAMPLE_STORE)
+                keyAlias ROOTBEER_SAMPLE_KEY
+                storePassword ROOTBEER_SAMPLE_STORE_PASS
+                keyPassword ROOTBEER_SAMPLE_KEY_PASS
+            }
+        }
+    }
+
     buildTypes {
+        debug{
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
         release {
+            if(project.hasProperty("ROOTBEER_SAMPLE_STORE")) {
+                signingConfig signingConfigs.release
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

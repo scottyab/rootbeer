@@ -1,9 +1,16 @@
 package com.scottyab.rootbeer.sample;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
 
     private static String GITHUB_LINK = "https://github.com/scottyab/rootbeer";
 
+    private View resultsContainer;
     private TextView results;
     private AlertDialog infoDialog;
 
@@ -35,12 +43,22 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        resultsContainer = findViewById(R.id.resultsContainer);
         results = (TextView)findViewById(R.id.rootResults);
 
     }
 
     private void doRootCheck() {
         RootBeer check = new RootBeer(this);
+
+        if(check.isRooted()){
+            //we found indication of root
+            doPropertyAnimatorReveal(getResources().getColor(R.color.fail));
+        }else{
+            //we didn't find indication of root
+            doPropertyAnimatorReveal(getResources().getColor(R.color.pass));
+        }
+
         StringBuilder b = new StringBuilder();
         b.append("If any of the below are true the root check \'might\' indicate device is rooted\n");
 
@@ -74,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
         b.append("\ndetectRootCloakingApps: ");
         b.append(check.detectRootCloakingApps());
 
-        b.append("\nisSelinuxFlagInEnabled? ");
+        b.append("\nisSelinuxFlagInEnabled? (experimental) ");
         b.append(Utils.isSelinuxFlagInEnabled());
 
         results.setText(b.toString());
@@ -83,13 +101,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void checkForRoot(Context context){
         RootBeer rootBeer = new RootBeer(context);
-        if(rootBeer.isRooted()){
-            //we found indication of root
 
-        }else{
-            //we didn't find indication of root
-
-        }
     }
 
     @Override
@@ -140,4 +152,25 @@ public class MainActivity extends ActionBarActivity {
             infoDialog.show();
         }
     }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void doPropertyAnimatorReveal(Integer colorTo) {
+        Integer colorFrom = Color.TRANSPARENT;
+        Drawable background = resultsContainer.getBackground();
+        if (background instanceof ColorDrawable){
+            colorFrom = ((ColorDrawable) background).getColor();
+        }
+
+        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+        colorAnimation.setDuration(500);
+        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animator) {
+                resultsContainer.setBackgroundColor((Integer) animator.getAnimatedValue());
+            }
+
+        });
+        colorAnimation.start();
+    }
+
 }
