@@ -34,9 +34,9 @@ Remember **root==god**, so there's no 100% way to check for root.
 
 
 ### Root cloakers
-Rootbeer can be defeated by using a combination of some of the root cloaks apps in that require xposded / cyida frameworks. 
+We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers actviated at the same tome. 
 
-Tested cloakers (requires both to be installed and active):
+Tested cloakers:
 
 * [RootCloak Plus (Cydia)](https://play.google.com/store/apps/details?id=com.devadvance.rootcloakplus&hl=en_GB) requires [Cydia Substrate](http://play.google.com/store/apps/details?id=com.saurik.substrate)
 * [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires [Xposed Framework](http://repo.xposed.info/module/de.robv.android.xposed.installer)
@@ -61,16 +61,14 @@ Tested cloakers (requires both to be installed and active):
 You can also call each of the checks individually as the sample app does. 
 
 ###Dependency
-(once it's propergated on maven central)
+Avaibile on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeer-lib%22), to include using gradle just add the following: 
 
 ```java
 dependencies {
-    compile('com.scottyab:rootbeerlib:0.0.1')
+    compile('com.scottyab:rootbeerlib:0.0.2')
 }
 ```
-
 Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
-
 
 ### Building 
 The native libs are included however if you want to change them you'll need the [ndk](https://developer.android.com/tools/sdk/ndk/index.html)
@@ -80,7 +78,13 @@ For those unfamilar with NDK builds, if you make changes to the native code you'
 
 ### Sample app
 
-**TODO** add screen shot and [play store](https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample)
+ The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results. 
+ 
+ <a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
+</a>
+ 
 
 ##Contributing
 
