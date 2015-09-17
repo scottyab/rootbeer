@@ -34,7 +34,7 @@ Remember **root==god**, so there's no 100% way to check for root.
 
 
 ### Root cloakers
-We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers actviated at the same tome. 
+We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers actviated at the same time. 
 
 Tested cloakers:
 
