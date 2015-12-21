@@ -2,6 +2,7 @@ package com.scottyab.rootbeer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.support.annotation.Nullable;
 
 import com.scottyab.rootbeer.util.QLog;
 
@@ -202,11 +203,13 @@ public class RootBeer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // If input steam is null, we can't read the file, so return null
+        if (inputstream == null) return null;
+
         String propval = "";
         try {
-
             propval = new Scanner(inputstream).useDelimiter("\\A").next();
-
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
