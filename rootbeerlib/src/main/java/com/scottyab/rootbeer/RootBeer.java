@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -202,11 +201,13 @@ public class RootBeer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // If input steam is null, we can't read the file, so return null
+        if (inputstream == null) return null;
+
         String propval = "";
         try {
-
             propval = new Scanner(inputstream).useDelimiter("\\A").next();
-
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
