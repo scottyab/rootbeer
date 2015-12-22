@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -78,7 +79,6 @@ public class RootBeer {
      * @return true if one of the apps it's installed
      */
     public boolean detectRootManagementApps(String[] additionalRootManagementApps) {
-        boolean result = false;
 
         // Create a list of package names to iterate over from constants any others provided
         ArrayList<String> packages = new ArrayList<>();
@@ -87,21 +87,7 @@ public class RootBeer {
             packages.addAll(Arrays.asList(additionalRootManagementApps));
         }
 
-        PackageManager pm = mContext.getPackageManager();
-
-        for (String packageName : packages) {
-            try {
-                // Root app detected
-                pm.getPackageInfo(packageName, 0);
-                QLog.e(packageName + " ROOT management app detected!");
-                result = true;
-            } catch (PackageManager.NameNotFoundException e) {
-                // Exception thrown, package is not installed into the system
-                continue;
-            }
-        }
-
-        return result;
+        return isAnyPackageFromListInstalled(packages);
     }
 
     /**
@@ -118,7 +104,6 @@ public class RootBeer {
      * @return true if one of the apps it's installed
      */
     public boolean detectPotentiallyDangerousApps(String[] additionalDangerousApps) {
-        boolean result = false;
 
         // Create a list of package names to iterate over from constants any others provided
         ArrayList<String> packages = new ArrayList<>();
@@ -127,21 +112,7 @@ public class RootBeer {
             packages.addAll(Arrays.asList(additionalDangerousApps));
         }
 
-        PackageManager pm = mContext.getPackageManager();
-
-        for (String packageName : packages) {
-            try {
-                // app detected
-                pm.getPackageInfo(packageName, 0);
-                QLog.e(packageName + " potentially dangerous app detected!");
-                result = true;
-            } catch (PackageManager.NameNotFoundException e) {
-                // Exception thrown, package is not installed into the system
-                continue;
-            }
-        }
-
-        return result;
+        return isAnyPackageFromListInstalled(packages);
     }
 
     /**
@@ -158,7 +129,6 @@ public class RootBeer {
      * @return true if one of the apps it's installed
      */
     public boolean detectRootCloakingApps(String[] additionalRootCloakingApps) {
-        boolean result = false;
 
         // Create a list of package names to iterate over from constants any others provided
         ArrayList<String> packages = new ArrayList<>();
@@ -167,21 +137,7 @@ public class RootBeer {
             packages.addAll(Arrays.asList(additionalRootCloakingApps));
         }
 
-        PackageManager pm = mContext.getPackageManager();
-
-        for (String packageName : packages) {
-            try {
-                // Root app detected
-                pm.getPackageInfo(packageName, 0);
-                QLog.e(packageName + " ROOT Cloaking app detected!");
-                result = true;
-            } catch (PackageManager.NameNotFoundException e) {
-                // Exception thrown, package is not installed into the system
-                continue;
-            }
-        }
-
-        return result;
+        return isAnyPackageFromListInstalled(packages);
     }
 
 
@@ -265,6 +221,31 @@ public class RootBeer {
     }
 
     /**
+     * Check if any package in the list is installed
+     * @param packages - list of packages to search for
+     * @return true if any of the packages are installed
+     */
+    private boolean isAnyPackageFromListInstalled(List<String> packages){
+        boolean result = false;
+
+        PackageManager pm = mContext.getPackageManager();
+
+        for (String packageName : packages) {
+            try {
+                // Root app detected
+                pm.getPackageInfo(packageName, 0);
+                QLog.e(packageName + " ROOT management app detected!");
+                result = true;
+            } catch (PackageManager.NameNotFoundException e) {
+                // Exception thrown, package is not installed into the system
+                continue;
+            }
+        }
+
+        return result;
+    }
+
+    /**
      * Checks for several system properties for
      * @return
      */
@@ -334,11 +315,6 @@ public class RootBeer {
             if (process != null) process.destroy();
         }
     }
-
-
-
-
-
 
     /**
      * Native checks are often harder to cloak/trick so here we call through to our native root checker
