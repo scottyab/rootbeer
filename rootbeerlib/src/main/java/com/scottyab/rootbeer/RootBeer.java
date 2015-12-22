@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -67,12 +69,27 @@ public class RootBeer {
      * @return true if one of the apps it's installed
      */
     public boolean detectRootManagementApps() {
+        return detectRootManagementApps(null);
+    }
 
+    /**
+     * Using the PackageManager, check for a list of well known root apps. @link {Const.knownRootAppsPackages}
+     * @param additionalRootManagementApps - array of additional packagenames to search for
+     * @return true if one of the apps it's installed
+     */
+    public boolean detectRootManagementApps(String[] additionalRootManagementApps) {
         boolean result = false;
+
+        // Create a list of package names to iterate over from constants any others provided
+        ArrayList<String> packages = new ArrayList<>();
+        packages.addAll(Arrays.asList(Const.knownRootAppsPackages));
+        if (additionalRootManagementApps!=null && additionalRootManagementApps.length>0){
+            packages.addAll(Arrays.asList(additionalRootManagementApps));
+        }
 
         PackageManager pm = mContext.getPackageManager();
 
-        for (String packageName : Const.knownRootAppsPackages) {
+        for (String packageName : packages) {
             try {
                 // Root app detected
                 pm.getPackageInfo(packageName, 0);
@@ -92,11 +109,27 @@ public class RootBeer {
      * @return true if one of the apps it's installed
      */
     public boolean detectPotentiallyDangerousApps() {
+        return detectPotentiallyDangerousApps(null);
+    }
+
+    /**
+     * Using the PackageManager, check for a list of well known apps that require root. @link {Const.knownRootAppsPackages}
+     * @param additionalDangerousApps - array of additional packagenames to search for
+     * @return true if one of the apps it's installed
+     */
+    public boolean detectPotentiallyDangerousApps(String[] additionalDangerousApps) {
         boolean result = false;
+
+        // Create a list of package names to iterate over from constants any others provided
+        ArrayList<String> packages = new ArrayList<>();
+        packages.addAll(Arrays.asList(Const.knownDangerousAppsPackages));
+        if (additionalDangerousApps!=null && additionalDangerousApps.length>0){
+            packages.addAll(Arrays.asList(additionalDangerousApps));
+        }
 
         PackageManager pm = mContext.getPackageManager();
 
-        for (String packageName : Const.knownDangerousAppsPackages) {
+        for (String packageName : packages) {
             try {
                 // app detected
                 pm.getPackageInfo(packageName, 0);
@@ -116,11 +149,27 @@ public class RootBeer {
      * @return true if one of the apps it's installed
      */
     public boolean detectRootCloakingApps() {
+        return detectRootCloakingApps(null);
+    }
 
+    /**
+     * Using the PackageManager, check for a list of well known root cloak apps. @link {Const.knownRootAppsPackages}
+     * @param additionalRootCloakingApps - array of additional packagenames to search for
+     * @return true if one of the apps it's installed
+     */
+    public boolean detectRootCloakingApps(String[] additionalRootCloakingApps) {
         boolean result = false;
+
+        // Create a list of package names to iterate over from constants any others provided
+        ArrayList<String> packages = new ArrayList<>();
+        packages.addAll(Arrays.asList(Const.knownRootCloakingPackages));
+        if (additionalRootCloakingApps!=null && additionalRootCloakingApps.length>0){
+            packages.addAll(Arrays.asList(additionalRootCloakingApps));
+        }
+
         PackageManager pm = mContext.getPackageManager();
 
-        for (String packageName : Const.knownRootCloakingPackages) {
+        for (String packageName : packages) {
             try {
                 // Root app detected
                 pm.getPackageInfo(packageName, 0);
