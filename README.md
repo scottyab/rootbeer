@@ -65,7 +65,7 @@ Avaibile on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22r
 
 ```java
 dependencies {
-    compile('com.scottyab:rootbeerlib:0.0.2')
+    compile 'com.scottyab:rootbeer-lib:0.0.2'
 }
 ```
 Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
