@@ -34,7 +34,7 @@ Remember **root==god**, so there's no 100% way to check for root.
 
 
 ### Root cloakers
-We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers actviated at the same time. 
+We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers activated at the same time. 
 
 Tested cloakers:
 
@@ -65,7 +65,7 @@ Avaibile on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22r
 
 ```java
 dependencies {
-    compile 'com.scottyab:rootbeer-lib:0.0.2'
+    compile 'com.scottyab:rootbeer-lib:0.0.3'
 }
 ```
 Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
@@ -78,12 +78,9 @@ For those unfamilar with NDK builds, if you make changes to the native code you'
 
 ### Sample app
 
- The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results. 
+The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results. 
  
- <a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample">
-  <img alt="Get it on Google Play"
-       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
-</a>
+<a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
  
 
 ##Contributing
@@ -94,7 +91,6 @@ There must be more root checks to make this more complete. If you have one pleas
 
 * Kevin Kowalewski and others from this popular [Stackoverflow post](https://stackoverflow.com/questions/1101380/determine-if-running-on-a-rooted-device?rq=1)
 * Eric Gruber's - Android Root Detection Techniques [article](https://blog.netspi.com/android-root-detection-techniques/)
-
 
 
 ##Other libraries
