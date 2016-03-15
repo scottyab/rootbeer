@@ -3,7 +3,11 @@ package com.scottyab.rootbeer;
 /**
  * Created by mat on 19/06/15.
  */
-public class Const {
+public final class Const {
+
+    private Const() throws InstantiationException {
+        throw new InstantiationException("This class is not for instantiation");
+    }
 
     public static final String[] knownRootAppsPackages = {
             "com.noshufou.android.su",
