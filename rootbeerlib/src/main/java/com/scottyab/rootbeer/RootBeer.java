@@ -45,10 +45,8 @@ public class RootBeer {
         boolean testSuExists = checkSuExists();
         boolean testRootNative = checkForRootNative();
 
-        boolean result = rootManagement || potentiallyDangerousApps || suBinary
+        return rootManagement || potentiallyDangerousApps || suBinary
                 || busyboxBinary || dangerousProps || rwSystem || testKeys || testSuExists || testRootNative;
-
-        return result;
     }
 
     /**
@@ -330,8 +328,7 @@ public class RootBeer {
 
         RootBeerNative rootBeerNative = new RootBeerNative();
         rootBeerNative.setLogDebugMessages(true);
-        boolean nativeRoot = rootBeerNative.checkForRoot(paths) > 0;
-        return nativeRoot;
+        return rootBeerNative.checkForRoot(paths) > 0;
     }
 
 }

@@ -118,9 +118,8 @@ public final class QLog {
         int lineNo = elements[depth].getLineNumber();
         int i = callerClassPath.lastIndexOf('.');
         String callerClassName = callerClassPath.substring(i + 1);
-        String trace = callerClassName + ": " + callerMethodName + "() ["
+        return callerClassName + ": " + callerMethodName + "() ["
                 + lineNo + "] - ";
-        return trace;
     }
 
     /**
