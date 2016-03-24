@@ -98,12 +98,6 @@ public class MainActivity extends ActionBarActivity {
         results.setText(b.toString());
     }
 
-
-    public void checkForRoot(Context context){
-        RootBeer rootBeer = new RootBeer(context);
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
