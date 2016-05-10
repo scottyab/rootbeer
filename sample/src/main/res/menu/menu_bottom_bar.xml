@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/lager_item"
+        android:icon="@drawable/ic_action_beer_glass"
+        android:title="Lager" />
+    <item
+        android:id="@+id/ale_item"
+        android:icon="@drawable/ic_action_beer_glass"
+        android:title="Ale" />
+    <item
+        android:id="@+id/stout_item"
+        android:icon="@drawable/ic_action_beer_glass"
+        android:title="Stout" />
+</menu>
