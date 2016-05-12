@@ -1,9 +1,9 @@
-package com.sixteenplusfour.beerprogressview.sample;
+package uk.co.barbuzz.beerprogressview.sample;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.sixteenplusfour.beerprogressview.BeerProgressView;
+import uk.co.barbuzz.beerprogressview.BeerProgressView;
 
 /**
  * Old school Async to update progress view gradually

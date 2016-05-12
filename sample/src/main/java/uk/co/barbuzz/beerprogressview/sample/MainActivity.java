@@ -1,4 +1,4 @@
-package com.sixteenplusfour.beerprogressview.sample;
+package uk.co.barbuzz.beerprogressview.sample;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +15,8 @@ import android.view.MenuItem;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
-import com.sixteenplusfour.beerprogressview.BeerProgressView;
+
+import uk.co.barbuzz.beerprogressview.BeerProgressView;
 
 public class MainActivity extends AppCompatActivity {
 

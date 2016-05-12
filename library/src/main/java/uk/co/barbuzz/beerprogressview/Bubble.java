@@ -1,4 +1,4 @@
-package com.sixteenplusfour.beerprogressview;
+package uk.co.barbuzz.beerprogressview;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

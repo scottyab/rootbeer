@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.sixteenplusfour.beerprogressview.sample.MainActivity"
+    tools:context="uk.co.barbuzz.beerprogressview.sample.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <com.sixteenplusfour.beerprogressview.BeerProgressView
+    <uk.co.barbuzz.beerprogressview.BeerProgressView
         android:id="@+id/content_main_beer_progress_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

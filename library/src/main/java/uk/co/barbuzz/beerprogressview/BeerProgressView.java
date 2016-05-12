@@ -1,4 +1,4 @@
-package com.sixteenplusfour.beerprogressview;
+package uk.co.barbuzz.beerprogressview;
 
 
 import android.content.Context;
@@ -36,8 +36,8 @@ public class BeerProgressView extends View {
     private static final String STATE_PROGRESS = "state_progress";
     private static final String STATE_WAVE_COLOR = "state_wave_color";
     private static final String STATE_BUBBLE_COLOR = "state_bubble_color";
-    private static final int BEER_DEFAULT_COLOR = Color.parseColor("#1abc9c");
-    private static final int BUBBLE_DEFAULT_COLOR = Color.parseColor("#b67200");
+    private static final int BEER_DEFAULT_COLOR = Color.parseColor("#EFA601");
+    private static final int BUBBLE_DEFAULT_COLOR = Color.parseColor("#B67200");
     private static final int BUBBLE_DEFAULT_COUNT = 20;
     private static final int BUBBLE_FPS = 30;
 
