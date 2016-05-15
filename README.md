@@ -43,7 +43,7 @@ The library is currently configured to be built via Gradle only. It has the foll
 * Minimum SDK Version       - >= Gingerbread-10
 
 ### Usage
-For more detailed code example to use the library, Please refer the `/sample` app.
+For more detailed code example to use the library, Please refer to the `/sample` app.
 
 `BeerProgressView` can be added as a custom view to any layout.
 
@@ -78,7 +78,7 @@ beerProgressView.setBeerProgress(10);
 This library has been made by pulling together two other open source libraries to get what I needed at the time. So huge thanks to the following libraries which this is based on.
 
 * WaveProgrssView by [zeng1990java](https://github.com/zeng1990java) - [https://github.com/zeng1990java/WaveProgressView](https://github.com/zeng1990java/WaveProgressView)
-* WaveProgrssView by [vrnvikas](https://github.com/vrnvikas) - [https://github.com/vrnvikas/BubbleWallpaper](https://github.com/vrnvikas/BubbleWallpaper)
+* BubbleWallpaper by [vrnvikas](https://github.com/vrnvikas) - [https://github.com/vrnvikas/BubbleWallpaper](https://github.com/vrnvikas/BubbleWallpaper)
 
 ### Licence
 ```
