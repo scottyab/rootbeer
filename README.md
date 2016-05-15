@@ -43,7 +43,7 @@ The library is currently configured to be built via Gradle only. It has the foll
 * Minimum SDK Version       - >= Gingerbread-10
 
 ### Usage
-For more detailed code example to use the library, Please refere the `/sample` app.
+For more detailed code example to use the library, Please refer the `/sample` app.
 
 `BeerProgressView` can be added as a custom view to any layout.
 
