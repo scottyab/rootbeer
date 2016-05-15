@@ -6,7 +6,7 @@ A cool beer styled progress view with realistic bubbles*.  Cheers!
 * Change wave size.
 * Change bubble colour.  
 
-(*realism of the bubbles not guaranteed)
+(*realism of bubbles not guaranteed)
 
 <p>
 <a href="https://play.google.com/store/apps/details?id=uk.co.barbuzz.beerprogressview.sample"><img src="https://github.com/andyb129/BeerProgressView/blob/master/screenshots%2Fgoogle_play_badge.png" height="80" width="210" alt="BeerProgressView"/></a>
