@@ -8,7 +8,7 @@ A cool beer styled progress view with realistic bubbles*.  Cheers!
 
 (*realism of the bubbles not guaranteed)
 
-<p align="center">
+<p>
 <img src="https://github.com/andyb129/BeerProgressView/blob/master/screenshots%2Fbeer_progress_view_anim.gif" height="600" alt="BeerProgressView"/>
 </p>
   
