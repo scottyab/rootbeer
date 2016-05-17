@@ -281,12 +281,30 @@ public class RootBeer {
 
         String[] lines = mountReader();
         for (String line : lines) {
+
+            // Split lines into parts
+            String[] args = line.split(" ");
+
+            if (args.length < 4){
+                // If we don't have enough options per line, skip this and log an error
+                QLog.e("Error formatting mount line: "+line);
+                continue;
+            }
+
+            String mountPoint = args[1];
+            String mountOptions = args[3];
+
             for(String pathToCheck: Const.pathsThatShouldNotBeWrtiable) {
-                if (line.contains(pathToCheck)) {
-                    if (line.contains(" rw,")) {
-                        QLog.v(pathToCheck+" path is mounted with rw permissions!");
+                if (mountPoint.equalsIgnoreCase(pathToCheck)) {
+
+                    // Split options out and compare against "rw" to avoid false positives
+                    for (String option : mountOptions.split(",")){
+
+                      if (option.equalsIgnoreCase("rw")){
+                        QLog.v(pathToCheck+" path is mounted with rw permissions! "+line);
                         result = true;
                         break;
+                      }
                     }
                 }
             }
