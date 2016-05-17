@@ -60,40 +60,40 @@ public class MainActivity extends ActionBarActivity {
         }
 
         StringBuilder b = new StringBuilder();
-        b.append("If any of the below are true the root check \'might\' indicate device is rooted\n");
+        b.append("If any of the below are true the root check \'might\' indicate device is rooted\n")
 
-        b.append("\ndetectRootManagementApps: ");
-        b.append(check.detectRootManagementApps());
+                .append("\ndetectRootManagementApps: ")
+                .append(check.detectRootManagementApps())
 
-        b.append("\ndetectPotentiallyDangerousApps: ");
-        b.append(check.detectPotentiallyDangerousApps());
+                .append("\ndetectPotentiallyDangerousApps: ")
+                .append(check.detectPotentiallyDangerousApps())
 
-        b.append("\ndetectTestKeys: ");
-        b.append(check.detectTestKeys());
+                .append("\ndetectTestKeys: ")
+                .append(check.detectTestKeys())
 
-        b.append("\ncheckForBusyBoxBinary: ");
-        b.append(check.checkForBusyBoxBinary());
+                .append("\ncheckForBusyBoxBinary: ")
+                .append(check.checkForBusyBoxBinary())
 
-        b.append("\ncheckForSuBinary: ");
-        b.append(check.checkForSuBinary());
+                .append("\ncheckForSuBinary: ")
+                .append(check.checkForSuBinary())
 
-        b.append("\ncheckSuExists: ");
-        b.append(check.checkSuExists());
+                .append("\ncheckSuExists: ")
+                .append(check.checkSuExists())
 
-        b.append("\ncheckForRWPaths: ");
-        b.append(check.checkForRWPaths());
+                .append("\ncheckForRWPaths: ")
+                .append(check.checkForRWPaths())
 
-        b.append("\ncheckForDangerousProps: ");
-        b.append(check.checkForDangerousProps());
+                .append("\ncheckForDangerousProps: ")
+                .append(check.checkForDangerousProps())
 
-        b.append("\ncheckForRootNative: ");
-        b.append(check.checkForRootNative());
+                .append("\ncheckForRootNative: ")
+                .append(check.checkForRootNative())
 
-        b.append("\ndetectRootCloakingApps: ");
-        b.append(check.detectRootCloakingApps());
+                .append("\ndetectRootCloakingApps: ")
+                .append(check.detectRootCloakingApps())
 
-        b.append("\nisSelinuxFlagInEnabled? (experimental) ");
-        b.append(Utils.isSelinuxFlagInEnabled());
+                .append("\nisSelinuxFlagInEnabled? (experimental) ")
+                .append(Utils.isSelinuxFlagInEnabled());
 
         results.setText(b.toString());
     }
