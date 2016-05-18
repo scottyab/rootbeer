@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="beerprogressview-0.0.3">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/uk.co.barbuzz/beerprogressview/0.0.3/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/uk.co.barbuzz/beerprogressview/0.0.3/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/uk.co.barbuzz/beerprogressview/0.0.3/b9f9f09c3db5d813aa8a7f98965a97b951dd85d/beerprogressview-0.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
