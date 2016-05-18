@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Beer Progress View Sample</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_github">Get it on Github</string>
+    <string name="action_info">Info</string>
+
+    <string name="info_details">This is a sample app for the BeerProgressView library by Andy Barber. Enjoy!</string>
+    <string name="github_link">https://github.com/andyb129/BeerProgressView</string>
+</resources>

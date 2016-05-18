@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="uk.co.barbuzz.beerprogressview.sample.MainActivity">
+
+    <item android:id="@+id/action_info"
+          android:title="@string/action_info"
+          android:icon="@drawable/ic_info_outline"
+          android:orderInCategory="100"
+          app:showAsAction="always"/>
+
+      <item android:id="@+id/action_github"
+            android:title="@string/action_github"
+            android:orderInCategory="100"
+            android:icon="@drawable/ic_action_github"
+            app:showAsAction="always"/>
+</menu>

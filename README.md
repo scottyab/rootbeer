@@ -1,122 +1,101 @@
-# RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
+# Beer Progress View
+A cool beer styled progress view with realistic bubbles*.  Cheers!
 
-A tasty root checker library and sample app. We've scoured the internets for different methods of answering that age old question... **Has this device got root?**  
+* Increment progress.
+* Change beer colour.
+* Change wave size.
+* Change bubble colour.  
 
-#Root checks
-These are the current checks/tricks we are using to give an indication of root.  
+(*realism of bubbles not guaranteed)
 
-**Java checks**
+<p>
+<a href="https://play.google.com/store/apps/details?id=uk.co.barbuzz.beerprogressview.sample"><img src="https://github.com/andyb129/BeerProgressView/blob/master/screenshots%2Fgoogle_play_badge.png" height="80" width="210" alt="BeerProgressView"/></a>
+</p>
+<p>
+<img src="https://github.com/andyb129/BeerProgressView/blob/master/screenshots%2Fbeer_progress_view_anim.gif" height="600" alt="BeerProgressView"/>
+</p>
+  
+<!--![optional caption text](screenshots/beer_progress_view_anim.gif)-->
 
-* CheckRootManagementApps  
-* CheckPotentiallyDangerousAppss
-* CheckRootCloakingApps
-* CheckTestKeys 
-* checkForDangerousProps
-* checkForBusyBoxBinary
-* checkForSuBinary
-* checkSuExists
-* checkForRWSystem
+### Setup
+To use **BeerProgressView** in your projects, simply add the library as a dependency to your build.
 
-**Native checks**
-
-We call through to our native root checker to run some of it's own checks. Native checks are typically harder to cloak, so some root cloak apps just block the loading of native libraries that contain certain key words. 
- 
-* checkForSuBinary 
-
-
-##Disclaimer and limitations!
-
-We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the main contributors) use rooted devices. But we appreciate sometimes you might want to have a indication your app is running on a rooted handset. Plus we wanted to see if we could beat the root cloakers. So that's what this library gives you, an *indication* of root. 
-
-Remember **root==god**, so there's no 100% way to check for root.
-
-<img src="./art/rootbeerjesus.png" width=200 />
-
-
-### Root cloakers
-We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers activated at the same time. 
-
-Tested cloakers:
-
-* [RootCloak Plus (Cydia)](https://play.google.com/store/apps/details?id=com.devadvance.rootcloakplus&hl=en_GB) requires [Cydia Substrate](http://play.google.com/store/apps/details?id=com.saurik.substrate)
-* [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires [Xposed Framework](http://repo.xposed.info/module/de.robv.android.xposed.installer)
-
-
-
-##Usage
-
-
-```java
-        RootBeer rootBeer = new RootBeer(context);
-        if(rootBeer.isRooted()){
-            //we found indication of root
-
-        }else{
-            //we didn't find indication of root
-
-        }
-
+##### Gradle
 ```
-
-You can also call each of the checks individually as the sample app does. 
-
-###Dependency
-Avaibile on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeer-lib%22), to include using gradle just add the following: 
-
-```java
 dependencies {
-    compile 'com.scottyab:rootbeer-lib:0.0.3'
+  compile 'uk.co.barbuzz.beerprogressview:beerprogressview:0.0.3'
 }
 ```
-Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
 
-### Building 
-The native libs are included however if you want to change them you'll need the [ndk](https://developer.android.com/tools/sdk/ndk/index.html)
+##### Maven
+```
+<dependency>
+  <groupId>uk.co.barbuzz.beerprogressview</groupId>
+  <artifactId>beerprogressview</artifactId>
+  <version>0.0.3</version>
+  <type>pom</type>
+</dependency>
+```
 
-For those unfamilar with NDK builds, if you make changes to the native code you'll have to run `build.sh` (in the `/rootbeerlib/jni/` folder) to compile the native libraries and copy to `/libs`.  *Hopefully with the new Android Studio support for NDK this step will be part of the gradle build.* 
+Alternatively you can directly import the /library project into your Android Studio project and add it as a dependency in your build.gradle.
 
+The library is currently configured to be built via Gradle only. It has the following dependencies:
 
-### Sample app
+* Nine old androids         - com.nineoldandroids:library:2.4.0
+* Compiled SDK Version      - lollipop-23
+* Minimum SDK Version       - >= Gingerbread-10
 
-The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results. 
- 
-<a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
- 
+### Usage
+For more detailed code example to use the library, Please refer to the `/sample` app.
 
-##Contributing
+`BeerProgressView` can be added as a custom view to any layout.
 
-There must be more root checks to make this more complete. If you have one please do send us a pull request.
+```
+<com.sixteenplusfour.beerprogressview.BeerProgressView
+        android:id="@+id/beerProgressView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:beerColor="#EFA601"
+        app:bubbleColor="#B67200"
+        app:beerProgress="0"
+        app:waveMax="100"
+        app:waveAmplitude="3dp"/>
+```
 
-###Thanks
+You can then either set the xml parameters to configure the view or do it programmatically as follows
+```
+BeerProgressView beerProgressView = (BeerProgressView) findViewById(R.id.beerProgressView);
+beerProgressView.setBeerColor(ContextCompat.getColor(mActivity, R.color.lager));
+beerProgressView.setBubbleColor(ContextCompat.getColor(mActivity, R.color.lager_bubble));
+beerProgressView.setMax(100);
+beerProgressView.setAmplitude(4);
+beerProgressView.setBeerProgress(10);
+```
 
-* Kevin Kowalewski and others from this popular [Stackoverflow post](https://stackoverflow.com/questions/1101380/determine-if-running-on-a-rooted-device?rq=1)
-* Eric Gruber's - Android Root Detection Techniques [article](https://blog.netspi.com/android-root-detection-techniques/)
+### TODO
+1. Add number of bubbles to xml config?
+2. Improve draw efficiency of view
 
+### Thanks
 
-##Other libraries
- If you dig this, you might like:
- 
- * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
- * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
+This library has been made by pulling together two other open source libraries to get what I needed at the time. So huge thanks to the following libraries which this is based on.
 
-#Licence
+* WaveProgrssView by [zeng1990java](https://github.com/zeng1990java) - [https://github.com/zeng1990java/WaveProgressView](https://github.com/zeng1990java/WaveProgressView)
+* BubbleWallpaper by [vrnvikas](https://github.com/vrnvikas) - [https://github.com/vrnvikas/BubbleWallpaper](https://github.com/vrnvikas/BubbleWallpaper)
 
+### Licence
+```
+Copyright (c) 2016 Andy Barber
 
-Apache License, Version 2.0
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
+  http://www.apache.org/licenses/LICENSE-2.0
 
-
-    Copyright (C) 2015, Scott Alexander-Bown, Mat Rollings
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-         http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
