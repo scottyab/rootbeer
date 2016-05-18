@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main theme -->
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#8BC34A</color>
+
+    <!-- others -->
+    <color name="lager_bubble">#b67200</color>
+    <color name="ale_bubble">#613d01</color>
+    <color name="stout_bubble">#d4d4d4</color>
+
+    <color name="lager">#EFA601</color>
+    <color name="ale">#9b6100</color>
+    <color name="stout">#252525</color>
+</resources>

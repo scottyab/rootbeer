@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="uk.co.barbuzz.beerprogressview.sample.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <uk.co.barbuzz.beerprogressview.BeerProgressView
+        android:id="@+id/content_main_beer_progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        app:beerColor="#EFA601"
+        app:beerProgress="0"
+        app:waveMax="100"
+        app:waveAmplitude="3dp"
+        app:bubbleColor="#b67200"/>
+</RelativeLayout>
