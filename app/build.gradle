@@ -46,4 +46,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project (':rootbeerlib')
     compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'uk.co.barbuzz:beerprogressview:0.0.4'
 }

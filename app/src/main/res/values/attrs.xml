@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- wave progress view -->
+    <declare-styleable name="BeerProgressView">
+        <attr name="waveColor" format="color"/>
+        <attr name="waveBorderWidth" format="dimension"/>
+        <attr name="waveBorderRadius" format="dimension"/>
+        <attr name="waveAmplitude" format="dimension"/>
+        <attr name="waveMax" format="integer"/>
+        <attr name="waveProgress" format="integer"/>
+    </declare-styleable>
+
+    <!-- text view font -->
+    <declare-styleable name="TextViewPlus">
+        <attr name="customFont" format="string"/>
+    </declare-styleable>
+</resources>
