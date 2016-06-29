@@ -2,7 +2,6 @@ package com.scottyab.rootbeer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import com.scottyab.rootbeer.util.QLog;
 
 import java.io.BufferedReader;
@@ -197,7 +196,7 @@ public class RootBeer {
         return propval.split("\n");
     }
 
-    private String[] mountReader() {
+    private static String[] mountReader() {
         InputStream inputstream = null;
         try {
             inputstream = Runtime.getRuntime().exec("mount").getInputStream();
@@ -256,13 +255,14 @@ public class RootBeer {
         boolean result = false;
 
         String[] lines = propsReader();
+        StringBuilder badValue;
         for (String line : lines) {
-            for (String key : dangerousProps.keySet()) {
-                if (line.contains(key)) {
-                    String badValue = dangerousProps.get(key);
-                    badValue = "[" + badValue + "]";
+            for (Map.Entry<String, String> stringStringEntry : dangerousProps.entrySet()) {
+                if (line.contains(stringStringEntry.getKey())) {
+                    badValue = new StringBuilder(stringStringEntry.getValue());
+                    badValue.append("[").append(badValue).append("]");
                     if (line.contains(badValue)) {
-                        QLog.v(key + " = " + badValue + " detected!");
+                        QLog.v(stringStringEntry.getKey() + " = " + badValue + " detected!");
                         result = true;
                     }
                 }
