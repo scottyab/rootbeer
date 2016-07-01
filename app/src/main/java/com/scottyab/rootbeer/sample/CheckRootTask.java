@@ -15,7 +15,7 @@ import uk.co.barbuzz.beerprogressview.BeerProgressView;
 
 /**
  * class to pretend we are doing some really clever stuff that takes time
- *
+ * <p/>
  * Old skool Async - this could been nicer but just threw together at the mo
  */
 public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
@@ -36,7 +36,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
 
     public CheckRootTask(Context ctx, OnCheckRootFinishedListener listener,
                          BeerProgressView beerProgressView, ArrayList<ImageView> checkRootimageViewList) {
-        mListener  = listener;
+        mListener = listener;
         mBeerProgressView = beerProgressView;
         mContext = ctx;
         mCheckRootimageViewList = checkRootimageViewList;
@@ -77,36 +77,47 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
             switch (i) {
                 case 8:
                     mIsCheck = check.detectRootManagementApps();
+                    Log.d(TAG, "Root Management Apps " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 16:
                     mIsCheck = check.detectPotentiallyDangerousApps();
+                    Log.d(TAG, "PotentiallyDangerousApps " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 24:
                     mIsCheck = check.detectTestKeys();
+                    Log.d(TAG, "TestKeys " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 32:
                     mIsCheck = check.checkForBusyBoxBinary();
+                    Log.d(TAG, "BusyBoxBinary " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 40:
                     mIsCheck = check.checkForSuBinary();
+                    Log.d(TAG, "SU Binary " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 48:
                     mIsCheck = check.checkSuExists();
+                    Log.d(TAG, "2nd SU Binary check " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 56:
                     mIsCheck = check.checkForRWPaths();
+                    Log.d(TAG, "ForRWPaths " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 64:
                     mIsCheck = check.checkForDangerousProps();
+                    Log.d(TAG, "DangerousProps " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 72:
                     mIsCheck = check.checkForRootNative();
+                    Log.d(TAG, "Root via native check " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 80:
                     mIsCheck = check.detectRootCloakingApps();
+                    Log.d(TAG, "RootCloakingApps " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 88:
                     mIsCheck = Utils.isSelinuxFlagInEnabled();
+                    Log.d(TAG, "Selinux Flag Is Enabled " + (mIsCheck ? "true" : "false"));
                     break;
             }
             publishProgress(i);
