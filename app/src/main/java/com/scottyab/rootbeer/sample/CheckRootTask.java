@@ -3,6 +3,7 @@ package com.scottyab.rootbeer.sample;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.scottyab.rootbeer.RootBeer;
@@ -19,7 +20,6 @@ import uk.co.barbuzz.beerprogressview.BeerProgressView;
  */
 public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
 
-    private static final String TAG = "CheckRootTask";
     private static final int SLEEP_TIME = 70;
     private final BeerProgressView mBeerProgressView;
     private final Context mContext;
@@ -29,7 +29,6 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
     private Drawable redCross;
     private Drawable greenTick;
     private boolean mIsCheck;
-
 
     public interface OnCheckRootFinishedListener {
         void onCheckRootFinished(boolean isRooted);
@@ -57,7 +56,8 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
         mBeerProgressView.setBeerProgress(value);
 
         int index = (value / 8) - 1;
-        if (index >= 0 & index < mCheckRootimageViewList.size()) {
+        boolean isCheck = value % 8 == 0;
+        if (isCheck & index >= 0 & index < mCheckRootimageViewList.size()) {
             mCheckRootimageViewList.get(index).setImageDrawable(mIsCheck ? redCross : greenTick);
         }
 
@@ -108,9 +108,8 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
                 case 88:
                     mIsCheck = Utils.isSelinuxFlagInEnabled();
                     break;
-                default:
-                    publishProgress(i);
             }
+            publishProgress(i);
         }
         return check.isRooted();
     }
