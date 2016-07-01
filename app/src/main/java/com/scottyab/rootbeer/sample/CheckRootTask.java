@@ -58,7 +58,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
 
         int index = (value / 8) - 1;
         if (index >= 0 & index < mCheckRootimageViewList.size()) {
-            mCheckRootimageViewList.get(index).setImageDrawable(mIsCheck ? greenTick : redCross);
+            mCheckRootimageViewList.get(index).setImageDrawable(mIsCheck ? redCross : greenTick);
         }
 
         mIsCheck = false;
