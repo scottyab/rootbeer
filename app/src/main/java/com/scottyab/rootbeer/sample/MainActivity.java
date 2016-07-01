@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private MainActivity mActivity;
     private TextViewFont isRootedText;
     private ArrayList<ImageView> checkRootImageViewList;
+    private TextView isRootedTextDisclaimer;
 
 
     @Override
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
         beerView = (BeerProgressView) findViewById(R.id.loadingRootCheckBeerView);
         isRootedText = (TextViewFont) findViewById(R.id.content_main_is_rooted_text);
+        isRootedTextDisclaimer = (TextView) findViewById(R.id.content_mainisRootedTextDisclaimer);
 
         ImageView rootCheck1ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_1);
         ImageView rootCheck2ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_2);
@@ -140,7 +143,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onCheckRootFinished(boolean isRooted) {
-        isRootedText.setText(isRooted ? "ROOTED" : "NOT ROOTED");
+        isRootedText.setText(isRooted ? "ROOTED*" : "NOT ROOTED");
+        isRootedTextDisclaimer.setVisibility(isRooted ? View.VISIBLE : View.GONE);
         isRootedText.setTextColor(isRooted ? getResources().getColor(R.color.fail) : getResources().getColor(R.color.pass));
         isRootedText.setVisibility(View.VISIBLE);
     }

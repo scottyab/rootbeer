@@ -3,7 +3,8 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:fillViewport="true"
+    >
 
     <RelativeLayout
         android:id="@+id/resultsContainer"
@@ -277,6 +278,15 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/content_mainisRootedTextDisclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* it's an indication that the device 'might' be rooted"
+                android:visibility="gone"
+                />
+
         </LinearLayout>
 
         <com.scottyab.rootbeer.sample.TextViewFont
