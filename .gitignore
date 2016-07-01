@@ -29,6 +29,7 @@ proguard/
 # Log Files
 *.log
 .idea/
+*.iml
 
 # out puts for ndk
 obj

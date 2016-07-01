@@ -21,6 +21,7 @@ import uk.co.barbuzz.beerprogressview.BeerProgressView;
 public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
 
     private static final int SLEEP_TIME = 70;
+    private static final String TAG = "CheckRootTask";
     private final BeerProgressView mBeerProgressView;
     private final Context mContext;
     private ArrayList<ImageView> mCheckRootimageViewList;
