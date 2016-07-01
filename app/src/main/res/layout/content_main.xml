@@ -1,13 +1,14 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
     <RelativeLayout
+        android:id="@+id/resultsContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/resultsContainer"
         tools:context=".MainActivity">
 
         <uk.co.barbuzz.beerprogressview.BeerProgressView
@@ -15,27 +16,60 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            app:waveMax="100"
-            app:waveColor="#EFA601"
+            app:beerColor="@color/rootBeerColor"
             app:waveAmplitude="3dp"
+            app:waveMax="100"
             app:waveProgress="0"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_centerInParent="true"
             android:layout_margin="16dp"
-            android:layout_centerInParent="true">
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="Test names"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="8dp"
+                    android:text=" ? "
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:background="#66000000"
+
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_1"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_1"
                     android:layout_width="wrap_content"
@@ -43,16 +77,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_2"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_2"
                     android:layout_width="wrap_content"
@@ -60,16 +97,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_3"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_3"
                     android:layout_width="wrap_content"
@@ -77,16 +117,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_4"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_4"
                     android:layout_width="wrap_content"
@@ -94,16 +137,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_5"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_5"
                     android:layout_width="wrap_content"
@@ -111,16 +157,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_6"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_6"
                     android:layout_width="wrap_content"
@@ -128,16 +177,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_7"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_7"
                     android:layout_width="wrap_content"
@@ -145,16 +197,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_8"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_8"
                     android:layout_width="wrap_content"
@@ -162,16 +217,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_9"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_9"
                     android:layout_width="wrap_content"
@@ -179,16 +237,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_10"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_10"
                     android:layout_width="wrap_content"
@@ -196,16 +257,19 @@
                     android:layout_alignParentRight="true"
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/content_main_table_row_min_height"
-                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom">
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:text="@string/root_checks_11"/>
+
                 <ImageView
                     android:id="@+id/content_main_root_check_image_11"
                     android:layout_width="wrap_content"
@@ -217,8 +281,8 @@
 
         <com.scottyab.rootbeer.sample.TextViewFont
             android:id="@+id/content_main_is_rooted_text"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="#D50000"
             android:textSize="34sp"
