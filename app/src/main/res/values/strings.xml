@@ -6,4 +6,28 @@
     <string name="action_github">Get on Github</string>
     <string name="action_info">info</string>
     <string name="info_details">This is a sample app for RootBeer - a simple to use root checking Android library. Rootbeer gives an indication of root. Remember root==god, so there\'s no 100% way to check for root.</string>
+
+    <!--<string name="root_checks_1">Root Management Apps</string>
+    <string name="root_checks_2">Potentially Dangerous Apps</string>
+    <string name="root_checks_3">Test Keys</string>
+    <string name="root_checks_4">BusyBox Binary</string>
+    <string name="root_checks_5">Su Binary</string>
+    <string name="root_checks_6">Su Exists</string>
+    <string name="root_checks_7">RW Paths</string>
+    <string name="root_checks_8">Dangerous Props</string>
+    <string name="root_checks_9">Root Native</string>
+    <string name="root_checks_10">Root Cloaking Apps</string>
+    <string name="root_checks_11">Selinux Flag Enabled (experimental)</string>-->
+
+    <string name="root_checks_1">ROOT MANAGEMENT APPS</string>
+    <string name="root_checks_2">POTENTIALLY DANGEROUS APPS</string>
+    <string name="root_checks_3">TEST KEYS</string>
+    <string name="root_checks_4">BUSYBOX BINARY</string>
+    <string name="root_checks_5">SU BINARY</string>
+    <string name="root_checks_6">SU EXISTS</string>
+    <string name="root_checks_7">RW PATHS</string>
+    <string name="root_checks_8">DANGEROUS PROPS</string>
+    <string name="root_checks_9">ROOT NATIVE</string>
+    <string name="root_checks_10">ROOT CLOAKING APPS</string>
+    <string name="root_checks_11">SELINUX FLAG ENABLED (EXPERIMENTAL)</string>
 </resources>

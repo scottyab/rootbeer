@@ -1,3 +1,6 @@
+# mac
+.DS_Store
+
 # Built application files
 *.apk
 *.ap_
@@ -25,10 +28,7 @@ proguard/
 
 # Log Files
 *.log
-.idea/workspace.xml
-.idea/libraries/appcompat_v7_22_2_0.xml
-.idea/libraries/support_annotations_22_2_0.xml
-.idea/libraries/support_v4_22_2_0.xml
+.idea/
 
 # out puts for ndk
 obj

@@ -1,107 +1,92 @@
 package com.scottyab.rootbeer.sample;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
-import com.scottyab.rootbeer.RootBeer;
-import com.scottyab.rootbeer.util.Utils;
+import java.util.ArrayList;
+
+import uk.co.barbuzz.beerprogressview.BeerProgressView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity
+        implements CheckRootTask.OnCheckRootFinishedListener {
 
-    private static String GITHUB_LINK = "https://github.com/scottyab/rootbeer";
+    private static final String GITHUB_LINK = "https://github.com/scottyab/rootbeer";
 
-    private View resultsContainer;
-    private TextView results;
     private AlertDialog infoDialog;
+    private BeerProgressView beerView;
+    private MainActivity mActivity;
+    private TextViewFont isRootedText;
+    private ArrayList<ImageView> checkRootImageViewList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.rootCheckButton).setOnClickListener(new View.OnClickListener() {
+        initView();
+    }
+
+    private void initView() {
+        mActivity = this;
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        beerView = (BeerProgressView) findViewById(R.id.loadingRootCheckBeerView);
+        isRootedText = (TextViewFont) findViewById(R.id.content_main_is_rooted_text);
+
+        ImageView rootCheck1ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_1);
+        ImageView rootCheck2ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_2);
+        ImageView rootCheck3ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_3);
+        ImageView rootCheck4ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_4);
+        ImageView rootCheck5ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_5);
+        ImageView rootCheck6ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_6);
+        ImageView rootCheck7ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_7);
+        ImageView rootCheck8ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_8);
+        ImageView rootCheck9ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_9);
+        ImageView rootCheck10ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_10);
+        ImageView rootCheck11ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_11);
+        checkRootImageViewList = new ArrayList<>();
+        checkRootImageViewList.add(rootCheck1ImageView);
+        checkRootImageViewList.add(rootCheck2ImageView);
+        checkRootImageViewList.add(rootCheck3ImageView);
+        checkRootImageViewList.add(rootCheck4ImageView);
+        checkRootImageViewList.add(rootCheck5ImageView);
+        checkRootImageViewList.add(rootCheck6ImageView);
+        checkRootImageViewList.add(rootCheck7ImageView);
+        checkRootImageViewList.add(rootCheck8ImageView);
+        checkRootImageViewList.add(rootCheck9ImageView);
+        checkRootImageViewList.add(rootCheck10ImageView);
+        checkRootImageViewList.add(rootCheck11ImageView);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                doRootCheck();
+            public void onClick(View view) {
+                resetRootCheckImages();
+                CheckRootTask checkRootTask = new CheckRootTask(mActivity, mActivity, beerView,
+                        checkRootImageViewList);
+                checkRootTask.execute(true);
             }
         });
-
-        resultsContainer = findViewById(R.id.resultsContainer);
-        results = (TextView)findViewById(R.id.rootResults);
-
     }
 
-    private void doRootCheck() {
-        RootBeer check = new RootBeer(this);
-
-        if(check.isRooted()){
-            //we found indication of root
-            doPropertyAnimatorReveal(getResources().getColor(R.color.fail));
-        }else{
-            //we didn't find indication of root
-            doPropertyAnimatorReveal(getResources().getColor(R.color.pass));
+    private void resetRootCheckImages() {
+        isRootedText.setVisibility(View.GONE);
+        for (ImageView imageView : checkRootImageViewList) {
+            imageView.setImageDrawable(null);
         }
-
-        StringBuilder b = new StringBuilder();
-        b.append("If any of the below are true the root check \'might\' indicate device is rooted\n")
-
-                .append("\ndetectRootManagementApps: ")
-                .append(check.detectRootManagementApps())
-
-                .append("\ndetectPotentiallyDangerousApps: ")
-                .append(check.detectPotentiallyDangerousApps())
-
-                .append("\ndetectTestKeys: ")
-                .append(check.detectTestKeys())
-
-                .append("\ncheckForBusyBoxBinary: ")
-                .append(check.checkForBusyBoxBinary())
-
-                .append("\ncheckForSuBinary: ")
-                .append(check.checkForSuBinary())
-
-                .append("\ncheckSuExists: ")
-                .append(check.checkSuExists())
-
-                .append("\ncheckForRWPaths: ")
-                .append(check.checkForRWPaths())
-
-                .append("\ncheckForDangerousProps: ")
-                .append(check.checkForDangerousProps())
-
-                .append("\ncheckForRootNative: ")
-                .append(check.checkForRootNative())
-
-                .append("\ndetectRootCloakingApps: ")
-                .append(check.detectRootCloakingApps())
-
-                .append("\nisSelinuxFlagInEnabled? (experimental) ")
-                .append(Utils.isSelinuxFlagInEnabled());
-
-        results.setText(b.toString());
-    }
-
-
-    public void checkForRoot(Context context){
-        RootBeer rootBeer = new RootBeer(context);
-
     }
 
     @Override
@@ -119,7 +104,7 @@ public class MainActivity extends ActionBarActivity {
             i.setData(Uri.parse(GITHUB_LINK));
             startActivity(i);
             return true;
-        }else  if (id == R.id.action_info) {
+        } else if (id == R.id.action_info) {
             showInfoDialog();
             return true;
         }
@@ -127,9 +112,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void showInfoDialog() {
-        if(infoDialog!=null && infoDialog.isShowing()){
+        if (infoDialog != null && infoDialog.isShowing()) {
             //do nothing if already showing
-        }else {
+        } else {
             infoDialog = new AlertDialog.Builder(this)
                     .setTitle(R.string.app_name)
                     .setMessage(R.string.info_details)
@@ -153,24 +138,11 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void doPropertyAnimatorReveal(Integer colorTo) {
-        Integer colorFrom = Color.TRANSPARENT;
-        Drawable background = resultsContainer.getBackground();
-        if (background instanceof ColorDrawable){
-            colorFrom = ((ColorDrawable) background).getColor();
-        }
-
-        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        colorAnimation.setDuration(500);
-        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animator) {
-                resultsContainer.setBackgroundColor((Integer) animator.getAnimatedValue());
-            }
-
-        });
-        colorAnimation.start();
+    @Override
+    public void onCheckRootFinished(boolean isRooted) {
+        isRootedText.setText(isRooted ? "ROOTED" : "NOT ROOTED");
+        isRootedText.setTextColor(isRooted ? getResources().getColor(R.color.fail) : getResources().getColor(R.color.pass));
+        isRootedText.setVisibility(View.VISIBLE);
     }
 
 }
