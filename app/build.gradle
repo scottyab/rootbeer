@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "22.0.1"
+    compileSdkVersion compileSdkVer
+    buildToolsVersion buildToolsVer
 
     defaultConfig {
         applicationId "com.scottyab.rootbeer.sample"
-        minSdkVersion 10
-        targetSdkVersion 22
+        minSdkVersion minSdkVer
+        targetSdkVersion targetSdkVer
         versionCode 4
         versionName "0.4"
     }
@@ -44,8 +44,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':rootbeerlib')
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.android.support:design:24.0.0'
+    compile "com.android.support:appcompat-v7:$supportLibVer"
+    compile "com.android.support:design:$supportLibVer"
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'uk.co.barbuzz:beerprogressview:0.0.4'
 }

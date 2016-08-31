@@ -24,3 +24,11 @@ allprojects {
         jcenter()
     }
 }
+
+subprojects {
+    ext.compileSdkVer = 24
+    ext.buildToolsVer = "24.0.0"
+    ext.minSdkVer = 10
+    ext.targetSdkVer = 24
+    ext.supportLibVer = "24.0.0"
+}
