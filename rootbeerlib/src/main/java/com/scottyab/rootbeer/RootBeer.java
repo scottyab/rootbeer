@@ -35,18 +35,10 @@ public class RootBeer {
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
     public boolean isRooted() {
-        boolean rootManagement = detectRootManagementApps();
-        boolean potentiallyDangerousApps = detectPotentiallyDangerousApps();
-        boolean suBinary = checkForBinary("su");
-        boolean busyboxBinary = checkForBinary("busybox");
-        boolean dangerousProps = checkForDangerousProps();
-        boolean rwSystem = checkForRWPaths();
-        boolean testKeys = detectTestKeys();
-        boolean testSuExists = checkSuExists();
-        boolean testRootNative = checkForRootNative();
 
-        return rootManagement || potentiallyDangerousApps || suBinary
-                || busyboxBinary || dangerousProps || rwSystem || testKeys || testSuExists || testRootNative;
+        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
+                || checkForBinary("busybox") || checkForDangerousProps() || checkForRWPaths()
+                || detectTestKeys() || checkSuExists() || checkForRootNative();
     }
 
     /**
