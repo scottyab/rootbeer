@@ -1,9 +1,9 @@
 package com.scottyab.rootbeer.util;
 
+import android.util.Log;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
-import android.util.Log;
 
 public final class QLog {
     public static final int NONE = 0;
@@ -13,7 +13,7 @@ public final class QLog {
     public static final int ERRORS_WARNINGS_INFO_DEBUG = 4;
     public static final int ALL = 5;
 
-    public static final int LOGGING_LEVEL = ALL;
+    public static int loggingLevel = ALL;
 
     /*
      * For filtering app specific output
@@ -84,23 +84,23 @@ public final class QLog {
     }
 
     public static boolean isVLoggable() {
-        return LOGGING_LEVEL > ERRORS_WARNINGS_INFO_DEBUG;
+        return loggingLevel > ERRORS_WARNINGS_INFO_DEBUG;
     }
 
     public static boolean isDLoggable() {
-        return LOGGING_LEVEL > ERRORS_WARNINGS_INFO;
+        return loggingLevel > ERRORS_WARNINGS_INFO;
     }
 
     public static boolean isILoggable() {
-        return LOGGING_LEVEL > ERRORS_WARNINGS;
+        return loggingLevel > ERRORS_WARNINGS;
     }
 
     public static boolean isWLoggable() {
-        return LOGGING_LEVEL > ERRORS_ONLY;
+        return loggingLevel > ERRORS_ONLY;
     }
 
     public static boolean isELoggable() {
-        return LOGGING_LEVEL > NONE;
+        return loggingLevel > NONE;
     }
 
     private static String getThrowableTrace(final Throwable thr) {
@@ -124,7 +124,7 @@ public final class QLog {
 
     /**
      * Prints the stack trace to mubaloo log and standard log
-     * 
+     *
      * @param e
      */
     public static void handleException(final Exception e) {

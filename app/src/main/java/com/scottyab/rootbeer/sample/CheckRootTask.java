@@ -19,13 +19,11 @@ import uk.co.barbuzz.beerprogressview.BeerProgressView;
  * Old skool Async - this could been nicer but just threw together at the mo
  */
 public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
-
     private static final int SLEEP_TIME = 70;
     private static final String TAG = "CheckRootTask";
     private final BeerProgressView mBeerProgressView;
     private final Context mContext;
     private ArrayList<ImageView> mCheckRootimageViewList;
-
     private OnCheckRootFinishedListener mListener;
     private Drawable redCross;
     private Drawable greenTick;
@@ -68,6 +66,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
     @Override
     protected Boolean doInBackground(Boolean... params) {
         RootBeer check = new RootBeer(mContext);
+        // check.setLoggingLevel(QLog.ALL);
 
         for (int i = 0; i < 90; i++) {
             try {
@@ -131,5 +130,4 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
         super.onPostExecute(isRooted);
         mListener.onCheckRootFinished(isRooted);
     }
-
 }
