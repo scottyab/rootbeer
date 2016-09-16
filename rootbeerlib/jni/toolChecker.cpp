@@ -13,7 +13,7 @@
 
 // Android headers
 #include <jni.h>
-#include <android/log.h> 
+#include <android/log.h>
 
 // String / file headers
 #include <string.h>
@@ -36,7 +36,7 @@
 /* Set to 1 to enable debug log traces. */
 static int DEBUG = 1;
 
-/*****************************************************************************  
+/*****************************************************************************
  * Description: Sets if we should log debug messages
  *
  * Parameters: env - Java environment pointer
@@ -55,7 +55,7 @@ void Java_com_scottyab_rootbeer_RootBeerNative_setLogDebugMessages( JNIEnv* env,
 }
 
 
-/*****************************************************************************  
+/*****************************************************************************
  * Description: Checks if a file exists
  *
  * Parameters: fname - filename to check
@@ -68,18 +68,18 @@ int exists(const char *fname)
     FILE *file;
     if (file = fopen(fname, "r"))
     {
-      LOGD("LOOKING FOR BINRARY: %s PRESENT!!!",fname);
+      LOGD("LOOKING FOR BINARY: %s PRESENT!!!",fname);
         fclose(file);
         return 1;
     }
-      LOGD("LOOKING FOR BINRARY: %s Absent :(",fname);
+      LOGD("LOOKING FOR BINARY: %s Absent :(",fname);
     return 0;
 }
 
 
 
 
-/*****************************************************************************  
+/*****************************************************************************
  * Description: Checks for root binaries
  *
  * Parameters: env - Java environment pointer
@@ -90,20 +90,20 @@ int exists(const char *fname)
  *****************************************************************************/
 int Java_com_scottyab_rootbeer_RootBeerNative_checkForRoot( JNIEnv* env, jobject thiz, jobjectArray pathsArray )
 {
-    
+
     int binariesFound = 0;
-  
+
     int stringCount = (env)->GetArrayLength(pathsArray);
 
     for (int i=0; i<stringCount; i++) {
         jstring string = (jstring) (env)->GetObjectArrayElement(pathsArray, i);
         const char *pathString = (env)->GetStringUTFChars(string, 0);
-	
+
 	binariesFound+=exists(pathString);
-	
+
 	(env)->ReleaseStringUTFChars(string, pathString);
     }
-  
+
     return binariesFound>0;
 }
 
