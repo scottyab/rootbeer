@@ -13,7 +13,7 @@ public final class QLog {
     public static final int ERRORS_WARNINGS_INFO_DEBUG = 4;
     public static final int ALL = 5;
 
-    public static final int LOGGING_LEVEL = ALL;
+    public static int LOGGING_LEVEL = ALL;
 
     /*
      * For filtering app specific output

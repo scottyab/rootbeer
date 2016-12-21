@@ -68,6 +68,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
     @Override
     protected Boolean doInBackground(Boolean... params) {
         RootBeer check = new RootBeer(mContext);
+        check.setLogging(false);
 
         for (int i = 0; i < 90; i++) {
             try {

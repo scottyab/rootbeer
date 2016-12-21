@@ -25,6 +25,7 @@ import java.util.Scanner;
 public class RootBeer {
 
     final Context mContext;
+    private boolean loggingEnabled = true;
 
     public RootBeer(Context context) {
         mContext = context;
@@ -177,6 +178,15 @@ public class RootBeer {
         }
 
         return result;
+    }
+
+    /**
+     *
+     * @param logging - set to true for logging
+     */
+    public void setLogging(boolean logging) {
+        loggingEnabled = logging;
+        QLog.LOGGING_LEVEL = logging ? QLog.ALL : QLog.NONE;
     }
 
     private String[] propsReader() {
@@ -345,7 +355,7 @@ public class RootBeer {
         }
 
         RootBeerNative rootBeerNative = new RootBeerNative();
-        rootBeerNative.setLogDebugMessages(true);
+        rootBeerNative.setLogDebugMessages(loggingEnabled);
         return rootBeerNative.checkForRoot(paths) > 0;
     }
 
