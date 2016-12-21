@@ -24,7 +24,7 @@ import java.util.Scanner;
  */
 public class RootBeer {
 
-    final Context mContext;
+    private final Context mContext;
     private boolean loggingEnabled = true;
 
     public RootBeer(Context context) {
@@ -58,10 +58,7 @@ public class RootBeer {
     public boolean detectTestKeys() {
         String buildTags = android.os.Build.TAGS;
 
-        if (buildTags != null && buildTags.contains("test-keys")) {
-            return true;
-        }
-        return false;
+        return buildTags != null && buildTags.contains("test-keys");
     }
 
     /**
@@ -246,7 +243,6 @@ public class RootBeer {
                 result = true;
             } catch (PackageManager.NameNotFoundException e) {
                 // Exception thrown, package is not installed into the system
-                continue;
             }
         }
 
@@ -255,11 +251,11 @@ public class RootBeer {
 
     /**
      * Checks for several system properties for
-     * @return
+     * @return - true if dangerous props are found
      */
     public boolean checkForDangerousProps() {
 
-        final Map<String, String> dangerousProps = new HashMap<String, String>();
+        final Map<String, String> dangerousProps = new HashMap<>();
             dangerousProps.put("ro.debuggable", "1");
             dangerousProps.put("ro.secure", "0");
 
@@ -333,8 +329,7 @@ public class RootBeer {
         try {
             process = Runtime.getRuntime().exec(new String[] { "/system/xbin/which", "su" });
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            if (in.readLine() != null) return true;
-            return false;
+            return in.readLine() != null;
         } catch (Throwable t) {
             return false;
         } finally {
