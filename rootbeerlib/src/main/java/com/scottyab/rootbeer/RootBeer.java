@@ -2,7 +2,6 @@ package com.scottyab.rootbeer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.util.Log;
 
 import com.scottyab.rootbeer.util.QLog;
 
