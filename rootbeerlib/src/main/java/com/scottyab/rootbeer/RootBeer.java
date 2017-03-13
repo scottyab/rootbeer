@@ -323,7 +323,6 @@ public class RootBeer {
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             return in.readLine() != null;
         } catch (Throwable t) {
-            t.printStackTrace();
             return false;
         } finally {
             if (process != null) process.destroy();
