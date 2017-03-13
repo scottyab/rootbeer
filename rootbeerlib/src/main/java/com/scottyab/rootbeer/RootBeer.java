@@ -2,6 +2,7 @@ package com.scottyab.rootbeer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 import com.scottyab.rootbeer.util.QLog;
 
@@ -319,10 +320,11 @@ public class RootBeer {
     public boolean checkSuExists() {
         Process process = null;
         try {
-            process = Runtime.getRuntime().exec(new String[] { "/system/xbin/which", "su" });
+            process = Runtime.getRuntime().exec(new String[] { "which", "su" });
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             return in.readLine() != null;
         } catch (Throwable t) {
+            t.printStackTrace();
             return false;
         } finally {
             if (process != null) process.destroy();
