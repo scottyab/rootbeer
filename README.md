@@ -2,7 +2,7 @@
 
 A tasty root checker library and sample app. We've scoured the internets for different methods of answering that age old question... **Has this device got root?**  
 
-#Root checks
+# Root checks
 These are the current checks/tricks we are using to give an indication of root.  
 
 **Java checks**
@@ -24,7 +24,7 @@ We call through to our native root checker to run some of it's own checks. Nativ
 * checkForSuBinary 
 
 
-##Disclaimer and limitations!
+## Disclaimer and limitations!
 
 We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the main contributors) use rooted devices. But we appreciate sometimes you might want to have a indication your app is running on a rooted handset. Plus we wanted to see if we could beat the root cloakers. So that's what this library gives you, an *indication* of root. 
 
@@ -42,25 +42,35 @@ Tested cloakers:
 * [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires [Xposed Framework](http://repo.xposed.info/module/de.robv.android.xposed.installer)
 
 
-
-##Usage
+## Usage
 
 
 ```java
-        RootBeer rootBeer = new RootBeer(context);
-        if(rootBeer.isRooted()){
-            //we found indication of root
+RootBeer rootBeer = new RootBeer(context);
+if(rootBeer.isRooted()){
+    //we found indication of root
 
-        }else{
-            //we didn't find indication of root
+}else{
+    //we didn't find indication of root
 
-        }
-
+}
 ```
 
-You can also call each of the checks individually as the sample app does. 
+You can also call each of the checks individually as the sample app does.
 
-###Dependency
+### False positives
+
+Note that sometimes the `isRooted()` method can return a false positive. This is often because the manufacturer of the device rom has left the busybox binary. This alone doesn't mean that the device is rooted, if you wish to avoid this but still use a convenience method to you can use the following:
+
+```java
+rootBeer.isRootedWithoutBusyBoxCheck()
+```
+
+The following devices are known the have the busybox binary present on the stock rom:
+* All OnePlus Devices
+* Moto E
+
+### Dependency
 Avaibile on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeer-lib%22), to include using gradle just add the following: 
 
 ```java
@@ -86,23 +96,23 @@ The sample app is published on Google play to allow you to quickly and easier te
 <img width="200" alt="screenshot" src="./art/ss_got_root_fail.png">
 
 
-##Contributing
+## Contributing
 
 There must be more root checks to make this more complete. If you have one please do send us a pull request.
 
-###Thanks
+### Thanks
 
 * Kevin Kowalewski and others from this popular [Stackoverflow post](https://stackoverflow.com/questions/1101380/determine-if-running-on-a-rooted-device?rq=1)
 * Eric Gruber's - Android Root Detection Techniques [article](https://blog.netspi.com/android-root-detection-techniques/)
 
 
-##Other libraries
+## Other libraries
  If you dig this, you might like:
  
  * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
  * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
 
-#Licence
+# Licence
 
 
 Apache License, Version 2.0

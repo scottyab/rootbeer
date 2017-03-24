@@ -32,13 +32,28 @@ public class RootBeer {
     }
 
     /**
-     * Run all the checks
+     * Run all the checks.
+     * To run the same check but without looking for the busybox binary to avoid a false positive for certain devices please
+     * see {@link #isRootedWithoutBusyBoxCheck() isRootedWithoutBusyBoxCheck}
+     *
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
     public boolean isRooted() {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
                 || checkForBinary("busybox") || checkForDangerousProps() || checkForRWPaths()
+                || detectTestKeys() || checkSuExists() || checkForRootNative();
+    }
+
+    /**
+     * Run all the checks apart from checking for the busybox binary. This is because it can sometimes be a false positive
+     * as some manufacturers leave the binary in production builds.
+     * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
+     */
+    public boolean isRootedWithoutBusyBoxCheck() {
+
+        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
+                || checkForDangerousProps() || checkForRWPaths()
                 || detectTestKeys() || checkSuExists() || checkForRootNative();
     }
 
