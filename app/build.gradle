@@ -39,6 +39,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    externalNativeBuild {
+        ndkBuild {
+            path '../rootbeerlib/src/main/jni/Android.mk'
+        }
+    }
 }
 
 dependencies {
