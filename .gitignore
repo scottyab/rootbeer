@@ -31,8 +31,9 @@ proguard/
 .idea/
 *.iml
 app/app.iml
-
+rootbeerlib/rootbeerlib.iml
 
 # out puts for ndk
 obj
 .externalNativeBuild/**
+app/.externalNativeBuild/**
