@@ -334,7 +334,7 @@ public class RootBeer {
     public boolean checkSuExists() {
         Process process = null;
         try {
-            process = Runtime.getRuntime().exec(new String[] { "/system/xbin/which", "su" });
+            process = Runtime.getRuntime().exec(new String[] { "which", "su" });
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             return in.readLine() != null;
         } catch (Throwable t) {

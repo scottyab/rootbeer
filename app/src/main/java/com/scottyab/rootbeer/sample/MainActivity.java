@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     private TextViewFont isRootedText;
     private ArrayList<ImageView> checkRootImageViewList;
     private TextView isRootedTextDisclaimer;
+    private FloatingActionButton floatingActionButton;
 
 
     @Override
@@ -73,10 +74,11 @@ public class MainActivity extends AppCompatActivity
         checkRootImageViewList.add(rootCheck10ImageView);
         checkRootImageViewList.add(rootCheck11ImageView);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                floatingActionButton.setVisibility(View.GONE);
                 resetRootCheckImages();
                 CheckRootTask checkRootTask = new CheckRootTask(mActivity, mActivity, beerView,
                         checkRootImageViewList);
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onCheckRootFinished(boolean isRooted) {
+        floatingActionButton.setVisibility(View.VISIBLE);
         isRootedText.setText(isRooted ? "ROOTED*" : "NOT ROOTED");
         isRootedTextDisclaimer.setVisibility(isRooted ? View.VISIBLE : View.GONE);
         isRootedText.setTextColor(isRooted ? getResources().getColor(R.color.fail) : getResources().getColor(R.color.pass));
