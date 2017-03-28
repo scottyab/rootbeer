@@ -330,10 +330,23 @@ public class RootBeer {
     }
 
     /**
+     * Checks if it is possible to load our native library
+     * @return true if we can | false if not
+     */
+    public boolean canLoadNativeLibrary(){
+        return new RootBeerNative().wasNativeLibraryLoaded();
+    }
+
+    /**
      * Native checks are often harder to cloak/trick so here we call through to our native root checker
-     * @return true if we found su | false if not
+     * @return true if we found su | false if not, or the native library could not be loaded / run
      */
     public boolean checkForRootNative() {
+
+        if (!canLoadNativeLibrary()){
+            QLog.e("We could not load the native library to test for root");
+            return false;
+        }
 
         String binaryName = "su";
         String[] paths = new String[Const.suPaths.length];
