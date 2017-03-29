@@ -81,10 +81,7 @@ dependencies {
 Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
 
 ### Building 
-The native libs are included however if you want to change them you'll need the [ndk](https://developer.android.com/tools/sdk/ndk/index.html)
-
-For those unfamilar with NDK builds, if you make changes to the native code you'll have to run `build.sh` (in the `/rootbeerlib/jni/` folder) to compile the native libraries and copy to `/libs`.  *Hopefully with the new Android Studio support for NDK this step will be part of the gradle build.* 
-
+The native library in this application will now be built via Gradle and the latest Android Studio without having to resort to the command line. However the .so files are also distributed in this repository for those who cannot compile using the NDK for some reason.
 
 ### Sample app
 

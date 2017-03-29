@@ -1,15 +1,29 @@
 package com.scottyab.rootbeer;
 
+import com.scottyab.rootbeer.util.QLog;
+
 /**
  * Created by mat on 19/06/15.
  */
 public class RootBeerNative {
 
+    static boolean libraryLoaded = false;
+
     /**
      * Loads the C/C++ libraries statically
      */
     static {
-        System.loadLibrary("tool-checker");
+        try {
+            System.loadLibrary("tool-checker");
+            libraryLoaded = true;
+        }
+        catch (UnsatisfiedLinkError e){
+            QLog.e(e);
+        }
+    }
+
+    public boolean wasNativeLibraryLoaded(){
+        return libraryLoaded;
     }
 
     public native int checkForRoot(Object[] pathArray);
