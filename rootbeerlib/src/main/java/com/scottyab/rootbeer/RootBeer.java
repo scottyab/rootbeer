@@ -370,8 +370,14 @@ public class RootBeer {
         }
 
         RootBeerNative rootBeerNative = new RootBeerNative();
-        rootBeerNative.setLogDebugMessages(loggingEnabled);
-        return rootBeerNative.checkForRoot(paths) > 0;
+        try {
+            rootBeerNative.setLogDebugMessages(loggingEnabled);
+            return rootBeerNative.checkForRoot(paths) > 0;
+        } catch (UnsatisfiedLinkError e) {
+            // TODO FIX: at this point - have detectRootCloakingApps() return true,
+            //                           have checkForRootNative() return false
+            return true;
+        }
     }
 
 }
