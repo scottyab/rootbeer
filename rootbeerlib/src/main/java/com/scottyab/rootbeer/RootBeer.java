@@ -120,10 +120,11 @@ public class RootBeer {
 
     /**
      * Using the PackageManager, check for a list of well known root cloak apps. @link {Const.knownRootAppsPackages}
+     * and checks for native library read access
      * @return true if one of the apps it's installed
      */
     public boolean detectRootCloakingApps() {
-        return detectRootCloakingApps(null);
+        return detectRootCloakingApps(null) || canLoadNativeLibrary() && !checkForNativeLibraryReadAccess();
     }
 
     /**
@@ -139,7 +140,6 @@ public class RootBeer {
         if (additionalRootCloakingApps!=null && additionalRootCloakingApps.length>0){
             packages.addAll(Arrays.asList(additionalRootCloakingApps));
         }
-
         return isAnyPackageFromListInstalled(packages);
     }
 
@@ -263,8 +263,8 @@ public class RootBeer {
     public boolean checkForDangerousProps() {
 
         final Map<String, String> dangerousProps = new HashMap<>();
-            dangerousProps.put("ro.debuggable", "1");
-            dangerousProps.put("ro.secure", "0");
+        dangerousProps.put("ro.debuggable", "1");
+        dangerousProps.put("ro.secure", "0");
 
         boolean result = false;
 
@@ -313,11 +313,11 @@ public class RootBeer {
                     // Split options out and compare against "rw" to avoid false positives
                     for (String option : mountOptions.split(",")){
 
-                      if (option.equalsIgnoreCase("rw")){
-                        QLog.v(pathToCheck+" path is mounted with rw permissions! "+line);
-                        result = true;
-                        break;
-                      }
+                        if (option.equalsIgnoreCase("rw")){
+                            QLog.v(pathToCheck+" path is mounted with rw permissions! "+line);
+                            result = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -344,6 +344,27 @@ public class RootBeer {
         }
     }
 
+
+    /**
+     * Checks if device has ReadAccess to the Native Library
+     * Precondition: canLoadNativeLibrary() ran before this and returned true
+     * @returm true if device has Read Access | false if UnsatisfiedLinkError Occurs
+     *
+     * Description: RootCloak automatically blocks read access to the Native Libraries, however
+     * allows for them to be loaded into memory. This check is an indication that RootCloak is
+     * installed onto the device.
+     *
+     * */
+    public boolean checkForNativeLibraryReadAccess() {
+        RootBeerNative rootBeerNative = new RootBeerNative();
+        try {
+            rootBeerNative.setLogDebugMessages(loggingEnabled);
+            return true;
+        } catch (UnsatisfiedLinkError e) {
+            return false;
+        }
+    }
+
     /**
      * Checks if it is possible to load our native library
      * @return true if we can | false if not
@@ -354,7 +375,7 @@ public class RootBeer {
 
     /**
      * Native checks are often harder to cloak/trick so here we call through to our native root checker
-     * @return true if we found su | false if not, or the native library could not be loaded / run
+     * @return true if we found su | false if not, or the native library could not be loaded / accessed
      */
     public boolean checkForRootNative() {
 
@@ -370,8 +391,14 @@ public class RootBeer {
         }
 
         RootBeerNative rootBeerNative = new RootBeerNative();
-        rootBeerNative.setLogDebugMessages(loggingEnabled);
-        return rootBeerNative.checkForRoot(paths) > 0;
+        try {
+            rootBeerNative.setLogDebugMessages(loggingEnabled);
+            return rootBeerNative.checkForRoot(paths) > 0;
+        } catch (UnsatisfiedLinkError e) {
+            return false;
+        }
     }
+
+
 
 }
