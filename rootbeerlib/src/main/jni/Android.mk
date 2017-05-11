@@ -27,5 +27,3 @@ LOCAL_SRC_FILES := toolChecker.cpp
 LOCAL_LDLIBS := -llog
 
 include $(BUILD_SHARED_LIBRARY)
-
-

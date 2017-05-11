@@ -23,7 +23,6 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
-
 }
 
 dependencies {
@@ -31,6 +30,4 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibVer"
 }
 
-
 apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
-

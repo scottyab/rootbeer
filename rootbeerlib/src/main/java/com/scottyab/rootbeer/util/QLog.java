@@ -124,7 +124,7 @@ public final class QLog {
 
     /**
      * Prints the stack trace to mubaloo log and standard log
-     * 
+     *
      * @param e
      */
     public static void handleException(final Exception e) {

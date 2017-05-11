@@ -106,5 +106,3 @@ int Java_com_scottyab_rootbeer_RootBeerNative_checkForRoot( JNIEnv* env, jobject
 
     return binariesFound>0;
 }
-
-
