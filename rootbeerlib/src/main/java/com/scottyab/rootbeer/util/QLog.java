@@ -29,7 +29,7 @@ public final class QLog {
     }
 
     /**
-     * @param obj
+     * @param obj the object to log
      * @param cause
      *            The exception which caused this error, may not be null
      */
@@ -125,7 +125,7 @@ public final class QLog {
     /**
      * Prints the stack trace to mubaloo log and standard log
      *
-     * @param e
+     * @param e the exception to log
      */
     public static void handleException(final Exception e) {
         QLog.e(e.toString());
