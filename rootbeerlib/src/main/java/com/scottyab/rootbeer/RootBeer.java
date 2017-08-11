@@ -348,7 +348,7 @@ public class RootBeer {
     /**
      * Checks if device has ReadAccess to the Native Library
      * Precondition: canLoadNativeLibrary() ran before this and returned true
-     * @returm true if device has Read Access | false if UnsatisfiedLinkError Occurs
+     * @return true if device has Read Access | false if UnsatisfiedLinkError Occurs
      *
      * Description: RootCloak automatically blocks read access to the Native Libraries, however
      * allows for them to be loaded into memory. This check is an indication that RootCloak is
