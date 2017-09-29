@@ -194,42 +194,27 @@ public class RootBeer {
     }
 
     private String[] propsReader() {
-        InputStream inputstream = null;
+        String[] result = new String[0];
         try {
-            inputstream = Runtime.getRuntime().exec("getprop").getInputStream();
-        } catch (IOException e) {
+            InputStream inputstream = Runtime.getRuntime().exec("getprop").getInputStream();
+            String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
+            result = propVal.split("\n");
+        } catch (IOException | NoSuchElementException e) {
             e.printStackTrace();
         }
-        String propval = "";
-        try {
-            propval = new Scanner(inputstream).useDelimiter("\\A").next();
-
-        } catch (NoSuchElementException e) {
-            QLog.e("Error getprop, NoSuchElementException: " +e.getMessage(), e);
-        }
-
-        return propval.split("\n");
+        return result;
     }
 
     private String[] mountReader() {
-        InputStream inputstream = null;
+        String[] result = new String[0];
         try {
-            inputstream = Runtime.getRuntime().exec("mount").getInputStream();
-        } catch (IOException e) {
+            InputStream inputstream = Runtime.getRuntime().exec("mount").getInputStream();
+            String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
+            result = propVal.split("\n");
+        } catch (IOException | NoSuchElementException e) {
             e.printStackTrace();
         }
-
-        // If input steam is null, we can't read the file, so return null
-        if (inputstream == null) return null;
-
-        String propval = "";
-        try {
-            propval = new Scanner(inputstream).useDelimiter("\\A").next();
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-        }
-
-        return propval.split("\n");
+        return result;
     }
 
     /**
