@@ -25,7 +25,7 @@ public final class QLog {
     private static final String TAG_GENERAL_OUTPUT = "QLog";
 
     static {
-        i("Log class reloaded");
+        //i("Log class reloaded");
     }
 
     /**
