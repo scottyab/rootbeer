@@ -152,7 +152,7 @@ public class RootBeer {
     }
 
     /**
-     * Checks various (Const.suPaths) common locations for the Magisk binary
+     * Checks various (Const.suPaths) common locations for the magisk binary (a well know root level program)
      * @return true if found
      */
     public boolean checkForMagiskBinary(){ return checkForBinary("magisk"); }
