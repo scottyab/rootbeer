@@ -16,7 +16,7 @@ public final class Const {
             "com.koushikdutta.superuser",
             "com.thirdparty.superuser",
             "com.yellowes.su",
-
+            "com.topjohnwu.magisk"
     };
 
     public static final String[] knownDangerousAppsPackages = {
@@ -25,7 +25,9 @@ public final class Const {
             "com.dimonvideo.luckypatcher",
             "com.chelpus.lackypatch",
             "com.ramdroid.appquarantine",
-            "com.ramdroid.appquarantinepro"
+            "com.ramdroid.appquarantinepro",
+            "com.android.vending.billing.InAppBillingService.COIN",
+            "com.chelpus.luckypatcher"
     };
 
     public static final String[] knownRootCloakingPackages = {
@@ -51,7 +53,9 @@ public final class Const {
             "/system/bin/failsafe/",
             "/system/sd/xbin/",
             "/system/usr/we-need-root/",
-            "/system/xbin/"
+            "/system/xbin/",
+            "/cache/magisk"
+            "/data/busybox"
     };
 
 
