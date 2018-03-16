@@ -173,7 +173,7 @@ public class RootBeer {
 
         for (String path : pathsArray) {
             String completePath = path + filename;
-            File f = new File(completePath);
+            File f = new File(path, filename);
             boolean fileExists = f.exists();
             if (fileExists) {
                 QLog.v(completePath + " binary detected!");
