@@ -54,8 +54,9 @@ public final class Const {
             "/system/sd/xbin/",
             "/system/usr/we-need-root/",
             "/system/xbin/",
-            "/cache/magisk",
-            "/data/busybox"
+            "/cache",
+            "/data",
+            "/dev"
     };
 
 

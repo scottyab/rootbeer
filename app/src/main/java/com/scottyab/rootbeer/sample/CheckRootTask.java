@@ -121,6 +121,10 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
                     mIsCheck = Utils.isSelinuxFlagInEnabled();
                     Log.d(TAG, "Selinux Flag Is Enabled " + (mIsCheck ? "true" : "false"));
                     break;
+                case 89:
+                    mIsCheck = check.checkForMagiskBinary();
+                    Log.d(TAG, "Magisk " + (mIsCheck ? "deteced" : "not deteced"));
+                    break;
             }
             publishProgress(i);
         }
