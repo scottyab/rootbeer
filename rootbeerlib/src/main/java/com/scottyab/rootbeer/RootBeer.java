@@ -42,7 +42,7 @@ public class RootBeer {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
                 || checkForBinary("busybox") || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative();
+                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
 
     /**
@@ -54,7 +54,7 @@ public class RootBeer {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
                 || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative();
+                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
 
     /**
@@ -143,7 +143,6 @@ public class RootBeer {
         return isAnyPackageFromListInstalled(packages);
     }
 
-
     /**
      * Checks various (Const.suPaths) common locations for the SU binary
      * @return true if found
@@ -151,6 +150,12 @@ public class RootBeer {
     public boolean checkForSuBinary(){
         return checkForBinary("su");
     }
+
+    /**
+     * Checks various (Const.suPaths) common locations for the magisk binary (a well know root level program)
+     * @return true if found
+     */
+    public boolean checkForMagiskBinary(){ return checkForBinary("magisk"); }
 
     /**
      * Checks various (Const.suPaths) common locations for the busybox binary (a well know root level program)
@@ -173,7 +178,7 @@ public class RootBeer {
 
         for (String path : pathsArray) {
             String completePath = path + filename;
-            File f = new File(completePath);
+            File f = new File(path, filename);
             boolean fileExists = f.exists();
             if (fileExists) {
                 QLog.v(completePath + " binary detected!");
