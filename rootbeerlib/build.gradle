@@ -19,7 +19,7 @@ android {
     }
 
     // Perform a check to see if the NDK exists
-    if (android.getNdkDirectory().exists()){
+    if (android.getNdkDirectory() != null && android.getNdkDirectory().exists()){
         // If it does, perform compilation
         logger.debug("Found NDK"+android.getNdkDirectory())
 
