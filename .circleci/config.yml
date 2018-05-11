@@ -22,7 +22,7 @@ jobs:
           command: ./gradlew test
 
       - store_artifacts:
-          path: app/build/reports
+          path: rootbeerlib/build/reports/
           destination: reports
 
       - store_test_results:
@@ -44,6 +44,8 @@ jobs:
           command: |
             set -xu
             mkdir -p /tmp/artifacts 
+            find . -name "*release-unsigned.apk" -type f -exec echo {} \;
+            find . -name "*release-unsigned.apk" -type f -exec cp {} /tmp/artifacts/ \;
             find . -name "*release.apk" -type f -exec echo {} \;
             find . -name "*release.apk" -type f -exec cp {} /tmp/artifacts/ \;
             find . -name "*debug.apk" -type f -exec echo {} \;
