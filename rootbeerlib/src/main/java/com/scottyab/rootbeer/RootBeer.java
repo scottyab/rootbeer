@@ -283,6 +283,12 @@ public class RootBeer {
         boolean result = false;
 
         String[] lines = mountReader();
+
+        if (lines == null){
+            // Could not read, assume false;
+            return result;
+        }
+
         for (String line : lines) {
 
             // Split lines into parts
