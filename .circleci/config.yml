@@ -9,11 +9,6 @@ jobs:
       - checkout
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-          
-      # Copy environment vars to gradle.properties
-      - run:
-          name: Copy Environment Vars
-          command: scripts/cp-env-to-properties.sh
 
       - run:
           name: Download Dependencies
