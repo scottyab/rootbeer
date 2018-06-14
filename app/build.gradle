@@ -8,8 +8,8 @@ android {
         applicationId "com.scottyab.rootbeer.sample"
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
-        versionCode 6
-        versionName "0.6"
+        versionCode 7
+        versionName "0.7"
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
@@ -39,18 +39,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    externalNativeBuild {
-        ndkBuild {
-            path '../rootbeerlib/src/main/jni/Android.mk'
-        }
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':rootbeerlib')
-    compile "com.android.support:appcompat-v7:$supportLibVer"
-    compile "com.android.support:design:$supportLibVer"
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'uk.co.barbuzz:beerprogressview:0.0.4'
+    implementation project(':rootbeerlib')
+    implementation "com.android.support:appcompat-v7:$supportLibVer"
+    implementation "com.android.support:design:$supportLibVer"
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'uk.co.barbuzz:beerprogressview:0.0.4'
 }

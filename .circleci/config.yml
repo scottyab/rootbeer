@@ -1,0 +1,58 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/android:api-27-node8-alpha
+    environment:
+        GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Run Tests
+          command: ./gradlew test
+
+      - store_artifacts:
+          path: rootbeerlib/build/reports/
+          destination: reports
+
+      - store_test_results:
+          path: app/build/test-results
+
+      # Compile debug apks
+      - run:
+          name: Compile Debug APKs
+          command: ./gradlew assembleDebug
+
+      # Compile release apks
+      - run:
+          name: Compile Release APKs
+          command: ./gradlew assembleRelease
+
+      # Copy APK files to artifacts
+      - run:
+          name: Copy APK Files
+          command: |
+            set -xu
+            mkdir -p /tmp/artifacts 
+            find . -name "*release-unsigned.apk" -type f -exec echo {} \;
+            find . -name "*release-unsigned.apk" -type f -exec cp {} /tmp/artifacts/ \;
+            find . -name "*release.apk" -type f -exec echo {} \;
+            find . -name "*release.apk" -type f -exec cp {} /tmp/artifacts/ \;
+            find . -name "*debug.apk" -type f -exec echo {} \;
+            find . -name "*debug.apk" -type f -exec cp {} /tmp/artifacts/ \;
+            
+      # Save artifacts
+      - store_artifacts:
+          name: Save APK Files
+          path: /tmp/artifacts
+          destination: build

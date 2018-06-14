@@ -18,18 +18,38 @@ android {
         }
     }
 
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/jni/Android.mk'
+    // Perform a check to see if the NDK exists
+    if (android.getNdkDirectory() != null && android.getNdkDirectory().exists()){
+        // If it does, perform compilation
+        logger.debug("Found NDK"+android.getNdkDirectory())
+
+        externalNativeBuild {
+            ndkBuild {
+                path 'src/main/jni/Android.mk'
+            }
         }
+
+    }
+    else{
+        //Otherwise disable automatic ndk-build and use pre-compiled .so files
+        logger.debug("NDK Not Present"+android.getNdkDirectory())
+
+        sourceSets {
+            main {
+                jni.srcDirs = []
+            }
+        }
+    }
+
+    packagingOptions {
+        // In case there are both compiled .so files and provided .so files, pick the first (should be generated)
+        pickFirst('lib/*/libtool-checker.so')
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.10.0'
 }
 
 apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'

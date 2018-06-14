@@ -199,27 +199,27 @@ public class RootBeer {
     }
 
     private String[] propsReader() {
-        String[] result = new String[0];
         try {
             InputStream inputstream = Runtime.getRuntime().exec("getprop").getInputStream();
+            if (inputstream == null) return null;
             String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
-            result = propVal.split("\n");
+            return propVal.split("\n");
         } catch (IOException | NoSuchElementException e) {
             e.printStackTrace();
+            return null;
         }
-        return result;
     }
 
     private String[] mountReader() {
-        String[] result = new String[0];
         try {
             InputStream inputstream = Runtime.getRuntime().exec("mount").getInputStream();
+            if (inputstream == null) return null;
             String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
-            result = propVal.split("\n");
+            return propVal.split("\n");
         } catch (IOException | NoSuchElementException e) {
             e.printStackTrace();
+            return null;
         }
-        return result;
     }
 
     /**
@@ -259,6 +259,12 @@ public class RootBeer {
         boolean result = false;
 
         String[] lines = propsReader();
+
+        if (lines == null){
+            // Could not read, assume false;
+            return result;
+        }
+
         for (String line : lines) {
             for (String key : dangerousProps.keySet()) {
                 if (line.contains(key)) {

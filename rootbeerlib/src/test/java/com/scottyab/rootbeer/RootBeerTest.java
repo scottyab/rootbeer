@@ -4,23 +4,26 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.CoreMatchers.not;
+import static org.mockito.AdditionalMatchers.not;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.when;
 
 /**
  * Created by matthew on 31/10/17.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class RootBeerTest {
 
     @Test
-    public void testIsRooted() throws Exception {
+    public void testIsRooted() {
 
         RootBeer rootBeer = Mockito.mock(RootBeer.class);
 
@@ -46,10 +49,11 @@ public class RootBeerTest {
     }
 
     @Test
-    public void testIsRootedWithoutBusyBoxCheck() throws Exception {
+    public void testIsRootedWithoutBusyBoxCheck() {
 
         RootBeer rootBeer = Mockito.mock(RootBeer.class);
 
+        when(rootBeer.isRooted()).thenCallRealMethod();
         when(rootBeer.isRootedWithoutBusyBoxCheck()).thenCallRealMethod();
 
         when(rootBeer.detectRootManagementApps()).thenReturn(false);
@@ -63,11 +67,10 @@ public class RootBeerTest {
         when(rootBeer.checkForRootNative()).thenReturn(false);
 
         // Test we return false when all methods return false
-        assertTrue(!rootBeer.isRooted());
+        assertTrue(rootBeer.isRooted());
 
         // Test it doesn't matter what checkForBinary("busybox") returns
-        when(rootBeer.checkForBinary("busybox")).thenReturn(true);
-        assertTrue(!rootBeer.isRooted());
+        assertTrue(!rootBeer.isRootedWithoutBusyBoxCheck());
 
     }
 
@@ -108,7 +111,7 @@ public class RootBeerTest {
         }
         else {
             // Return exception for every package other than one we should detect
-            when(packageManager.getPackageInfo(argThat(not(packageNameToFind)), anyInt())).thenThrow(new PackageManager.NameNotFoundException());
+            when(packageManager.getPackageInfo(not(eq(packageNameToFind)), anyInt())).thenThrow(new PackageManager.NameNotFoundException());
         }
         return context;
     }
