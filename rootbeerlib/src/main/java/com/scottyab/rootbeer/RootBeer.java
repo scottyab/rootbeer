@@ -18,6 +18,9 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import static com.scottyab.rootbeer.Const.BINARY_BUSYBOX;
+import static com.scottyab.rootbeer.Const.BINARY_SU;
+
 /**
  * A simple root checker that gives an *indication* if the device is rooted or not.
  * Disclaimer: **root==god**, so there's no 100% way to check for root.
@@ -40,8 +43,8 @@ public class RootBeer {
      */
     public boolean isRooted() {
 
-        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
-                || checkForBinary("busybox") || checkForDangerousProps() || checkForRWPaths()
+        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
+                || checkForBinary(BINARY_BUSYBOX) || checkForDangerousProps() || checkForRWPaths()
                 || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
 
@@ -52,7 +55,7 @@ public class RootBeer {
      */
     public boolean isRootedWithoutBusyBoxCheck() {
 
-        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
+        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
                 || checkForDangerousProps() || checkForRWPaths()
                 || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
@@ -84,8 +87,7 @@ public class RootBeer {
     public boolean detectRootManagementApps(String[] additionalRootManagementApps) {
 
         // Create a list of package names to iterate over from constants any others provided
-        ArrayList<String> packages = new ArrayList<>();
-        packages.addAll(Arrays.asList(Const.knownRootAppsPackages));
+        ArrayList<String> packages = new ArrayList<>(Arrays.asList(Const.knownRootAppsPackages));
         if (additionalRootManagementApps!=null && additionalRootManagementApps.length>0){
             packages.addAll(Arrays.asList(additionalRootManagementApps));
         }
@@ -135,8 +137,7 @@ public class RootBeer {
     public boolean detectRootCloakingApps(String[] additionalRootCloakingApps) {
 
         // Create a list of package names to iterate over from constants any others provided
-        ArrayList<String> packages = new ArrayList<>();
-        packages.addAll(Arrays.asList(Const.knownRootCloakingPackages));
+        ArrayList<String> packages = new ArrayList<>(Arrays.asList(Const.knownRootCloakingPackages));
         if (additionalRootCloakingApps!=null && additionalRootCloakingApps.length>0){
             packages.addAll(Arrays.asList(additionalRootCloakingApps));
         }
@@ -148,7 +149,7 @@ public class RootBeer {
      * @return true if found
      */
     public boolean checkForSuBinary(){
-        return checkForBinary("su");
+        return checkForBinary(BINARY_SU);
     }
 
     /**
@@ -262,7 +263,7 @@ public class RootBeer {
 
         if (lines == null){
             // Could not read, assume false;
-            return result;
+            return false;
         }
 
         for (String line : lines) {
@@ -292,7 +293,7 @@ public class RootBeer {
 
         if (lines == null){
             // Could not read, assume false;
-            return result;
+            return false;
         }
 
         for (String line : lines) {
@@ -336,7 +337,7 @@ public class RootBeer {
     public boolean checkSuExists() {
         Process process = null;
         try {
-            process = Runtime.getRuntime().exec(new String[] { "which", "su" });
+            process = Runtime.getRuntime().exec(new String[] { "which", BINARY_SU });
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             return in.readLine() != null;
         } catch (Throwable t) {
@@ -386,10 +387,9 @@ public class RootBeer {
             return false;
         }
 
-        String binaryName = "su";
         String[] paths = new String[Const.suPaths.length];
         for (int i = 0; i < paths.length; i++) {
-            paths[i] = Const.suPaths[i]+binaryName;
+            paths[i] = Const.suPaths[i]+ BINARY_SU;
         }
 
         RootBeerNative rootBeerNative = new RootBeerNative();

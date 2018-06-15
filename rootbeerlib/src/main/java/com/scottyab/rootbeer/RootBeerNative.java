@@ -7,7 +7,7 @@ import com.scottyab.rootbeer.util.QLog;
  */
 public class RootBeerNative {
 
-    static boolean libraryLoaded = false;
+    private static boolean libraryLoaded = false;
 
     /**
      * Loads the C/C++ libraries statically
