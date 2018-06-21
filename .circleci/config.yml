@@ -10,21 +10,35 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
+      # Copy environment vars to gradle.properties
+      - run:
+          name: Copy Environment Vars
+          command: scripts/cp-env-to-properties.sh
+
+      # Decrypt any secret files / keys
+      - run:
+          name: Decrypt secret files
+          command: scripts/decrypt-secrets.sh
+
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
       - run:
           name: Run Tests
           command: ./gradlew test
 
+          
       - store_artifacts:
           path: rootbeerlib/build/reports/
           destination: reports
 
+          
       - store_test_results:
           path: app/build/test-results
 
@@ -56,3 +70,13 @@ jobs:
           name: Save APK Files
           path: /tmp/artifacts
           destination: build
+          
+      # Publish release to github if new tag found with commit
+      - run:
+          name: Publish release to Github
+          command: scripts/github-release.sh
+          
+      # Upload to beta if requested and then publish webhooks
+      - run:
+          name: Publish to Google Play
+          command: scripts/upload-apks.sh
