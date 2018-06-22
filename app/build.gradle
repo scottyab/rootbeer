@@ -1,4 +1,21 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // This is so we can publish straight to Google Play
+        classpath 'com.github.triplet.gradle:play-publisher:1.2.2'
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
+
+play {
+    track = 'beta'
+    serviceAccountEmail ROOTBEER_SERVICE_ACCOUNT
+    pk12File = file('../key.p12')
+}
 
 android {
     compileSdkVersion compileSdkVer
