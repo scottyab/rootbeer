@@ -2,26 +2,23 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion compileSdkVer
-    buildToolsVersion buildToolsVer
-
+    buildToolsVersion '28.0.3'
     defaultConfig {
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
         versionCode 1
         versionName "1.0"
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     // Perform a check to see if the NDK exists
-    if (android.getNdkDirectory() != null && android.getNdkDirectory().exists()){
+    if (android.getNdkDirectory() != null && android.getNdkDirectory().exists()) {
         // If it does, perform compilation
-        logger.debug("Found NDK"+android.getNdkDirectory())
+        logger.debug("Found NDK" + android.getNdkDirectory())
 
         externalNativeBuild {
             ndkBuild {
@@ -29,10 +26,9 @@ android {
             }
         }
 
-    }
-    else{
+    } else {
         //Otherwise disable automatic ndk-build and use pre-compiled .so files
-        logger.debug("NDK Not Present"+android.getNdkDirectory())
+        logger.debug("NDK Not Present" + android.getNdkDirectory())
 
         sourceSets {
             main {
@@ -40,10 +36,11 @@ android {
             }
         }
     }
-
     packagingOptions {
         // In case there are both compiled .so files and provided .so files, pick the first (should be generated)
         pickFirst('lib/*/libtool-checker.so')
+    }
+    productFlavors {
     }
 }
 
