@@ -80,12 +80,23 @@ int exists(const char *fname)
 
 
 
+/*****************************************************************************
+ * Description: Check the Unix Domain Socket used by Magisk
+ *
+ * Parameters: none
+ *
+ * Return value: 0 - non-existant / not visible, 1 or more - exists
+ *
+ *****************************************************************************/
 int checkForMagiskUDS()
 {
     int detect_count = 0;
     int result = 0;
 
-    // Magisk UDS Detection Method
+    // Magisk UDS(Unix Domain Socket) Detection Method.
+    // The unix domain socket is typically used for local communications, ie IPC.
+    // At least Android 8.0 can look up unix domain sockets.
+    // You need to be sure that you can query the unix domain socket on Android 9.0 or later.
     FILE *fh = fopen("/proc/net/unix", "r");
     if (fh) {
         for (;;) {
@@ -104,19 +115,20 @@ int checkForMagiskUDS()
                 break;
             }
 
+            // The name of the unix domain socket created by the daemon is prefixed with an @ symbol.
             char *ptr = strtok(filename, "@");
             if(ptr) {
+                // On Android, the / character, space, and dot characters are the names of the normal unix domain sockets.
                 if(strstr(ptr, "/")) {
                     ;
                 } else if(strstr(ptr, " ")) {
                     ;
                 } else if(strstr(ptr, ".")) {
                     ;
-                } else {
+                } else { // Magisk replaces the name of the unix domain socket with a random string of 32 digits.
                     if (strlen(ptr) >= 32) {
-                        char temp[128] = { 0 };
-                        sprintf(temp, "- [Method] Magisk 루팅이 의심됨!!\n%s\n", ptr);
-                        LOGD("%s", temp);
+                        // Magisk was detected.
+                        LOGD("[Detect Magisk UnixDomainSocket] %s", ptr);
 
                         detect_count++;
                     }
@@ -128,8 +140,6 @@ int checkForMagiskUDS()
     if(detect_count == 0) {
         result = 0;
     }
-
-    LOGD(">>>>>>>>>>> result: %d", result);
 
     return result;
 }
