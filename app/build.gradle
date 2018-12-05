@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion compileSdkVer
-    buildToolsVersion '28.0.3'
+    buildToolsVersion buildToolsVer
 
     defaultConfig {
         applicationId "com.scottyab.rootbeer.sample"
