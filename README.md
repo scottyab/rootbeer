@@ -1,5 +1,5 @@
 Enjoy the latest Magisk and MagiskHide Detection RootBeer!!
-<img src="./Magisk_UDS_Detect_UI.jpg" width="50%">
+<br/><img src="./Magisk_UDS_Detect_UI.jpg" width="50%">
 
 
 # RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
