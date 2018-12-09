@@ -88,7 +88,7 @@ int exists(const char *fname)
  * Return value: 0 - non-existant / not visible, 1 or more - exists
  *
  *****************************************************************************/
-int checkForMagiskUDS()
+int Java_com_scottyab_rootbeer_RootBeerNative_checkForMagiskUDS( JNIEnv* env, jobject thiz )
 {
     int detect_count = 0;
     int result = 0;
@@ -114,6 +114,8 @@ int checkForMagiskUDS()
             } else if (!fgets(filename, BUFSIZE, fh)) {
                 break;
             }
+
+            LOGD("%s", filename);
 
             // The name of the unix domain socket created by the daemon is prefixed with an @ symbol.
             char *ptr = strtok(filename, "@");
@@ -166,10 +168,6 @@ int Java_com_scottyab_rootbeer_RootBeerNative_checkForRoot( JNIEnv* env, jobject
         binariesFound += exists(pathString);
 
         (env)->ReleaseStringUTFChars(string, pathString);
-    }
-
-    if (binariesFound == 0) {
-        return checkForMagiskUDS() > 0;
     }
 
     return binariesFound>0;

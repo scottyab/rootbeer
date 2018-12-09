@@ -42,7 +42,7 @@ public class RootBeer {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
                 || checkForBinary("busybox") || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary() || checkForMagiskNative();
     }
 
     /**
@@ -54,7 +54,7 @@ public class RootBeer {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary("su")
                 || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary() || checkForMagiskNative();
     }
 
     /**
@@ -396,6 +396,22 @@ public class RootBeer {
         try {
             rootBeerNative.setLogDebugMessages(loggingEnabled);
             return rootBeerNative.checkForRoot(paths) > 0;
+        } catch (UnsatisfiedLinkError e) {
+            return false;
+        }
+    }
+
+    public boolean checkForMagiskNative() {
+
+        if (!canLoadNativeLibrary()){
+            QLog.e("We could not load the native library to test for root");
+            return false;
+        }
+
+        RootBeerNative rootBeerNative = new RootBeerNative();
+        try {
+            rootBeerNative.setLogDebugMessages(loggingEnabled);
+            return rootBeerNative.checkForMagiskUDS() > 0;
         } catch (UnsatisfiedLinkError e) {
             return false;
         }

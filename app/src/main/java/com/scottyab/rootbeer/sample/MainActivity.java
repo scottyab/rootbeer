@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         ImageView rootCheck9ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_9);
         ImageView rootCheck10ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_10);
         ImageView rootCheck11ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_11);
+        ImageView rootCheck12ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_12);
         checkRootImageViewList = new ArrayList<>();
         checkRootImageViewList.add(rootCheck1ImageView);
         checkRootImageViewList.add(rootCheck2ImageView);
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         checkRootImageViewList.add(rootCheck9ImageView);
         checkRootImageViewList.add(rootCheck10ImageView);
         checkRootImageViewList.add(rootCheck11ImageView);
+        checkRootImageViewList.add(rootCheck12ImageView);
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {

@@ -26,7 +26,7 @@ public class RootBeerNative {
         return libraryLoaded;
     }
 
+    public native int checkForMagiskUDS();
     public native int checkForRoot(Object[] pathArray);
     public native int setLogDebugMessages(boolean logDebugMessages);
-
 }

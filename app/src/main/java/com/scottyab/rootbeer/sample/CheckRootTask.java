@@ -70,7 +70,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
         RootBeer check = new RootBeer(mContext);
         check.setLogging(true);
 
-        for (int i = 0; i < 90; i++) {
+        for (int i = 0; i < 100; i++) {
             try {
                 Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException e) {
@@ -123,6 +123,10 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
                     break;
                 case 89:
                     mIsCheck = check.checkForMagiskBinary();
+                    Log.d(TAG, "Magisk " + (mIsCheck ? "deteced" : "not deteced"));
+                    break;
+                case 99:
+                    mIsCheck = check.checkForMagiskNative();
                     Log.d(TAG, "Magisk " + (mIsCheck ? "deteced" : "not deteced"));
                     break;
             }
