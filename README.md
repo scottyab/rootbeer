@@ -1,5 +1,5 @@
 Enjoy the latest Magisk and MagiskHide Detection RootBeer!!
-![image](./Magisk_UDS_Detect_UI.jpg)
+![image](./Magisk_UDS_Detect_UI.jpg =450x)
 
 
 
