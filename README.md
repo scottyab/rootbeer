@@ -1,3 +1,8 @@
+Enjoy the latest Magisk and MagiskHide Detection RootBeer!!
+![image](./Magisk_UDS_Detect_UI.jpg)
+
+
+
 # RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
 
 A tasty root checker library and sample app. We've scoured the internets for different methods of answering that age old question... **Has this device got root?**
