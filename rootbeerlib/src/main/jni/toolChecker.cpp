@@ -87,11 +87,19 @@ int exists(const char *fname)
     return 0;
 }
 
+/*****************************************************************************
+ * Description: Parsing the mode_t structure
+ *
+ * Parameters: mode - mode_t structure, buf - Parsing result
+ *
+ *****************************************************************************/
 void strmode(mode_t mode, char * buf) {
     const char chars[] = "rwxrwxrwx";
+
     for (size_t i = 0; i < 9; i++) {
         buf[i] = (mode & (1 << (8-i))) ? chars[i] : '-';
     }
+
     buf[9] = '\0';
 }
 
@@ -125,28 +133,28 @@ int checkFileStat(char *fname)
     }
 
     file_mode = file_info.st_mode;
-    LOGD(">>>>> 파일이름 : %s\n", fname);
+    LOGD(">>>>> File Name : %s\n", fname);
     printf(">>>>> =======================================\n");
-    LOGD(">>>>> 파일 타입 : ");
+    LOGD(">>>>> File Type : ");
     if (S_ISREG(file_mode))
     {
-        LOGD(">>>>> 정규파일\n");
+        LOGD(">>>>> Regular File\n");
     }
     else if (S_ISLNK(file_mode))
     {
-        LOGD(">>>>> 심볼릭 링크\n");
+        LOGD(">>>>> Symbolic Link\n");
     }
     else if (S_ISDIR(file_mode))
     {
-        LOGD(">>>>> 디렉토리\n");
+        LOGD(">>>>> Directory\n");
     }
     else if (S_ISCHR(file_mode))
     {
-        LOGD(">>>>> 문자 디바이스\n");
+        LOGD(">>>>> Terminal Device\n");
     }
     else if (S_ISBLK(file_mode))
     {
-        LOGD(">>>>> 블럭 디바이스\n");
+        LOGD(">>>>> Block Device\n");
     }
     else if (S_ISFIFO(file_mode))
     {
@@ -154,28 +162,29 @@ int checkFileStat(char *fname)
     }
     else if (S_ISSOCK(file_mode))
     {
-        LOGD(">>>>> 소켓\n");
+        LOGD(">>>>> Socket\n");
     }
 
-    char buf[64] = { 0 };
+    /*
+    char buf[11] = { 0 };
     strmode(file_mode, buf);
     LOGD(">>>>> %04o is %s\n", file_mode, buf);
-
     my_passwd = getpwuid(file_info.st_uid);
     my_group  = getgrgid(file_info.st_gid);
     LOGD(">>>>> OWNER : %s\n", my_passwd->pw_name);
     LOGD(">>>>> GROUP : %s\n", my_group->gr_name);
     LOGD(">>>>> FILE SIZE IS : %d\n", (int)file_info.st_size);
-    LOGD(">>>>> 마지막 읽은 시간 : %d\n", file_info.st_atime);
-    LOGD(">>>>> 마지막 수정 시간 : %d\n", file_info.st_mtime);
-    LOGD(">>>>> 마지막 상태변경 시간 : %d\n", file_info.st_ctime);
-    LOGD(">>>>> I/O 블록 크기 : %d\n", file_info.st_blksize);
-    LOGD(">>>>> 할당한 블록 크기 : %d\n", file_info.st_blocks);
-    LOGD(">>>>> 하드링크된 파일수 : %d\n", file_info.st_nlink);
-    LOGD(">>>>> 아이노드 : %d\n", file_info.st_ino);
-    LOGD(">>>>> 정규파일의 바이트 수 : %d\n", file_info.st_size);
-    LOGD(">>>>> 장치 번호 : %d\n", (int)file_info.st_dev);
-    LOGD(">>>>> 특수 파일의 장치 번호 : %d\n", (int)file_info.st_rdev);
+    LOGD (">>>>> last read time:%d", file_info.st_atime);
+    LOGD (">>>>> last modification time:%d", file_info.st_mtime);
+    LOGD (">>>>> last state change time:%d", file_info.st_ctime);
+    LOGD (">>>>> I / O block size:%d", file_info.st_blksize);
+    LOGD (">>>>> allocated block size:%d", file_info.st_blocks);
+    LOGD (">>>>> hardlinked files:%d", file_info.st_nlink);
+    LOGD (">>>>> inode:%d", file_info.st_ino);
+    LOGD (">>>>> bytes in regular file:%d", file_info.st_size);
+    LOGD (">>>>> DEVICE NUMBER:%d", (int) file_info.st_dev);
+    LOGD (">>>>> device number of special file:%d", (int) file_info.st_rdev);
+    */
 
     return 1;
 }
@@ -218,17 +227,32 @@ int Java_com_scottyab_rootbeer_RootBeerNative_checkForMagiskUDS( JNIEnv* env, jo
 
             LOGD("%s", filename);
 
-            magisk_file_detect_count += checkFileStat("/sbin/magisk");
-            magisk_file_detect_count += checkFileStat("/data/adb/magisk");
-            magisk_file_detect_count += checkFileStat("/sbin/.magisk");
-            magisk_file_detect_count += checkFileStat("/cache/.disable_magisk");
             magisk_file_detect_count += checkFileStat("/dev/.magisk.unblock");
-            magisk_file_detect_count += checkFileStat("/cache/magisk.log");
+
+            magisk_file_detect_count += checkFileStat("/sbin/magiskinit");
+            magisk_file_detect_count += checkFileStat("/sbin/magisk");
+            magisk_file_detect_count += checkFileStat("/sbin/.magisk");
+
             magisk_file_detect_count += checkFileStat("/data/adb/magisk.img");
             magisk_file_detect_count += checkFileStat("/data/adb/magisk.db");
             magisk_file_detect_count += checkFileStat("/data/adb/.boot_count");
             magisk_file_detect_count += checkFileStat("/data/adb/magisk_simple");
+            magisk_file_detect_count += checkFileStat("/data/adb/magisk");
+
+            magisk_file_detect_count += checkFileStat("/cache/.disable_magisk");
+            magisk_file_detect_count += checkFileStat("/cache/magisk.log");
+
             magisk_file_detect_count += checkFileStat("/init.magisk.rc");
+
+            /*
+            /overlay/sbin/magisk
+            /data/adb/magisk/magisk.apk
+            /data/adb/magisk_debug.log
+            /data/adb/magisk_merge.img
+            /dev/.magisk.patch.done
+            /data/data/com.topjohnwu.magisk/install
+            /data/user_de/0/com.topjohnwu.magisk/install
+            */
 
             // The name of the unix domain socket created by the daemon is prefixed with an @ symbol.
             char *ptr = strtok(filename, "@");
