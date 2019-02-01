@@ -380,7 +380,6 @@ public class RootBeer {
      * @return true if we found su | false if not, or the native library could not be loaded / accessed
      */
     public boolean checkForRootNative() {
-
         if (!canLoadNativeLibrary()){
             QLog.e("We could not load the native library to test for root");
             return false;
@@ -402,7 +401,6 @@ public class RootBeer {
     }
 
     public boolean checkForMagiskNative() {
-
         if (!canLoadNativeLibrary()){
             QLog.e("We could not load the native library to test for root");
             return false;

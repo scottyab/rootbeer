@@ -30,5 +30,6 @@
     <string name="root_checks_9">ROOT NATIVE</string>
     <string name="root_checks_10">ROOT CLOAKING APPS</string>
     <string name="root_checks_11">SELINUX FLAG ENABLED (EXPERIMENTAL)</string>
-    <string name="root_checks_12">MAGISK UDS (EXPERIMENTAL)</string>
+    <string name="root_checks_12">MAGISK BINARY (EXPERIMENTAL)</string>
+    <string name="root_checks_13">MAGISK UDS AND STAT (EXPERIMENTAL)</string>
 </resources>

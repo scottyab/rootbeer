@@ -18,6 +18,15 @@
 // String / file headers
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <pwd.h>
+#include <grp.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/un.h>
 
 /****************************************************************************
  *>>>>>>>>>>>>>>>>>>>>>>>>>> User Includes <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*
@@ -78,7 +87,98 @@ int exists(const char *fname)
     return 0;
 }
 
+void strmode(mode_t mode, char * buf) {
+    const char chars[] = "rwxrwxrwx";
+    for (size_t i = 0; i < 9; i++) {
+        buf[i] = (mode & (1 << (8-i))) ? chars[i] : '-';
+    }
+    buf[9] = '\0';
+}
 
+/*****************************************************************************
+ * Description: Check file stat
+ *
+ * Parameters: fname - filename to check
+ *
+ * Return value: 0 - non-existant / not visible, 1 - exists
+ *
+ *****************************************************************************/
+extern int stat(const char *, struct stat *);
+int checkFileStat(char *fname)
+{
+    int return_stat = 0;
+    struct stat file_info = { 0 };
+    struct passwd *my_passwd;
+    struct group  *my_group;
+    mode_t file_mode;
+
+    if(!fname)
+    {
+        LOGD(">>>>> fname is NULL!!");
+        return -1;
+    }
+
+    if ((return_stat = stat(fname, &file_info)) == -1)
+    {
+        LOGD(">>>>> stat() Failed!!");
+        return -1;
+    }
+
+    file_mode = file_info.st_mode;
+    LOGD(">>>>> 파일이름 : %s\n", fname);
+    printf(">>>>> =======================================\n");
+    LOGD(">>>>> 파일 타입 : ");
+    if (S_ISREG(file_mode))
+    {
+        LOGD(">>>>> 정규파일\n");
+    }
+    else if (S_ISLNK(file_mode))
+    {
+        LOGD(">>>>> 심볼릭 링크\n");
+    }
+    else if (S_ISDIR(file_mode))
+    {
+        LOGD(">>>>> 디렉토리\n");
+    }
+    else if (S_ISCHR(file_mode))
+    {
+        LOGD(">>>>> 문자 디바이스\n");
+    }
+    else if (S_ISBLK(file_mode))
+    {
+        LOGD(">>>>> 블럭 디바이스\n");
+    }
+    else if (S_ISFIFO(file_mode))
+    {
+        LOGD(">>>>> FIFO\n");
+    }
+    else if (S_ISSOCK(file_mode))
+    {
+        LOGD(">>>>> 소켓\n");
+    }
+
+    char buf[64] = { 0 };
+    strmode(file_mode, buf);
+    LOGD(">>>>> %04o is %s\n", file_mode, buf);
+
+    my_passwd = getpwuid(file_info.st_uid);
+    my_group  = getgrgid(file_info.st_gid);
+    LOGD(">>>>> OWNER : %s\n", my_passwd->pw_name);
+    LOGD(">>>>> GROUP : %s\n", my_group->gr_name);
+    LOGD(">>>>> FILE SIZE IS : %d\n", (int)file_info.st_size);
+    LOGD(">>>>> 마지막 읽은 시간 : %d\n", file_info.st_atime);
+    LOGD(">>>>> 마지막 수정 시간 : %d\n", file_info.st_mtime);
+    LOGD(">>>>> 마지막 상태변경 시간 : %d\n", file_info.st_ctime);
+    LOGD(">>>>> I/O 블록 크기 : %d\n", file_info.st_blksize);
+    LOGD(">>>>> 할당한 블록 크기 : %d\n", file_info.st_blocks);
+    LOGD(">>>>> 하드링크된 파일수 : %d\n", file_info.st_nlink);
+    LOGD(">>>>> 아이노드 : %d\n", file_info.st_ino);
+    LOGD(">>>>> 정규파일의 바이트 수 : %d\n", file_info.st_size);
+    LOGD(">>>>> 장치 번호 : %d\n", (int)file_info.st_dev);
+    LOGD(">>>>> 특수 파일의 장치 번호 : %d\n", (int)file_info.st_rdev);
+
+    return 1;
+}
 
 /*****************************************************************************
  * Description: Check the Unix Domain Socket used by Magisk
@@ -90,7 +190,8 @@ int exists(const char *fname)
  *****************************************************************************/
 int Java_com_scottyab_rootbeer_RootBeerNative_checkForMagiskUDS( JNIEnv* env, jobject thiz )
 {
-    int detect_count = 0;
+    int uds_detect_count = 0;
+    int magisk_file_detect_count = 0;
     int result = 0;
 
     // Magisk UDS(Unix Domain Socket) Detection Method.
@@ -117,6 +218,18 @@ int Java_com_scottyab_rootbeer_RootBeerNative_checkForMagiskUDS( JNIEnv* env, jo
 
             LOGD("%s", filename);
 
+            magisk_file_detect_count += checkFileStat("/sbin/magisk");
+            magisk_file_detect_count += checkFileStat("/data/adb/magisk");
+            magisk_file_detect_count += checkFileStat("/sbin/.magisk");
+            magisk_file_detect_count += checkFileStat("/cache/.disable_magisk");
+            magisk_file_detect_count += checkFileStat("/dev/.magisk.unblock");
+            magisk_file_detect_count += checkFileStat("/cache/magisk.log");
+            magisk_file_detect_count += checkFileStat("/data/adb/magisk.img");
+            magisk_file_detect_count += checkFileStat("/data/adb/magisk.db");
+            magisk_file_detect_count += checkFileStat("/data/adb/.boot_count");
+            magisk_file_detect_count += checkFileStat("/data/adb/magisk_simple");
+            magisk_file_detect_count += checkFileStat("/init.magisk.rc");
+
             // The name of the unix domain socket created by the daemon is prefixed with an @ symbol.
             char *ptr = strtok(filename, "@");
             if(ptr) {
@@ -128,19 +241,22 @@ int Java_com_scottyab_rootbeer_RootBeerNative_checkForMagiskUDS( JNIEnv* env, jo
                 } else if(strstr(ptr, ".")) {
                     ;
                 } else { // Magisk replaces the name of the unix domain socket with a random string of 32 digits.
-                    if (strlen(ptr) >= 32) {
+                    int len = strlen(ptr);
+                    if (len >= 32) {
                         // Magisk was detected.
                         LOGD("[Detect Magisk UnixDomainSocket] %s", ptr);
 
-                        detect_count++;
+                        uds_detect_count++;
                     }
                 }
             }
         }
     }
 
-    if(detect_count == 0) {
+    if(uds_detect_count == 0 || magisk_file_detect_count == 0) {
         result = 0;
+    } else {
+        result = 1;
     }
 
     return result;

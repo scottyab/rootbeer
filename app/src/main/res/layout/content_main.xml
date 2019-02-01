@@ -299,6 +299,26 @@
                     tools:src="@drawable/ic_tick_green_24dp"/>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/content_main_table_row_margin_bottom"
+                android:minHeight="@dimen/content_main_table_row_min_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/root_checks_13"/>
+
+                <ImageView
+                    android:id="@+id/content_main_root_check_image_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    tools:src="@drawable/ic_tick_green_24dp"/>
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/content_mainisRootedTextDisclaimer"
                 android:layout_width="match_parent"
