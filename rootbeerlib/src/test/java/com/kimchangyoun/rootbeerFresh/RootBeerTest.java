@@ -1,4 +1,4 @@
-package com.scottyab.rootbeer;
+package com.kimchangyoun.rootbeerFresh;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

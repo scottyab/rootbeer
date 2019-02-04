@@ -1,6 +1,6 @@
-package com.scottyab.rootbeer;
+package com.kimchangyoun.rootbeerFresh;
 
-import com.scottyab.rootbeer.util.QLog;
+import com.kimchangyoun.rootbeerFresh.util.QLog;
 
 /**
  * Created by mat on 19/06/15.

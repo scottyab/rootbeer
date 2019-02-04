@@ -1,4 +1,4 @@
-package com.scottyab.rootbeer.sample;
+package com.kimchangyoun.rootbeerFresh.sample;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,7 +22,7 @@ import uk.co.barbuzz.beerprogressview.BeerProgressView;
 public class MainActivity extends AppCompatActivity
         implements CheckRootTask.OnCheckRootFinishedListener {
 
-    private static final String GITHUB_LINK = "https://github.com/scottyab/rootbeer";
+    private static final String GITHUB_LINK = "https://github.com/kimchangyoun/rootbeer";
 
     private AlertDialog infoDialog;
     private BeerProgressView beerView;
@@ -43,26 +43,26 @@ public class MainActivity extends AppCompatActivity
 
     private void initView() {
         mActivity = this;
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        beerView = (BeerProgressView) findViewById(R.id.loadingRootCheckBeerView);
-        isRootedText = (TextViewFont) findViewById(R.id.content_main_is_rooted_text);
-        isRootedTextDisclaimer = (TextView) findViewById(R.id.content_mainisRootedTextDisclaimer);
+        beerView = findViewById(R.id.loadingRootCheckBeerView);
+        isRootedText = findViewById(R.id.content_main_is_rooted_text);
+        isRootedTextDisclaimer = findViewById(R.id.content_mainisRootedTextDisclaimer);
 
-        ImageView rootCheck1ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_1);
-        ImageView rootCheck2ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_2);
-        ImageView rootCheck3ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_3);
-        ImageView rootCheck4ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_4);
-        ImageView rootCheck5ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_5);
-        ImageView rootCheck6ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_6);
-        ImageView rootCheck7ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_7);
-        ImageView rootCheck8ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_8);
-        ImageView rootCheck9ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_9);
-        ImageView rootCheck10ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_10);
-        ImageView rootCheck11ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_11);
-        ImageView rootCheck12ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_12);
-        ImageView rootCheck13ImageView = (ImageView) findViewById(R.id.content_main_root_check_image_13);
+        ImageView rootCheck1ImageView = findViewById(R.id.content_main_root_check_image_1);
+        ImageView rootCheck2ImageView = findViewById(R.id.content_main_root_check_image_2);
+        ImageView rootCheck3ImageView = findViewById(R.id.content_main_root_check_image_3);
+        ImageView rootCheck4ImageView = findViewById(R.id.content_main_root_check_image_4);
+        ImageView rootCheck5ImageView = findViewById(R.id.content_main_root_check_image_5);
+        ImageView rootCheck6ImageView = findViewById(R.id.content_main_root_check_image_6);
+        ImageView rootCheck7ImageView = findViewById(R.id.content_main_root_check_image_7);
+        ImageView rootCheck8ImageView = findViewById(R.id.content_main_root_check_image_8);
+        ImageView rootCheck9ImageView = findViewById(R.id.content_main_root_check_image_9);
+        ImageView rootCheck10ImageView = findViewById(R.id.content_main_root_check_image_10);
+        ImageView rootCheck11ImageView = findViewById(R.id.content_main_root_check_image_11);
+        ImageView rootCheck12ImageView = findViewById(R.id.content_main_root_check_image_12);
+        ImageView rootCheck13ImageView = findViewById(R.id.content_main_root_check_image_13);
         checkRootImageViewList = new ArrayList<>();
         checkRootImageViewList.add(rootCheck1ImageView);
         checkRootImageViewList.add(rootCheck2ImageView);
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
         checkRootImageViewList.add(rootCheck12ImageView);
         checkRootImageViewList.add(rootCheck13ImageView);
 
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,4 +1,4 @@
-package com.scottyab.rootbeer;
+package com.kimchangyoun.rootbeerFresh;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

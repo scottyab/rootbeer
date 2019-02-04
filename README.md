@@ -1,51 +1,34 @@
-Enjoy the latest Magisk and MagiskHide Detection RootBeer!!
+Enjoy the latest Magisk and MagiskHide Detection RootBeerFresh!!
 <br/><img src="./Magisk_UDS_Detect_UI.jpg" width="50%">
 
+RootbeerFresh is an open source project that checks if your Android smartphone device is routed.
 
-# RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
+This project is based on rootbeer open source.
+There are a number of well-known routing detection technologies in place.
+However, we aim to detect a new routing device with a completely different technique, completely new.
 
-A tasty root checker library and sample app. We've scoured the internets for different methods of answering that age old question... **Has this device got root?**
+So, look at the more extensive Android routing detection project.
 
-# Root checks
-These are the current checks/tricks we are using to give an indication of root.
-
-**Java checks**
-
-* CheckRootManagementApps
-* CheckPotentiallyDangerousAppss
-* CheckRootCloakingApps
-* CheckTestKeys
-* checkForDangerousProps
-* checkForBusyBoxBinary
-* checkForSuBinary
-* checkSuExists
-* checkForRWSystem
-
-**Native checks**
-
-We call through to our native root checker to run some of its own checks. Native checks are typically harder to cloak, so some root cloak apps just block the loading of native libraries that contain certain keywords.
-
-* checkForSuBinary
+Examples of new routing technologies are those that are extremely difficult to detect for rooted states like Magisk.
+Detecting these new routing technologies is RootbeerFresh's ultimate goal.
 
 
-## Disclaimer and limitations!
+*[Google Play app]*
+Soon we will launch the RootbeerFresh app.
 
-We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the main contributors) use rooted devices. But we appreciate sometimes you might want to have a indication your app is running on a rooted handset. Plus we wanted to see if we could beat the root cloakers. So that's what this library gives you, an *indication* of root.
+*[Development environment]*
+Builds on the latest Android Studio 3.3 and NDK.
 
-Remember **root==god**, so there's no 100% way to check for root.
+*[contribute]*
+If you have a new and better creative way, please leave your PR in any case.
 
-<img src="./art/rootbeerjesus.png" width=200 />
+*[Disclaimer and limitations]*
+Sometimes the detection method of RootbeerFresh may not work correctly.
+When RootbeerFresh is not sure if the device is routed, it displays a '*' next to the route detection message.
 
-
-### Root cloakers
-We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers activated at the same time.
-
-Tested cloakers:
-
-* [RootCloak Plus (Cydia)](https://play.google.com/store/apps/details?id=com.devadvance.rootcloakplus&hl=en_GB) requires [Cydia Substrate](http://play.google.com/store/apps/details?id=com.saurik.substrate)
-* [RootCloak](http://repo.xposed.info/module/com.devadvance.rootcloak) - requires [Xposed Framework](http://repo.xposed.info/module/de.robv.android.xposed.installer)
-
-## Usage
+[Library]
+RootbeerFresh comes with a library.
+You can use the library in the following ways:
 
 ```java
 RootBeer rootBeer = new RootBeer(context);
@@ -56,68 +39,31 @@ if (rootBeer.isRooted()) {
 }
 ```
 
-You can also call each of the checks individually as the sample app does.
+Note that sometimes the isRooted () method may return false positives.
+This is because some device manufacturers release BusyBox in the device's Rom.
 
-### False positives
-
-Note that sometimes the `isRooted()` method can return a false positive. This is often because the manufacturer of the device rom has left the busybox binary. This alone doesn't mean that the device is rooted, if you wish to avoid this but still use a convenience method to you can use the following:
+If you do not want to detect the BusyBox, use the following example code.
 
 ```java
 rootBeer.isRootedWithoutBusyBoxCheck()
 ```
 
-The following devices are known the have the busybox binary present on the stock rom:
-* All OnePlus Devices
-* Moto E
+*[Dependency]*
 
-### Dependency
-
-Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeer-lib%22), to include using Gradle just add the following:
+Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeerFresh-lib%22), to include using Gradle just add the following:
 
 ```java
 dependencies {
-    implementation 'com.scottyab:rootbeer-lib:0.0.7'
+    implementation 'kimchangyoun:rootbeerFresh-lib:0.0.9'
 }
 ```
 
-Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
+Or use this [Jitpack.io link](https://jitpack.io/#kimchangyoun/rootbeerFresh)
 
-### Building
-
-The native library in this application will now be built via Gradle and the latest Android Studio without having to resort to the command line. However the .so files are also distributed in this repository for those who cannot compile using the NDK for some reason.
-
-### Sample app
-
-The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results.
-
-
-<a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
-
-<img width="200" alt="screenshot" src="./art/ss_got_root_fail.png">
-
-
-## Contributing
-
-There must be more root checks to make this more complete. If you have one please do send us a pull request.
-
-### Thanks
-
-* Kevin Kowalewski and others from this popular [StackOverflow post](https://stackoverflow.com/questions/1101380/determine-if-running-on-a-rooted-device?rq=1)
-* Eric Gruber's - Android Root Detection Techniques [article](https://blog.netspi.com/android-root-detection-techniques/)
-
-
-## Other libraries
-
-If you dig this, you might like:
-
- * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
- * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
-
-# Licence
-
+*[Licence]*
 Apache License, Version 2.0
 
-    Copyright (C) 2015, Scott Alexander-Bown, Mat Rollings
+    Copyright (C) 2019, ChangYoun Kim
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

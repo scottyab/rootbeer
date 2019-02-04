@@ -1,9 +1,9 @@
-package com.scottyab.rootbeer.util;
+package com.kimchangyoun.rootbeerFresh.util;
+
+import android.util.Log;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
-import android.util.Log;
 
 public final class QLog {
     public static final int NONE = 0;
@@ -18,7 +18,7 @@ public final class QLog {
     /*
      * For filtering app specific output
      */
-    private static final String TAG = "RootBeer";
+    private static final String TAG = "RootBeerFresh";
     /*
      * So any important logs can be outputted in non filtered output also
      */

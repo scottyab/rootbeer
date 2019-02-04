@@ -5,11 +5,11 @@ android {
     buildToolsVersion buildToolsVer
 
     defaultConfig {
-        applicationId "com.scottyab.rootbeer.sample"
+        applicationId "com.kimchangyoun.rootbeer.sample"
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
-        versionCode 7
-        versionName "0.7"
+        versionCode 9
+        versionName "0.9"
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)

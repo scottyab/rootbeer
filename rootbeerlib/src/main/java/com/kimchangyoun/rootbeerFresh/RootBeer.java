@@ -1,9 +1,9 @@
-package com.scottyab.rootbeer;
+package com.kimchangyoun.rootbeerFresh;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import com.scottyab.rootbeer.util.QLog;
+import com.kimchangyoun.rootbeerFresh.util.QLog;
 
 import java.io.BufferedReader;
 import java.io.File;

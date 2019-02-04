@@ -329,7 +329,7 @@
 
         </LinearLayout>
 
-        <com.scottyab.rootbeer.sample.TextViewFont
+        <com.kimchangyoun.rootbeerFresh.sample.TextViewFont
             android:id="@+id/content_main_is_rooted_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

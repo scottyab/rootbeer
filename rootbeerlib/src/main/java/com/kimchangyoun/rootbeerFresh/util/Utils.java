@@ -1,10 +1,7 @@
-package com.scottyab.rootbeer.util;
+package com.kimchangyoun.rootbeerFresh.util;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by scottab on 30/06/15.
- */
 public final class Utils {
 
     private Utils() throws InstantiationException {
@@ -26,6 +23,6 @@ public final class Utils {
 
         }
 
-        return "1".equals(selinux) ? true : false;
+        return "1".equals(selinux);
     }
 }
