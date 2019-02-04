@@ -5,7 +5,7 @@ android {
     buildToolsVersion buildToolsVer
 
     defaultConfig {
-        applicationId "com.kimchangyoun.rootbeer.sample"
+        applicationId "com.kimchangyoun.rootbeerFresh.sample"
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
         versionCode 9
