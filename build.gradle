@@ -35,9 +35,9 @@ allprojects {
 }
 
 subprojects {
-    ext.compileSdkVer = 27
+    ext.compileSdkVer = 28
     ext.buildToolsVer = "28.0.3"
     ext.minSdkVer = 15
-    ext.targetSdkVer = 27
+    ext.targetSdkVer = 28
     ext.supportLibVer = "27.1.1"
 }
