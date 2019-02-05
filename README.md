@@ -1,16 +1,16 @@
 Enjoy the latest Magisk and MagiskHide Detection RootBeerFresh!!
 <br/><img src="./Magisk_UDS_Detect_UI.jpg" width="50%">
 
-RootbeerFresh is an open source project that checks if your Android smartphone device is routed.
+RootbeerFresh is an open source project that checks if your Android smartphone device is rooted.
 
 This project is based on rootbeer open source.
-There are a number of well-known routing detection technologies in place.
-However, we aim to detect a new routing device with a completely different technique, completely new.
+There are a number of well-known rooting detection technologies in place.
+However, we aim to detect a new rooting device with a completely different technique, completely new.
 
-So, look at the more extensive Android routing detection project.
+So, look at the more extensive Android rooting detection project.
 
-Examples of new routing technologies are those that are extremely difficult to detect for rooted states like Magisk.
-Detecting these new routing technologies is RootbeerFresh's ultimate goal.
+Examples of new rooting technologies are those that are extremely difficult to detect for rooted states like Magisk.
+Detecting these new rooting technologies is RootbeerFresh's ultimate goal.
 
 
 *[Google Play app]*
@@ -24,7 +24,7 @@ If you have a new and better creative way, please leave your PR in any case.
 
 *[Disclaimer and limitations]*
 Sometimes the detection method of RootbeerFresh may not work correctly.
-When RootbeerFresh is not sure if the device is routed, it displays a '*' next to the route detection message.
+When RootbeerFresh is not sure if the device is rooted, it displays a '*' next to the rooted detection message.
 
 [Library]
 RootbeerFresh comes with a library.
