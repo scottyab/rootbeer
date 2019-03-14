@@ -5,6 +5,9 @@ package com.scottyab.rootbeer;
  */
 public final class Const {
 
+    public static final String BINARY_SU = "su";
+    public static final String BINARY_BUSYBOX = "busybox";
+
     private Const() throws InstantiationException {
         throw new InstantiationException("This class is not for instantiation");
     }
@@ -42,6 +45,7 @@ public final class Const {
             "com.formyhm.hideroot"
     };
 
+    // These must end with a /
     public static final String[] suPaths ={
             "/data/local/",
             "/data/local/bin/",
@@ -54,9 +58,9 @@ public final class Const {
             "/system/sd/xbin/",
             "/system/usr/we-need-root/",
             "/system/xbin/",
-            "/cache",
-            "/data",
-            "/dev"
+            "/cache/",
+            "/data/",
+            "/dev/"
     };
 
 
@@ -66,9 +70,9 @@ public final class Const {
             "/system/sbin",
             "/system/xbin",
             "/vendor/bin",
-            //"/sys",
             "/sbin",
             "/etc",
+            //"/sys",
             //"/proc",
             //"/dev"
     };

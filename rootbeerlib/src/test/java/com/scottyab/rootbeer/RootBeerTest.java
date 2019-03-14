@@ -31,8 +31,8 @@ public class RootBeerTest {
 
         when(rootBeer.detectRootManagementApps()).thenReturn(false);
         when(rootBeer.detectPotentiallyDangerousApps()).thenReturn(false);
-        when(rootBeer.checkForBinary("busybox")).thenReturn(false);
-        when(rootBeer.checkForBinary("su")).thenReturn(false);
+        when(rootBeer.checkForBinary(Const.BINARY_BUSYBOX)).thenReturn(false);
+        when(rootBeer.checkForBinary(Const.BINARY_SU)).thenReturn(false);
         when(rootBeer.checkForDangerousProps()).thenReturn(false);
         when(rootBeer.checkForRWPaths()).thenReturn(false);
         when(rootBeer.detectTestKeys()).thenReturn(false);
@@ -58,8 +58,8 @@ public class RootBeerTest {
 
         when(rootBeer.detectRootManagementApps()).thenReturn(false);
         when(rootBeer.detectPotentiallyDangerousApps()).thenReturn(false);
-        when(rootBeer.checkForBinary("busybox")).thenReturn(true);
-        when(rootBeer.checkForBinary("su")).thenReturn(false);
+        when(rootBeer.checkForBinary(Const.BINARY_BUSYBOX)).thenReturn(true);
+        when(rootBeer.checkForBinary(Const.BINARY_SU)).thenReturn(false);
         when(rootBeer.checkForDangerousProps()).thenReturn(false);
         when(rootBeer.checkForRWPaths()).thenReturn(false);
         when(rootBeer.detectTestKeys()).thenReturn(false);
