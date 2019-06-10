@@ -8,7 +8,7 @@ These are the current checks/tricks we are using to give an indication of root.
 **Java checks**
 
 * CheckRootManagementApps
-* CheckPotentiallyDangerousAppss
+* CheckPotentiallyDangerousApps
 * CheckRootCloakingApps
 * CheckTestKeys
 * checkForDangerousProps
