@@ -261,19 +261,16 @@ public class RootBeer {
 
         String[] lines = propsReader();
 
-        if (lines == null){
-            // Could not read, assume false;
-            return false;
-        }
-
-        for (String line : lines) {
-            for (String key : dangerousProps.keySet()) {
-                if (line.contains(key)) {
-                    String badValue = dangerousProps.get(key);
-                    badValue = "[" + badValue + "]";
-                    if (line.contains(badValue)) {
-                        QLog.v(key + " = " + badValue + " detected!");
-                        result = true;
+        if (lines != null) {
+            for (String line : lines) {
+                for (String key : dangerousProps.keySet()) {
+                    if (line.contains(key)) {
+                        String badValue = dangerousProps.get(key);
+                        badValue = "[" + badValue + "]";
+                        if (line.contains(badValue)) {
+                            QLog.v(key + " = " + badValue + " detected!");
+                            result = true;
+                        }
                     }
                 }
             }
@@ -291,35 +288,32 @@ public class RootBeer {
 
         String[] lines = mountReader();
 
-        if (lines == null){
-            // Could not read, assume false;
-            return false;
-        }
+        if (lines != null){
+            for (String line : lines) {
 
-        for (String line : lines) {
+                // Split lines into parts
+                String[] args = line.split(" ");
 
-            // Split lines into parts
-            String[] args = line.split(" ");
+                if (args.length < 4){
+                    // If we don't have enough options per line, skip this and log an error
+                    QLog.e("Error formatting mount line: "+line);
+                    continue;
+                }
 
-            if (args.length < 4){
-                // If we don't have enough options per line, skip this and log an error
-                QLog.e("Error formatting mount line: "+line);
-                continue;
-            }
+                String mountPoint = args[1];
+                String mountOptions = args[3];
 
-            String mountPoint = args[1];
-            String mountOptions = args[3];
+                for(String pathToCheck: Const.pathsThatShouldNotBeWrtiable) {
+                    if (mountPoint.equalsIgnoreCase(pathToCheck)) {
 
-            for(String pathToCheck: Const.pathsThatShouldNotBeWrtiable) {
-                if (mountPoint.equalsIgnoreCase(pathToCheck)) {
+                        // Split options out and compare against "rw" to avoid false positives
+                        for (String option : mountOptions.split(",")){
 
-                    // Split options out and compare against "rw" to avoid false positives
-                    for (String option : mountOptions.split(",")){
-
-                        if (option.equalsIgnoreCase("rw")){
-                            QLog.v(pathToCheck+" path is mounted with rw permissions! "+line);
-                            result = true;
-                            break;
+                            if (option.equalsIgnoreCase("rw")){
+                                QLog.v(pathToCheck+" path is mounted with rw permissions! "+line);
+                                result = true;
+                                break;
+                            }
                         }
                     }
                 }
