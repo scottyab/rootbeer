@@ -9,8 +9,8 @@ public class RootBeerNative {
 
     private static boolean libraryLoaded = false;
 
-    /**
-     * Loads the C/C++ libraries statically
+    /*
+      Loads the C/C++ libraries statically
      */
     static {
         try {
