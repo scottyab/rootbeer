@@ -35,51 +35,51 @@ public final class QLog {
      */
     public static void e(final Object obj, final Throwable cause) {
         if (isELoggable()) {
-            Log.e(TAG, getTrace() + String.valueOf(obj));
+            Log.e(TAG, getTrace() + obj);
             Log.e(TAG, getThrowableTrace(cause));
-            Log.e(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
+            Log.e(TAG_GENERAL_OUTPUT, getTrace() + obj);
             Log.e(TAG_GENERAL_OUTPUT, getThrowableTrace(cause));
         }
     }
 
     public static void e(final Object obj) {
         if (isELoggable()) {
-            Log.e(TAG, getTrace() + String.valueOf(obj));
-            Log.e(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
+            Log.e(TAG, getTrace() + obj);
+            Log.e(TAG_GENERAL_OUTPUT, getTrace() + obj);
         }
     }
 
     public static void w(final Object obj, final Throwable cause) {
         if (isWLoggable()) {
-            Log.w(TAG, getTrace() + String.valueOf(obj));
+            Log.w(TAG, getTrace() + obj);
             Log.w(TAG, getThrowableTrace(cause));
-            Log.w(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
+            Log.w(TAG_GENERAL_OUTPUT, getTrace() + obj);
             Log.w(TAG_GENERAL_OUTPUT, getThrowableTrace(cause));
         }
     }
 
     public static void w(final Object obj) {
         if (isWLoggable()) {
-            Log.w(TAG, getTrace() + String.valueOf(obj));
-            Log.w(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
+            Log.w(TAG, getTrace() + obj);
+            Log.w(TAG_GENERAL_OUTPUT, getTrace() + obj);
         }
     }
 
     public static void i(final Object obj) {
         if (isILoggable()) {
-            Log.i(TAG, getTrace() + String.valueOf(obj));
+            Log.i(TAG, getTrace() + obj);
         }
     }
 
     public static void d(final Object obj) {
         if (isDLoggable()) {
-            Log.d(TAG, getTrace() + String.valueOf(obj));
+            Log.d(TAG, getTrace() + obj);
         }
     }
 
     public static void v(final Object obj) {
         if (isVLoggable()) {
-            Log.v(TAG, getTrace() + String.valueOf(obj));
+            Log.v(TAG, getTrace() + obj);
         }
     }
 
