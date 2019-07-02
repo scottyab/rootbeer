@@ -64,7 +64,7 @@ public final class Const {
     };
 
 
-    public static final String[] pathsThatShouldNotBeWrtiable = {
+    public static final String[] pathsThatShouldNotBeWritable = {
             "/system",
             "/system/bin",
             "/system/sbin",

@@ -282,7 +282,7 @@ public class RootBeer {
     }
 
     /**
-     * When you're root you can change the permissions on common system directories, this method checks if any of these patha Const.pathsThatShouldNotBeWrtiable are writable.
+     * When you're root you can change the permissions on common system directories, this method checks if any of these patha Const.pathsThatShouldNotBeWritable are writable.
      * @return true if one of the dir is writable
      */
     public boolean checkForRWPaths() {
@@ -310,7 +310,7 @@ public class RootBeer {
             String mountPoint = args[1];
             String mountOptions = args[3];
 
-            for(String pathToCheck: Const.pathsThatShouldNotBeWrtiable) {
+            for(String pathToCheck: Const.pathsThatShouldNotBeWritable) {
                 if (mountPoint.equalsIgnoreCase(pathToCheck)) {
 
                     // Split options out and compare against "rw" to avoid false positives
