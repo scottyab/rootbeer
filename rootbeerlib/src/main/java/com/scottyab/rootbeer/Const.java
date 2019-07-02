@@ -25,12 +25,8 @@ public final class Const {
     public static final String[] knownDangerousAppsPackages = {
             "com.koushikdutta.rommanager",
             "com.koushikdutta.rommanager.license",
-            "com.dimonvideo.luckypatcher",
-            "com.chelpus.lackypatch",
             "com.ramdroid.appquarantine",
-            "com.ramdroid.appquarantinepro",
-            "com.android.vending.billing.InAppBillingService.COIN",
-            "com.chelpus.luckypatcher"
+            "com.ramdroid.appquarantinepro"
     };
 
     public static final String[] knownRootCloakingPackages = {
