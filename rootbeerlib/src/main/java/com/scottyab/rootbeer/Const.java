@@ -46,12 +46,12 @@ public final class Const {
     };
 
     // These must end with a /
-    public static final String[] suPaths ={
+    public static final String[] suPaths = {
             "/data/local/",
             "/data/local/bin/",
             "/data/local/xbin/",
             "/sbin/",
-            "/su/bin/",
+            "/bin/",
             "/system/bin/",
             "/system/bin/.ext/",
             "/system/bin/failsafe/",
@@ -76,7 +76,4 @@ public final class Const {
             //"/proc",
             //"/dev"
     };
-
-
-
 }
