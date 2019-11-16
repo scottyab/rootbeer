@@ -1,13 +1,17 @@
 package com.scottyab.rootbeer;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-/**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- */
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+@RunWith(AndroidJUnit4.class)
+public class ApplicationTest {
+
+    @Test
+    public void someTest() {
+        Assert.assertTrue(true);
     }
+
 }

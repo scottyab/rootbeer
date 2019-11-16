@@ -13,6 +13,7 @@ captures/
 # IntelliJ project files
 *.iml
 .idea/
+.cxx/
 
 # Misc
 .DS_Store
