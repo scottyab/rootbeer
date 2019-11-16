@@ -10,8 +10,6 @@ android {
         targetSdkVersion targetSdkVer
         versionCode 7
         versionName "0.7"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
@@ -50,6 +48,4 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha01'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'uk.co.barbuzz:beerprogressview:0.0.4'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 }
