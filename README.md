@@ -65,6 +65,7 @@ rootBeer.isRootedWithoutBusyBoxCheck()
 The following devices are known the have the busybox binary present on the stock rom:
 * All OnePlus Devices
 * Moto E
+* OPPO R9m (ColorOS 3.0,Android 5.1,Android security patch January 5, 2018 )
 
 ### Dependency
 
