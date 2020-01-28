@@ -56,7 +56,7 @@ You can also call each of the checks individually as the sample app does.
 
 ### False positives
 
-Manufacturers often leave the busybox binary in production builds and this doesn't always mean that a device is root. We have remove the busybox check we used to include as standard in the isRooted() method to avoid these false positives.
+Manufacturers often leave the busybox binary in production builds and this doesn't always mean that a device is root. We have removed the busybox check we used to include as standard in the isRooted() method to avoid these false positives.
 
 If you want to detect the busybox binary in your app you can use `checkForBinary(BINARY_BUSYBOX)` to detect it alone, or as part of the complete root detection method:
 
