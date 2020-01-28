@@ -56,10 +56,12 @@ You can also call each of the checks individually as the sample app does.
 
 ### False positives
 
-Note that sometimes the `isRooted()` method can return a false positive. This is often because the manufacturer of the device rom has left the busybox binary. This alone doesn't mean that the device is rooted, if you wish to avoid this but still use a convenience method to you can use the following:
+Manufacturers often leave the busybox binary in production builds and this doesn't always mean that a device is root. We have remove the busybox check we used to include as standard in the isRooted() method to avoid these false positives.
+
+If you want to detect the busybox binary in your app you can use `checkForBinary(BINARY_BUSYBOX)` to detect it alone, or as part of the complete root detection method:
 
 ```java
-rootBeer.isRootedWithoutBusyBoxCheck()
+rootBeer.isRootedWithBusyBoxCheck();
 ```
 
 The following devices are known the have the busybox binary present on the stock rom:
