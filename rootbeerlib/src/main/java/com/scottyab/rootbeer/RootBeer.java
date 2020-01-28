@@ -172,7 +172,7 @@ public class RootBeer {
      * @return true if found
      */
     public boolean checkForBusyBoxBinary(){
-        return checkForBinary("busybox");
+        return checkForBinary(BINARY_BUSYBOX);
     }
 
     /**
