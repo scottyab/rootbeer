@@ -1,5 +1,8 @@
 package com.scottyab.rootbeer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by mat on 19/06/15.
  */
@@ -77,6 +80,34 @@ public final class Const {
             //"/dev"
     };
 
+    /**
+     * Get a list of paths to check for binaries
+     *
+     * @return List of paths to check, using a combination of a static list and those paths
+     * listed in the PATH environment variable.
+     */
+    static String[] getPaths(){
+        ArrayList<String> paths = new ArrayList<>(Arrays.asList(suPaths));
 
+        String sysPaths = System.getenv("PATH");
+
+        // If we can't get the path variable just return the static paths
+        if (sysPaths == null || "".equals(sysPaths)){
+            return paths.toArray(new String[0]);
+        }
+
+        for (String path : sysPaths.split(":")){
+
+            if (!path.endsWith("/")){
+                path = path + '/';
+            }
+
+            if (!paths.contains(path)){
+                paths.add(path);
+            }
+        }
+
+        return paths.toArray(new String[0]);
+    }
 
 }
