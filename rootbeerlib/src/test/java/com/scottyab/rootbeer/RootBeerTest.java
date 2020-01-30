@@ -160,7 +160,13 @@ public class RootBeerTest {
 
         // Should be true as package detected
         assertTrue(rootBeer.detectRootCloakingApps());
+    }
 
+    @Test
+    public void testAllSuPathsEndWithSlash(){
+        for (String path : Const.getPaths()){
+            assertTrue(path.endsWith("/"));
+        }
     }
 
 }
