@@ -173,7 +173,7 @@ public class RootBeer {
      */
     public boolean checkForBinary(String filename) {
 
-        String[] pathsArray = Const.suPaths;
+        String[] pathsArray = Const.getPaths();
 
         boolean result = false;
 
@@ -387,15 +387,17 @@ public class RootBeer {
             return false;
         }
 
-        String[] paths = new String[Const.suPaths.length];
-        for (int i = 0; i < paths.length; i++) {
-            paths[i] = Const.suPaths[i]+ BINARY_SU;
+        String[] paths = Const.getPaths();
+
+        String[] checkPaths = new String[paths.length];
+        for (int i = 0; i < checkPaths.length; i++) {
+            checkPaths[i] = paths[i]+ BINARY_SU;
         }
 
         RootBeerNative rootBeerNative = new RootBeerNative();
         try {
             rootBeerNative.setLogDebugMessages(loggingEnabled);
-            return rootBeerNative.checkForRoot(paths) > 0;
+            return rootBeerNative.checkForRoot(checkPaths) > 0;
         } catch (UnsatisfiedLinkError e) {
             return false;
         }
