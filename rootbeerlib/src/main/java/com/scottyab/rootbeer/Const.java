@@ -22,7 +22,12 @@ public final class Const {
             "com.koushikdutta.superuser",
             "com.thirdparty.superuser",
             "com.yellowes.su",
-            "com.topjohnwu.magisk"
+            "com.topjohnwu.magisk",
+            "com.kingroot.kinguser",
+            "com.kingo.root",
+            "com.smedialink.oneclickroot",
+            "com.zhiqupk.root.global",
+            "com.alephzain.framaroot"
     };
 
     public static final String[] knownDangerousAppsPackages = {
