@@ -4,7 +4,6 @@ package com.scottyab.rootbeer;
  * Created by mat on 19/06/15.
  */
 public final class Const {
-
     public static final String BINARY_SU = "su";
     public static final String BINARY_BUSYBOX = "busybox";
 
@@ -25,10 +24,13 @@ public final class Const {
     public static final String[] knownDangerousAppsPackages = {
             "com.koushikdutta.rommanager",
             "com.koushikdutta.rommanager.license",
+            "com.ramdroid.appquarantine",
+            "com.ramdroid.appquarantinepro"
+    };
+
+    public static final String[] potentiallyDangerousAppsPackages = {
             "com.dimonvideo.luckypatcher",
             "com.chelpus.lackypatch",
-            "com.ramdroid.appquarantine",
-            "com.ramdroid.appquarantinepro",
             "com.android.vending.billing.InAppBillingService.COIN",
             "com.chelpus.luckypatcher"
     };
