@@ -44,19 +44,28 @@ public class RootBeer {
     public boolean isRooted() {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
-                || checkForBinary(BINARY_BUSYBOX) || checkForDangerousProps() || checkForRWPaths()
+                || checkForDangerousProps() || checkForRWPaths()
                 || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
 
     /**
-     * Run all the checks apart from checking for the busybox binary. This is because it can sometimes be a false positive
-     * as some manufacturers leave the binary in production builds.
-     * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
+     * @deprecated This method is deprecated as checking without the busybox binary is now the
+     * default. This is because many manufacturers leave this binary on production devices.
      */
     public boolean isRootedWithoutBusyBoxCheck() {
+        return isRooted();
+    }
+
+    /**
+     * Run all the checks apart including checking for the busybox binary.
+     * Warning: Busybox binary is not always an indication of root, many manufacturers leave this
+     * binary on production devices
+     * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
+     */
+    public boolean isRootedWithBusyBoxCheck() {
 
         return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
-                || checkForDangerousProps() || checkForRWPaths()
+                || checkForBinary(BINARY_BUSYBOX) || checkForDangerousProps() || checkForRWPaths()
                 || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
     }
 
@@ -163,7 +172,7 @@ public class RootBeer {
      * @return true if found
      */
     public boolean checkForBusyBoxBinary(){
-        return checkForBinary("busybox");
+        return checkForBinary(BINARY_BUSYBOX);
     }
 
     /**
