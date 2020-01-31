@@ -31,7 +31,6 @@ public class RootBeerTest {
 
         when(rootBeer.detectRootManagementApps()).thenReturn(false);
         when(rootBeer.detectPotentiallyDangerousApps()).thenReturn(false);
-        when(rootBeer.checkForBinary(Const.BINARY_BUSYBOX)).thenReturn(false);
         when(rootBeer.checkForBinary(Const.BINARY_SU)).thenReturn(false);
         when(rootBeer.checkForDangerousProps()).thenReturn(false);
         when(rootBeer.checkForRWPaths()).thenReturn(false);
@@ -49,13 +48,11 @@ public class RootBeerTest {
     }
 
     @Test
-    public void testIsRootedWithoutBusyBoxCheck() {
+    public void testIsRootedWithBusyBoxCheck() {
 
         RootBeer rootBeer = Mockito.mock(RootBeer.class);
 
         when(rootBeer.isRooted()).thenCallRealMethod();
-        when(rootBeer.isRootedWithoutBusyBoxCheck()).thenCallRealMethod();
-
         when(rootBeer.detectRootManagementApps()).thenReturn(false);
         when(rootBeer.detectPotentiallyDangerousApps()).thenReturn(false);
         when(rootBeer.checkForBinary(Const.BINARY_BUSYBOX)).thenReturn(true);
@@ -66,12 +63,11 @@ public class RootBeerTest {
         when(rootBeer.checkSuExists()).thenReturn(false);
         when(rootBeer.checkForRootNative()).thenReturn(false);
 
-        // Test we return false when all methods return false
-        assertTrue(rootBeer.isRooted());
+        // Test we return false as busybox binary presence is ignored
+        assertFalse(rootBeer.isRooted());
 
-        // Test it doesn't matter what checkForBinary("busybox") returns
-        assertFalse(rootBeer.isRootedWithoutBusyBoxCheck());
-
+        // Check busybox present is detected
+        assertTrue(rootBeer.checkForBinary(Const.BINARY_BUSYBOX));
     }
 
     @Test
