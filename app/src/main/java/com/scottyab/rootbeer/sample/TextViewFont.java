@@ -3,9 +3,10 @@ package com.scottyab.rootbeer.sample;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.Log;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by 1andbarb on 22/04/2016.

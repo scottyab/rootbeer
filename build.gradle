@@ -3,10 +3,6 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
         google()
     }
     dependencies {
@@ -27,17 +23,17 @@ allprojects {
 
     repositories {
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        google()
     }
 }
 
 subprojects {
-    ext.compileSdkVer = 27
-    ext.buildToolsVer = "27.0.3"
+    ext.compileSdkVer = 29
+    ext.buildToolsVer = "29.0.2"
     ext.minSdkVer = 15
-    ext.targetSdkVer = 27
-    ext.supportLibVer = "27.1.1"
+    ext.targetSdkVer = 29
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
