@@ -28,6 +28,8 @@ allprojects {
 }
 
 subprojects {
+    // When updating the sdk version, please remember to change the circleci image to match
+    // .circle/config.yml
     ext.compileSdkVer = 29
     ext.buildToolsVer = "29.0.2"
     ext.minSdkVer = 15

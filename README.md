@@ -75,7 +75,7 @@ Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22
 
 ```java
 dependencies {
-    implementation 'com.scottyab:rootbeer-lib:0.0.7'
+    implementation 'com.scottyab:rootbeer-lib:0.0.8'
 }
 ```
 
