@@ -18,9 +18,10 @@ android {
         }
     }
 
+
     try {
         // If NDK Exists, compile our native binaries
-        logger.error("Found NDK" + android.getNdkDirectory())
+        logger.debug("Found NDK" + android.getNdkDirectory())
 
         externalNativeBuild {
             ndkBuild {
@@ -30,7 +31,7 @@ android {
     }
     catch (InvalidUserDataException e){
         // Otherwise disable automatic ndk-build and use pre-compiled .so files
-        logger.error(e.toString())
+        // logger.error(e.toString())
         logger.debug("NDK Not Present")
 
         sourceSets {
@@ -47,7 +48,7 @@ android {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-core:3.1.0'
 }
 

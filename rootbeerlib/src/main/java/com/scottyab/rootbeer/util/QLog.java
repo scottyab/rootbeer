@@ -49,6 +49,12 @@ public final class QLog {
         }
     }
 
+    public static void e(final Exception e) {
+        if (isELoggable()) {
+            e.printStackTrace();
+        }
+    }
+
     public static void w(final Object obj, final Throwable cause) {
         if (isWLoggable()) {
             Log.w(TAG, getTrace() + String.valueOf(obj));
@@ -120,16 +126,6 @@ public final class QLog {
         String callerClassName = callerClassPath.substring(i + 1);
         return callerClassName + ": " + callerMethodName + "() ["
                 + lineNo + "] - ";
-    }
-
-    /**
-     * Prints the stack trace to mubaloo log and standard log
-     *
-     * @param e the exception to log
-     */
-    public static void handleException(final Exception e) {
-        QLog.e(e.toString());
-        e.printStackTrace();
     }
 
     private QLog() {

@@ -215,7 +215,7 @@ public class RootBeer {
             String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
             return propVal.split("\n");
         } catch (IOException | NoSuchElementException e) {
-            e.printStackTrace();
+            QLog.e(e);
             return null;
         }
     }
@@ -227,7 +227,7 @@ public class RootBeer {
             String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
             return propVal.split("\n");
         } catch (IOException | NoSuchElementException e) {
-            e.printStackTrace();
+            QLog.e(e);
             return null;
         }
     }
