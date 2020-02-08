@@ -1,1 +1,1 @@
-include ':app', ':rootbeerlib'
+include ':rootbeerlib'
