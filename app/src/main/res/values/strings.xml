@@ -30,4 +30,5 @@
     <string name="root_checks_9">ROOT NATIVE</string>
     <string name="root_checks_10">ROOT CLOAKING APPS</string>
     <string name="root_checks_11">SELINUX FLAG ENABLED (EXPERIMENTAL)</string>
+    <string name="root_checks_12">MAGISK DETECTION (EXPERIMENTAL)</string>
 </resources>

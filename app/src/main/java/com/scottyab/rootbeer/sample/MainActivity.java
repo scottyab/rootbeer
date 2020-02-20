@@ -10,13 +10,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.scottyab.rootbeer.invasive.MagiskDetect;
+
+import java.util.ArrayList;
+
 import uk.co.barbuzz.beerprogressview.BeerProgressView;
 
 
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initView();
     }
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
         ImageView rootCheck9ImageView = findViewById(R.id.content_main_root_check_image_9);
         ImageView rootCheck10ImageView = findViewById(R.id.content_main_root_check_image_10);
         ImageView rootCheck11ImageView = findViewById(R.id.content_main_root_check_image_11);
+        ImageView rootCheck12ImageView = findViewById(R.id.content_main_root_check_image_12);
         checkRootImageViewList = new ArrayList<>();
         checkRootImageViewList.add(rootCheck1ImageView);
         checkRootImageViewList.add(rootCheck2ImageView);
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity
         checkRootImageViewList.add(rootCheck9ImageView);
         checkRootImageViewList.add(rootCheck10ImageView);
         checkRootImageViewList.add(rootCheck11ImageView);
+        checkRootImageViewList.add(rootCheck12ImageView);
 
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {

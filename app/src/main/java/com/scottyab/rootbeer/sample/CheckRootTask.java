@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.scottyab.rootbeer.RootBeer;
+import com.scottyab.rootbeer.invasive.MagiskDetect;
 import com.scottyab.rootbeer.util.Utils;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import uk.co.barbuzz.beerprogressview.BeerProgressView;
  */
 public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
 
-    private static final int SLEEP_TIME = 70;
+    private static final int SLEEP_TIME = BuildConfig.DEBUG? 10 : 60;
     private static final String TAG = "CheckRootTask";
     private final BeerProgressView mBeerProgressView;
     private final Context mContext;
@@ -71,7 +72,7 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
         check.checkForNativeLibraryReadAccess();
         check.setLogging(true);
 
-        for (int i = 0; i < 90; i++) {
+        for (int i = 0; i < 97; i++) {
             try {
                 Thread.sleep(SLEEP_TIME);
             } catch (InterruptedException e) {
@@ -119,12 +120,12 @@ public class CheckRootTask extends AsyncTask<Boolean, Integer, Boolean> {
                     Log.d(TAG, "RootCloakingApps " + (mIsCheck ? "detected" : "not detected"));
                     break;
                 case 88:
-                    mIsCheck = Utils.isSelinuxFlagInEnabled();
+                    mIsCheck =  Utils.isSelinuxFlagInEnabled();
                     Log.d(TAG, "Selinux Flag Is Enabled " + (mIsCheck ? "true" : "false"));
                     break;
-                case 89:
-                    mIsCheck = check.checkForMagiskBinary();
-                    Log.d(TAG, "Magisk " + (mIsCheck ? "deteced" : "not deteced"));
+                case 96:
+                    mIsCheck = check.checkForMagiskBinary() || MagiskDetect.detectMagisk(mContext);
+                    Log.d(TAG, "Magisk " + (mIsCheck ? "detected" : "not detected"));
                     break;
             }
             publishProgress(i);

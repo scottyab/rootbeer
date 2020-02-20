@@ -19,10 +19,6 @@ public final class QLog {
      * For filtering app specific output
      */
     private static final String TAG = "RootBeer";
-    /*
-     * So any important logs can be outputted in non filtered output also
-     */
-    private static final String TAG_GENERAL_OUTPUT = "QLog";
 
     static {
         //i("Log class reloaded");
@@ -37,15 +33,12 @@ public final class QLog {
         if (isELoggable()) {
             Log.e(TAG, getTrace() + String.valueOf(obj));
             Log.e(TAG, getThrowableTrace(cause));
-            Log.e(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
-            Log.e(TAG_GENERAL_OUTPUT, getThrowableTrace(cause));
         }
     }
 
     public static void e(final Object obj) {
         if (isELoggable()) {
             Log.e(TAG, getTrace() + String.valueOf(obj));
-            Log.e(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
         }
     }
 
@@ -59,15 +52,12 @@ public final class QLog {
         if (isWLoggable()) {
             Log.w(TAG, getTrace() + String.valueOf(obj));
             Log.w(TAG, getThrowableTrace(cause));
-            Log.w(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
-            Log.w(TAG_GENERAL_OUTPUT, getThrowableTrace(cause));
         }
     }
 
     public static void w(final Object obj) {
         if (isWLoggable()) {
             Log.w(TAG, getTrace() + String.valueOf(obj));
-            Log.w(TAG_GENERAL_OUTPUT, getTrace() + String.valueOf(obj));
         }
     }
 

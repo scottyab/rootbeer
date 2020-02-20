@@ -9,6 +9,7 @@ import java.util.Arrays;
 public final class Const {
 
     public static final String BINARY_SU = "su";
+    public static final String BINARY_MAGISK = "magisk";
     public static final String BINARY_BUSYBOX = "busybox";
 
     private Const() throws InstantiationException {
@@ -79,10 +80,7 @@ public final class Const {
             "/system/xbin",
             "/vendor/bin",
             "/sbin",
-            "/etc",
-            //"/sys",
-            //"/proc",
-            //"/dev"
+            "/etc"
     };
 
     /**

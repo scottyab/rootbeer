@@ -19,6 +19,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static com.scottyab.rootbeer.Const.BINARY_BUSYBOX;
+import static com.scottyab.rootbeer.Const.BINARY_MAGISK;
 import static com.scottyab.rootbeer.Const.BINARY_SU;
 
 /**
@@ -42,10 +43,16 @@ public class RootBeer {
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
     public boolean isRooted() {
-
-        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
-                || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+        return detectRootManagementApps()
+                || detectPotentiallyDangerousApps()
+                || checkForBinary(BINARY_SU)
+                || checkForBinary(BINARY_MAGISK)
+                || checkForDangerousProps()
+                || checkForRWPaths()
+                || detectTestKeys()
+                || checkSuExists()
+                || checkForRootNative()
+                || checkForMagiskBinary();
     }
 
     /**
@@ -63,10 +70,7 @@ public class RootBeer {
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
     public boolean isRootedWithBusyBoxCheck() {
-
-        return detectRootManagementApps() || detectPotentiallyDangerousApps() || checkForBinary(BINARY_SU)
-                || checkForBinary(BINARY_BUSYBOX) || checkForDangerousProps() || checkForRWPaths()
-                || detectTestKeys() || checkSuExists() || checkForRootNative() || checkForMagiskBinary();
+        return isRooted() || checkForBinary(BINARY_BUSYBOX);
     }
 
     /**
