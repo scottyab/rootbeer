@@ -9,7 +9,6 @@ import timber.log.Timber
 class CheckForRootWorker(context: Context) {
 
     private val rootBeer = RootBeer(context);
-    //TODO ROOT beer to print/return a text report.
 
     suspend operator fun invoke(resultAction: (RootItemResult, Int) -> Unit): Boolean {
         val results = getRootResults()
@@ -17,6 +16,7 @@ class CheckForRootWorker(context: Context) {
 
         results.forEachIndexed { index, rootItemResult ->
             Timber.d("[$index] $rootItemResult")
+            //This is just for the effect in the UI
             delay(artificialDelayInMilli)
             resultAction.invoke(rootItemResult, index * itemProgress)
         }
@@ -39,7 +39,7 @@ class CheckForRootWorker(context: Context) {
     )
 
     companion object {
-        private const val artificialDelayInMilli = 100L
+        private const val artificialDelayInMilli = 150L
         const val progressMax = 100
     }
 }
