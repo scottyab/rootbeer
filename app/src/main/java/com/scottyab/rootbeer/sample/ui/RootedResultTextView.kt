@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import com.scottyab.rootbeer.sample.R
 import timber.log.Timber
 
@@ -38,11 +39,11 @@ class RootedResultTextView @JvmOverloads constructor(
 
     private fun rooted() {
         setText(R.string.result_rooted)
-        setTextColor(resources.getColor(R.color.fail))
+        setTextColor(ContextCompat.getColor(context, R.color.fail))
     }
 
     private fun notRooted() {
         setText(R.string.result_not_rooted)
-        setTextColor(resources.getColor(R.color.pass))
+        setTextColor(ContextCompat.getColor(context, R.color.pass))
     }
 }

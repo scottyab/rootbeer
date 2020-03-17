@@ -87,8 +87,8 @@ class MainActivity : ScopedActivity() {
                 .setTitle(R.string.app_name)
                 .setMessage(R.string.info_details)
                 .setCancelable(true)
-                .setPositiveButton("ok") { dialog, which -> dialog.dismiss() }
-                .setNegativeButton("More info") { dialog, which ->
+                .setPositiveButton("ok") { dialog, _ -> dialog.dismiss() }
+                .setNegativeButton("More info") { dialog, _ ->
                     dialog.dismiss()
                     startActivity(
                         Intent(

@@ -34,9 +34,9 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:beerColor="@color/rootBeerColor"
+      app:beerProgress="0"
       app:waveAmplitude="3dp"
-      app:waveMax="100"
-      app:waveProgress="0" />
+      app:waveMax="100" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rootResultsRecycler"
