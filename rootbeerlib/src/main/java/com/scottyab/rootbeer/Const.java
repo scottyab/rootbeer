@@ -38,7 +38,26 @@ public final class Const {
             "com.ramdroid.appquarantine",
             "com.ramdroid.appquarantinepro",
             "com.android.vending.billing.InAppBillingService.COIN",
-            "com.chelpus.luckypatcher"
+            "com.android.vending.billing.InAppBillingService.LUCK",
+            "com.chelpus.luckypatcher",
+            "com.blackmartalpha",
+            "org.blackmart.market",
+            "com.allinone.free",
+            "com.repodroid.app",
+            "org.creeplays.hack",
+            "com.baseappfull.fwd",
+            "com.zmapp",
+            "com.dv.marketmod.installer",
+            "org.mobilism.android",
+            "com.android.wp.net.log",
+            "com.android.camera.update",
+            "cc.madkite.freedom",
+            "com.solohsu.android.edxp.manager",
+            "org.meowcat.edxposed.manager",
+            "com.xmodgame",
+            "com.cih.game_cih",
+            "com.charles.lpoqasert",
+            "catch_.me_.if_.you_.can_"
     };
 
     public static final String[] knownRootCloakingPackages = {
