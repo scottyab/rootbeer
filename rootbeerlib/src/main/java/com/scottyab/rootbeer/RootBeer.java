@@ -35,9 +35,7 @@ public class RootBeer {
     }
 
     /**
-     * Run all the checks.
-     * To run the same check but without looking for the busybox binary to avoid a false positive for certain devices please
-     * see {@link #isRootedWithoutBusyBoxCheck() isRootedWithoutBusyBoxCheck}
+     * Run all the root detection checks.
      *
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
@@ -52,12 +50,13 @@ public class RootBeer {
      * @deprecated This method is deprecated as checking without the busybox binary is now the
      * default. This is because many manufacturers leave this binary on production devices.
      */
+    @Deprecated
     public boolean isRootedWithoutBusyBoxCheck() {
         return isRooted();
     }
 
     /**
-     * Run all the checks apart including checking for the busybox binary.
+     * Run all the checks including checking for the busybox binary.
      * Warning: Busybox binary is not always an indication of root, many manufacturers leave this
      * binary on production devices
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
