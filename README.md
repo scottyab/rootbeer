@@ -54,7 +54,7 @@ if (rootBeer.isRooted()) {
 }
 ```
 
-You can also call each of the checks individually as the sample app does.
+You can also call each of the checks individually as the sample app does. It is advisable to call `isRooted()` from a background thread as it involves disk I/O.
 
 ### False positives
 
