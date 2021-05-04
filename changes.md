@@ -1,3 +1,11 @@
+Change Log
+
+#v0.0.9
+
+* Support for Android TV devices #129  @deepakpk009
+* Add additional dangerous apps packages #145 @Fi5t
+* Add fstack protector #136 @slawert
+
 #v0.0.8
 
 * Removed busybox from the default root checking methods

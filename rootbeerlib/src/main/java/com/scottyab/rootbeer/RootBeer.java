@@ -35,9 +35,7 @@ public class RootBeer {
     }
 
     /**
-     * Run all the checks.
-     * To run the same check but without looking for the busybox binary to avoid a false positive for certain devices please
-     * see {@link #isRootedWithoutBusyBoxCheck() isRootedWithoutBusyBoxCheck}
+     * Run all the root detection checks.
      *
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
      */
@@ -52,12 +50,13 @@ public class RootBeer {
      * @deprecated This method is deprecated as checking without the busybox binary is now the
      * default. This is because many manufacturers leave this binary on production devices.
      */
+    @Deprecated
     public boolean isRootedWithoutBusyBoxCheck() {
         return isRooted();
     }
 
     /**
-     * Run all the checks apart including checking for the busybox binary.
+     * Run all the checks including checking for the busybox binary.
      * Warning: Busybox binary is not always an indication of root, many manufacturers leave this
      * binary on production devices
      * @return true, we think there's a good *indication* of root | false good *indication* of no root (could still be cloaked)
@@ -297,7 +296,8 @@ public class RootBeer {
     public boolean checkForRWPaths() {
 
         boolean result = false;
-
+       
+        //Run the command "mount" to retrieve all mounted directories
         String[] lines = mountReader();
 
         if (lines == null){
@@ -305,23 +305,73 @@ public class RootBeer {
             return false;
         }
 
+        //The SDK version of the software currently running on this hardware device.
+        int sdkVersion = android.os.Build.VERSION.SDK_INT;
+        
+           /**
+             *
+             *  In devices that are running Android 6 and less, the mount command line has an output as follow:
+             *
+             *   <fs_spec_path> <fs_file> <fs_spec> <fs_mntopts>
+             *
+             *   where :
+             *   - fs_spec_path: describes the path of the device or remote filesystem to be mounted.
+             *   - fs_file: describes the mount point for the filesystem.
+             *   - fs_spec describes the block device or remote filesystem to be mounted.
+             *   - fs_mntopts: describes the mount options associated with the filesystem. (E.g. "rw,nosuid,nodev" )
+             *
+             */
+
+            /** In devices running Android which is greater than Marshmallow, the mount command output is as follow:
+             *
+             *      <fs_spec> <ON> <fs_file> <TYPE> <fs_vfs_type> <(fs_mntopts)>
+             *
+             * where :
+             *   - fs_spec describes the block device or remote filesystem to be mounted.
+             *   - fs_file: describes the mount point for the filesystem.
+             *   - fs_vfs_type: describes the type of the filesystem.
+             *   - fs_mntopts: describes the mount options associated with the filesystem. (E.g. "(rw,seclabel,nosuid,nodev,relatime)" )
+             */
+        
         for (String line : lines) {
 
             // Split lines into parts
             String[] args = line.split(" ");
 
-            if (args.length < 4){
+            if ((sdkVersion <= android.os.Build.VERSION_CODES.M && args.length < 4)
+                    || (sdkVersion > android.os.Build.VERSION_CODES.M && args.length < 6)) {
                 // If we don't have enough options per line, skip this and log an error
                 QLog.e("Error formatting mount line: "+line);
                 continue;
             }
 
-            String mountPoint = args[1];
-            String mountOptions = args[3];
+            String mountPoint;
+            String mountOptions;
+
+            /**
+             * To check if the device is running Android version higher than Marshmallow or not
+             */
+            if (sdkVersion > android.os.Build.VERSION_CODES.M) {
+                mountPoint = args[2];
+                mountOptions = args[5];
+            } else {
+                mountPoint = args[1];
+                mountOptions = args[3];
+            }
 
             for(String pathToCheck: Const.pathsThatShouldNotBeWritable) {
                 if (mountPoint.equalsIgnoreCase(pathToCheck)) {
 
+                       /**
+                         * If the device is running an Android version above Marshmallow,
+                         * need to remove parentheses from options parameter;
+                         */
+                        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.M) {
+                            mountOptions = mountOptions.replace("(", "");
+                            mountOptions = mountOptions.replace(")", "");
+
+                        }
+                    
                     // Split options out and compare against "rw" to avoid false positives
                     for (String option : mountOptions.split(",")){
 
