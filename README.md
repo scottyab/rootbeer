@@ -28,15 +28,16 @@ We call through to our native root checker to run some of its own checks. Native
 
 ## Disclaimer and limitations!
 
-We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the main contributors) use rooted devices. But we appreciate sometimes you might want to have a indication your app is running on a rooted handset. Plus we wanted to see if we could beat the root cloakers. So that's what this library gives you, an *indication* of root.
+We love root! both [Scott](https://github.com/scottyab) and [Mat](https://github.com/stealthcopter) (the creators) own and use rooted devices (albeit not as daily driver). However we appreciate it can be useful to have an indication your app is running on a rooted device. Plus as hackday style project we wanted to see if we could beat the root cloakers at the time in 2015.
 
-Remember **root==god**, so there's no 100% way to check for root.
+Remember **root==god**, so there's no 100% guaranteed way to check for root! treat this as an *indication* of root.
 
 <img src="./art/rootbeerjesus.png" width=200 />
 
 
 ### Root cloakers
-We've tested the Rootbeer lib and it shows an indication of root when testing with the following root cloak apps. However Rootbeer is defeated when using a combination of the root cloakers activated at the same time.
+
+In **2015** we successfully tested Rootbeer and it flagged an indication of root when testing with the following root cloak apps. However Rootbeer was defeated when using a combination of the root cloakers activated at the same time.
 
 Tested cloakers:
 
@@ -77,7 +78,7 @@ Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22
 
 ```java
 dependencies {
-    implementation 'com.scottyab:rootbeer-lib:0.0.8'
+    implementation 'com.scottyab:rootbeer-lib:0.0.9'
 }
 ```
 
