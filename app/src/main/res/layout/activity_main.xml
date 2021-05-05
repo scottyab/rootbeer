@@ -30,7 +30,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <uk.co.barbuzz.beerprogressview.BeerProgressView
-      android:id="@+id/rootBeerProgressView"
+      android:id="@+id/progressView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:beerColor="@color/rootBeerColor"
