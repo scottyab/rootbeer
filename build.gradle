@@ -1,17 +1,16 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: './dependencies.gradle'
 
 buildscript {
+    apply from: './dependencies.gradle'
+
     repositories {
-        jcenter()
         google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$mavenGradlePluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
@@ -24,18 +23,19 @@ allprojects {
     group = GROUP
 
     repositories {
-        jcenter()
         google()
+        mavenCentral()
     }
 }
 
 subprojects {
     // When updating the sdk version, please remember to change the circleci image to match
     // .circle/config.yml
-    ext.compileSdkVer = 29
-    ext.buildToolsVer = "29.0.2"
+    ext.compileSdkVer = 30
+    ext.buildToolsVer = "30.0.0"
     ext.minSdkVer = 15
-    ext.targetSdkVer = 29
+    ext.targetSdkVer = 30
+
 }
 
 task clean(type: Delete) {

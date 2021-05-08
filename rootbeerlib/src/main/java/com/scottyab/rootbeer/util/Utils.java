@@ -2,14 +2,12 @@ package com.scottyab.rootbeer.util;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by scottab on 30/06/15.
- */
 public final class Utils {
 
     private Utils() throws InstantiationException {
         throw new InstantiationException("This class is not for instantiation");
     }
+
     /**
      * In Development - an idea of ours was to check the if selinux is enforcing - this could be disabled for some rooting apps
      * Checking for selinux mode

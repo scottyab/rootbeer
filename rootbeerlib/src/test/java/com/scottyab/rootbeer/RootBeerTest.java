@@ -2,7 +2,6 @@ package com.scottyab.rootbeer;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,9 +15,7 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by matthew on 31/10/17.
- */
+
 @RunWith(MockitoJUnitRunner.class)
 public class RootBeerTest {
 
@@ -91,7 +88,6 @@ public class RootBeerTest {
     }
 
     /**
-     *
      * @param packageNameToFind - We will pretend packagemanager has this package installed, can be null for no packages installed
      * @return - Mocked Context with mocked Packagemanager
      * @throws PackageManager.NameNotFoundException
@@ -101,11 +97,10 @@ public class RootBeerTest {
         PackageManager packageManager = Mockito.mock(PackageManager.class);
         when(context.getPackageManager()).thenReturn(packageManager);
 
-        if (packageManager == null){
+        if (packageManager == null) {
             // Return exception for all packages
             when(packageManager.getPackageInfo(anyString(), anyInt())).thenThrow(new PackageManager.NameNotFoundException());
-        }
-        else {
+        } else {
             // Return exception for every package other than one we should detect
             when(packageManager.getPackageInfo(not(eq(packageNameToFind)), anyInt())).thenThrow(new PackageManager.NameNotFoundException());
         }
@@ -163,8 +158,8 @@ public class RootBeerTest {
     }
 
     @Test
-    public void testAllSuPathsEndWithSlash(){
-        for (String path : Const.getPaths()){
+    public void testAllSuPathsEndWithSlash() {
+        for (String path : Const.getPaths()) {
             assertTrue(path.endsWith("/"));
         }
     }

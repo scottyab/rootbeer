@@ -15,7 +15,7 @@ Change Log
 
 #v0.0.7
 
-* Added a check to see if the native libary is avaliable to prevent crashing
+* Added a check to see if the native library is available to prevent crashing
 * Automatic building of native binaries if NDK is present
 
 #v0.0.6
