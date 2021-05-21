@@ -12,8 +12,11 @@ android {
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
         versionCode 10
-        versionName "0.8.1"
+        versionName "0.9"
         vectorDrawables.useSupportLibrary = true
+
+        archivesBaseName = "RootBeerSample-$versionName-[$versionCode]"
+
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
