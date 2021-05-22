@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.BufferedReader
 
 class MainActivity : ScopedActivity() {
 
@@ -28,6 +29,7 @@ class MainActivity : ScopedActivity() {
         setContentView(R.layout.activity_main)
         initView()
         resetView()
+        Runtime.getRuntime().exec("logcat -c")
     }
 
     private fun initView() {
@@ -107,6 +109,10 @@ class MainActivity : ScopedActivity() {
                 showInfoDialog()
                 true
             }
+            R.id.action_export_logs -> {
+                exportLogs();
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -131,6 +137,21 @@ class MainActivity : ScopedActivity() {
                 .create()
             infoDialog?.show()
         }
+    }
+
+    private fun exportLogs(){
+        val logs = Runtime.getRuntime().exec("logcat -d -s \"RootBeer:*\"")
+            .inputStream
+            .bufferedReader().use(BufferedReader::readText)
+
+        val logsDialog = AlertDialog.Builder(this)
+            .setTitle(R.string.app_name)
+            .setMessage(logs)
+            .setCancelable(true)
+            .setPositiveButton("ok") { dialog, _ -> dialog.dismiss() }
+            .create()
+
+        logsDialog.show()
     }
 
     private fun onRootCheckFinished(isRooted: Boolean) {

@@ -10,6 +10,13 @@
     app:showAsAction="always" />
 
   <item
+      android:id="@+id/action_export_logs"
+      android:icon="@drawable/ic_logs_24"
+      android:orderInCategory="100"
+      android:title="@string/action_info"
+      app:showAsAction="ifRoom" />
+
+  <item
     android:id="@+id/action_github"
     android:icon="@drawable/ic_action_github"
     android:orderInCategory="100"
