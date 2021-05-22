@@ -27,7 +27,6 @@ android {
     externalNativeBuild {
         cmake {
             path "src/main/cpp/CMakeLists.txt"
-            //cppFlags "-fstack-protector-all"
         }
     }
 
