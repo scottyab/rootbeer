@@ -4,12 +4,17 @@ apply plugin: 'com.github.dcendents.android-maven'
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
+    ndkVersion ndkVersionVar
 
     defaultConfig {
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
         versionCode 1
         versionName "1.0"
+
+        ndk {
+            abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
+        }
     }
 
     buildTypes {
@@ -19,38 +24,17 @@ android {
         }
     }
 
-
-    try {
-        // If NDK Exists, compile our native binaries
-        logger.debug("Found NDK" + android.getNdkDirectory())
-
-        externalNativeBuild {
-            ndkBuild {
-                path 'src/main/jni/Android.mk'
-            }
-        }
-    }
-    catch (InvalidUserDataException e){
-        // Otherwise disable automatic ndk-build and use pre-compiled .so files
-        // logger.error(e.toString())
-        logger.debug("NDK Not Present")
-
-        sourceSets {
-            main {
-                jni.srcDirs = []
-            }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
         }
     }
 
-    packagingOptions {
-        // In case there are both compiled .so files and provided .so files, pick the first (should be generated)
-        pickFirst('lib/*/libtool-checker.so')
-    }
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13'
-    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:3.9.0'
 }
 
 apply from: '../gradle-mvn-push.gradle'

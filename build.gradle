@@ -35,6 +35,7 @@ subprojects {
     ext.buildToolsVer = "30.0.0"
     ext.minSdkVer = 15
     ext.targetSdkVer = 30
+    ext.ndkVersionVar = '22.1.7171670'
 
 }
 
