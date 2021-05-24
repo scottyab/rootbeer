@@ -11,6 +11,9 @@ class CheckForRootWorker(context: Context) {
     suspend operator fun invoke(): List<RootItemResult> = getRootResults()
 
     private fun getRootResults() = listOf(
+        RootItemResult("Root Management Apps", rootBeer.detectRootManagementApps()),
+        RootItemResult("Potentially Dangerous Apps", rootBeer.detectPotentiallyDangerousApps()),
+        RootItemResult("Root Cloaking Apps", rootBeer.detectRootCloakingApps()),
         RootItemResult("TestKeys", rootBeer.detectTestKeys()),
         RootItemResult("BusyBoxBinary", rootBeer.checkForBusyBoxBinary()),
         RootItemResult("SU Binary", rootBeer.checkForSuBinary()),
