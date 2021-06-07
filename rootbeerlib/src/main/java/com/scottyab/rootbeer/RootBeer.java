@@ -221,7 +221,7 @@ public class RootBeer {
 
     private String[] mountReader() {
         try {
-            InputStream inputstream = Runtime.getRuntime().exec("mount").getInputStream();
+            InputStream inputstream = Runtime.getRuntime().exec("cat /proc/mounts").getInputStream();
             if (inputstream == null) return null;
             String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
             return propVal.split("\n");
