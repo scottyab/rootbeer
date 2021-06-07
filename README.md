@@ -1,4 +1,4 @@
-# RootBeer ![image](./app/src/main/res/mipmap-xhdpi/ic_launcher.png)
+# RootBeer ![app icon](./app/src/main/res/mipmap-xhdpi/ic_launcher_round.png)
 
 [![RootBeer](https://www.appbrain.com/stats/libraries/shield/rootbeer.svg)](https://www.appbrain.com/stats/libraries/details/rootbeer/rootbeer)
 
