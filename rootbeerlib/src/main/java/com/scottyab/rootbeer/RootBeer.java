@@ -265,7 +265,7 @@ public class RootBeer {
         dangerousProps.put("ro.debuggable", "1");
         dangerousProps.put("ro.secure", "0");
 
-        boolean result = false;
+        int badProps = 0;
 
         String[] lines = propsReader();
 
@@ -281,12 +281,13 @@ public class RootBeer {
                     badValue = "[" + badValue + "]";
                     if (line.contains(badValue)) {
                         QLog.v(key + " = " + badValue + " detected!");
-                        result = true;
+                        badProps++;
                     }
                 }
             }
         }
-        return result;
+        // Only return true if both props have a bad value
+        return badProps >= 2;
     }
 
     /**
