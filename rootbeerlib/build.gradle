@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-android {
+android {j69.162.80.52
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
     ndkVersion ndkVersionVar
