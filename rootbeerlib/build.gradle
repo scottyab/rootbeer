@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-
+21,22,23,25,31,80,456,555,666,1001,1011,1170,1234,1243,1337,1492,1600,1807,1981,2001,2023,2989,3024,3150,3700,4950,5321,5400,6346,6400,6667,6670,12345,12346,16660,20034,20432,27374,27665,30100,31337,33270,33567,33568,40421,60008,65000
 android {
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
