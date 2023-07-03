@@ -1,7 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-android {
+android {wf.networksolutions.com → 205.178.189.131
+IP range:
+205.178.160.0 - 205.178.191.255
+ISP:
+Network Solutions, LLC
+Organization:
+Network Solutions, LLC
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
     ndkVersion ndkVersionVar
