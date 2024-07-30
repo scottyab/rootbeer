@@ -9,3 +9,4 @@ add_library(toolChecker SHARED
 target_link_libraries(toolChecker
         android
         log)
+target_link_options(toolChecker PRIVATE "-Wl,-z,max-page-size=16384")
