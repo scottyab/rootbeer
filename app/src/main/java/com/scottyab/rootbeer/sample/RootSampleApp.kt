@@ -4,6 +4,7 @@ import android.app.Application
 import android.os.Build
 import android.os.StrictMode
 import timber.log.Timber
+import uk.co.barbuzz.beerprogressview.BuildConfig
 
 class RootSampleApp : Application() {
 

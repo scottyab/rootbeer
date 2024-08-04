@@ -31,11 +31,11 @@ allprojects {
 subprojects {
     // When updating the sdk version, please remember to change the circleci image to match
     // .circle/config.yml
-    ext.compileSdkVer = 30
-    ext.buildToolsVer = "30.0.0"
-    ext.minSdkVer = 15
-    ext.targetSdkVer = 30
-    ext.ndkVersionVar = '22.1.7171670'
+    ext.compileSdkVer = 35
+    ext.buildToolsVer = "35"
+    ext.minSdkVer = 21
+    ext.targetSdkVer = 35
+    ext.ndkVersionVar = '27.0.12077973'
 
 }
 
