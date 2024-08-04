@@ -1,0 +1,42 @@
+[versions]
+android-compile-sdk = "34"
+android-min-sdk = "21"
+android-target-sdk = "35"
+android-build-tools = "35"
+android-ndk = "27.0.12077973"
+agp = "8.5.1"
+kotlin = "1.9.23"
+
+corektxVersion = '1.3.2'
+coroutinesVersion = '1.4.1'
+appcompatVersion = "1.2.0"
+materialDesignVersion = '1.3.0'
+constraintlayoutVersion = "2.0.4"
+timberVersion = '4.7.1'
+beerProgressViewVersion = '0.0.6'
+nineoldandroidsVersion = '2.4.0'
+
+junit = "4.13.2"
+mockito = "3.9.0"
+
+[libraries]
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektxVersion" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
+android-google-material = { module = "com.google.android.material:material", version.ref = "materialDesignVersion" }
+
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
+
+nineoldandroids = { module = "com.nineoldandroids:library", version.ref = "nineoldandroidsVersion" }
+beerprogressview = { module = "uk.co.barbuzz:beerprogressview", version.ref = "beerProgressViewVersion" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timberVersion" }
+
+junit = { module = "junit:junit", version.ref = "junit" }
+mockito = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
