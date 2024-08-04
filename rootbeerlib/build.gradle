@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 
 android {
+    namespace = "com.scottyab.rootbeer"
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
     ndkVersion ndkVersionVar
@@ -9,12 +10,16 @@ android {
     defaultConfig {
         minSdkVersion minSdkVer
         targetSdkVersion targetSdkVer
-        versionCode 1
-        versionName "1.0"
 
         ndk {
             abiFilters 'x86', 'x86_64', 'armeabi-v7a', 'arm64-v8a'
         }
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+            }
+        }
+
     }
 
     buildTypes {
@@ -37,4 +42,4 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.9.0'
 }
 
-apply from: '../gradle-mvn-push.gradle'
+//apply from: '../gradle-mvn-push.gradle'

@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 
 android {
+    namespace = "com.scottyab.rootbeer.sample"
     compileSdkVersion compileSdkVer
     buildToolsVersion buildToolsVer
 
@@ -17,6 +17,9 @@ android {
 
         archivesBaseName = "RootBeerSample-$versionName-[$versionCode]"
 
+    }
+    buildFeatures {
+        viewBinding = true
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
@@ -45,6 +48,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    java {
+        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+    }
+    kotlin {
+        jvmToolchain(17)
     }
 }
 
