@@ -26,7 +26,7 @@ class MainActivity : ScopedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)?.also {
+        binding = ActivityMainBinding.inflate(layoutInflater).also {
             setContentView(it.root)
             it.initView()
             it.resetView()

@@ -15,15 +15,14 @@ android {
         versionName = "0.9"
         vectorDrawables.useSupportLibrary = true
 
-        setProperty("archivesBaseName", "RootBeerSample-$versionName-[$versionCode]")
-
+        base.archivesName = "RootBeerSample-$versionName-[$versionCode]"
     }
     buildFeatures {
         viewBinding = true
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
-    if (project.hasProperty("ROOTBEER_SAMPLE_STORE")) {
+    if (rootProject.hasProperty("ROOTBEER_SAMPLE_STORE")) {
         signingConfigs {
             //from ~/user/.gradle/gradle.properties
             create("release") {
@@ -42,7 +41,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-project.txt")
         }
         release {
-            if (project.hasProperty("ROOTBEER_SAMPLE_STORE")) {
+            if (rootProject.hasProperty("ROOTBEER_SAMPLE_STORE")) {
                 signingConfig = signingConfigs["release"]
             }
             isMinifyEnabled = false
