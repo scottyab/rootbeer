@@ -147,7 +147,7 @@ publishing {
 
 signing {
     setRequired({
-        isReleaseBuild() && gradle.taskGraph.hasTask("publish")
+        isReleaseBuild()
     })
     sign(publishing.publications["release"])
 }
