@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Rootbeer"
+rootProject.name = "RootChecker"
 include(":app", ":rootbeerlib")
