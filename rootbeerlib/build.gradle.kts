@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
+    `maven-publish`
+    signing
 }
-//apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     namespace = "com.scottyab.rootbeer"
@@ -45,6 +46,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -52,4 +58,96 @@ dependencies {
     testImplementation(libs.mockito)
 }
 
-//apply from: '../gradle-mvn-push.gradle'
+fun getPropertyOrDefault(propertyName: String, default: String = ""): String {
+    return project.findProperty(propertyName)?.toString() ?: default
+}
+
+project.version = getPropertyOrDefault(propertyName = "VERSION_NAME")
+project.group = getPropertyOrDefault(propertyName = "GROUP")
+
+fun isReleaseBuild(): Boolean {
+    return !getPropertyOrDefault(
+        propertyName = "VERSION_NAME",
+    ).contains("SNAPSHOT")
+}
+
+fun getReleaseRepositoryUrl(): String = getPropertyOrDefault(
+    propertyName = "RELEASE_REPOSITORY_URL",
+    default = "https://oss.sonatype.org/service/local/staging/deploy/maven2/",
+)
+
+fun getSnapshotRepositoryUrl(): String = getPropertyOrDefault(
+    propertyName = "SNAPSHOT_REPOSITORY_URL",
+    default = "https://oss.sonatype.org/content/repositories/snapshots/",
+)
+
+fun getRepositoryUsername(): String = getPropertyOrDefault(
+    propertyName = "NEXUS_USERNAME",
+)
+
+fun getRepositoryPassword(): String = getPropertyOrDefault(
+    propertyName = "NEXUS_PASSWORD",
+)
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = getPropertyOrDefault("GROUP")
+            artifactId = getPropertyOrDefault("POM_ARTIFACT_ID")
+            version = getPropertyOrDefault("VERSION_NAME")
+            afterEvaluate {
+                from(components["release"])
+            }
+
+            pom {
+                name = getPropertyOrDefault("POM_NAME")
+                packaging = getPropertyOrDefault("POM_PACKAGING")
+                description = getPropertyOrDefault("POM_DESCRIPTION")
+                url = getPropertyOrDefault("POM_URL")
+
+                scm {
+                    url = getPropertyOrDefault("POM_SCM_URL")
+                    connection = getPropertyOrDefault("POM_SCM_CONNECTION")
+                    developerConnection = getPropertyOrDefault("POM_SCM_DEV_CONNECTION")
+                }
+
+                licenses {
+                    license {
+                        name = getPropertyOrDefault("POM_LICENCE_NAME")
+                        url = getPropertyOrDefault("POM_LICENCE_URL")
+                        distribution = getPropertyOrDefault("POM_LICENCE_DIST")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = getPropertyOrDefault("POM_DEVELOPER_ID")
+                        name = getPropertyOrDefault("POM_DEVELOPER_NAME")
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven(url = getReleaseRepositoryUrl()) {
+            credentials {
+                username = getRepositoryUsername()
+                password = getRepositoryPassword()
+            }
+        }
+        maven(url = getSnapshotRepositoryUrl()) {
+            name = "snapshot"
+            credentials {
+                username = getRepositoryUsername()
+                password = getRepositoryPassword()
+            }
+        }
+    }
+}
+
+signing {
+    setRequired({
+        isReleaseBuild() && gradle.taskGraph.hasTask("publish")
+    })
+    sign(publishing.publications["release"])
+}
