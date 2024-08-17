@@ -5,8 +5,8 @@ plugins {
 }
 
 allprojects {
-    version = properties["VERSION_NAME"].toString()
-    group = properties["GROUP"].toString()
+    version = findProperty("VERSION_NAME").toString()
+    group = findProperty("GROUP").toString()
 }
 
 val clean by tasks.registering(type = Delete::class) {

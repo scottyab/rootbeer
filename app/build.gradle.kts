@@ -12,7 +12,8 @@ android {
         applicationId = "com.scottyab.rootbeer.sample"
         minSdk = libs.versions.android.min.sdk.get().toInt()
         targetSdk = libs.versions.android.target.sdk.get().toInt()
-        versionName = "0.9"
+        versionName = findProperty("VERSION_NAME").toString()
+        versionCode = findProperty("VERSION_CODE").toString().toInt()
         vectorDrawables.useSupportLibrary = true
 
         base.archivesName = "RootBeerSample-$versionName-[$versionCode]"
@@ -22,14 +23,14 @@ android {
     }
 
     //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
-    if (rootProject.hasProperty("ROOTBEER_SAMPLE_STORE")) {
+    if (findProperty("ROOTBEER_SAMPLE_STORE") != null) {
         signingConfigs {
             //from ~/user/.gradle/gradle.properties
             create("release") {
-                storeFile = file(rootProject.properties["ROOTBEER_SAMPLE_STORE"].toString())
-                keyAlias = rootProject.properties["ROOTBEER_SAMPLE_KEY"].toString()
-                storePassword = rootProject.properties["ROOTBEER_SAMPLE_STORE_PASS"].toString()
-                keyPassword = rootProject.properties["ROOTBEER_SAMPLE_KEY_PASS"].toString()
+                storeFile = file(findProperty("ROOTBEER_SAMPLE_STORE").toString())
+                keyAlias = findProperty("ROOTBEER_SAMPLE_KEY").toString()
+                storePassword = findProperty("ROOTBEER_SAMPLE_STORE_PASS").toString()
+                keyPassword = findProperty("ROOTBEER_SAMPLE_KEY_PASS").toString()
             }
         }
     }
