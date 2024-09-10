@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : ScopedActivity() {
-
     private var infoDialog: AlertDialog? = null
     private val rootItemAdapter = RootItemAdapter()
     private val checkForRoot = CheckForRootWorker(this)
@@ -26,11 +25,12 @@ class MainActivity : ScopedActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater).also {
-            setContentView(it.root)
-            it.initView()
-            it.resetView()
-        }
+        binding =
+            ActivityMainBinding.inflate(layoutInflater).also {
+                setContentView(it.root)
+                it.initView()
+                it.resetView()
+            }
     }
 
     private fun ActivityMainBinding.initView() {
@@ -84,7 +84,7 @@ class MainActivity : ScopedActivity() {
                             if (i == multiplier) {
                                 rootItemAdapter.add(rootItemResult)
                             }
-                            //is it the end of the results
+                            // is it the end of the results
                             if (index == results.size - 1) {
                                 onRootCheckFinished(isRooted = isRooted)
                             }
@@ -100,21 +100,22 @@ class MainActivity : ScopedActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
             R.id.action_github -> {
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse(GITHUB_LINK)
                 startActivity(i)
                 true
             }
+
             R.id.action_info -> {
                 showInfoDialog()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -122,23 +123,24 @@ class MainActivity : ScopedActivity() {
     }
 
     private fun showInfoDialog() {
-        //do nothing if already showing
+        // do nothing if already showing
         if (infoDialog?.isShowing != true) {
-            infoDialog = AlertDialog.Builder(this)
-                .setTitle(R.string.app_name)
-                .setMessage(R.string.info_details)
-                .setCancelable(true)
-                .setPositiveButton("ok") { dialog, _ -> dialog.dismiss() }
-                .setNegativeButton("More info") { dialog, _ ->
-                    dialog.dismiss()
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse(GITHUB_LINK)
+            infoDialog =
+                AlertDialog
+                    .Builder(this)
+                    .setTitle(R.string.app_name)
+                    .setMessage(R.string.info_details)
+                    .setCancelable(true)
+                    .setPositiveButton("ok") { dialog, _ -> dialog.dismiss() }
+                    .setNegativeButton("More info") { dialog, _ ->
+                        dialog.dismiss()
+                        startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse(GITHUB_LINK),
+                            ),
                         )
-                    )
-                }
-                .create()
+                    }.create()
             infoDialog?.show()
         }
     }
@@ -155,4 +157,3 @@ class MainActivity : ScopedActivity() {
         private const val GITHUB_LINK = "https://github.com/scottyab/rootbeer"
     }
 }
-

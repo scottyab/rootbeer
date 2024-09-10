@@ -1,18 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  tools:context=".MainActivity">
-  <item
-    android:id="@+id/action_info"
-    android:icon="@drawable/ic_info_outline_white_24dp"
-    android:orderInCategory="100"
-    android:title="@string/action_info"
-    app:showAsAction="always" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_info"
+        android:icon="@drawable/ic_info_outline_white_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_info"
+        app:showAsAction="always" />
 
-  <item
-    android:id="@+id/action_github"
-    android:icon="@drawable/ic_action_github"
-    android:orderInCategory="100"
-    android:title="@string/action_github"
-    app:showAsAction="always" />
+    <item
+        android:id="@+id/action_github"
+        android:icon="@drawable/ic_action_github"
+        android:orderInCategory="100"
+        android:title="@string/action_github"
+        app:showAsAction="always" />
 </menu>

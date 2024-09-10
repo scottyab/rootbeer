@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:animateLayoutChanges="true"
-  android:fitsSystemWindows="true"
-  tools:context=".MainActivity">
-
-  <com.google.android.material.appbar.AppBarLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
-
-    <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      android:background="?attr/colorPrimary"
-      app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
-
-  </com.google.android.material.appbar.AppBarLayout>
-
-  <FrameLayout
-    android:id="@+id/contentContainer"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
 
-    <uk.co.barbuzz.beerprogressview.BeerProgressView
-      android:id="@+id/progressView"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:beerColor="@color/rootBeerColor"
-      app:beerProgress="0"
-      app:waveAmplitude="3dp"
-      app:waveMax="100" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
 
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/rootResultsRecycler"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:paddingTop="4dp"
-      tools:listitem="@layout/item_root_check" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay" />
 
-    <com.scottyab.rootbeer.sample.ui.RootedResultTextView
-      android:id="@+id/isRootedTextView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:textColor="#D50000"
-      android:textSize="34sp"
-      android:visibility="gone"
-      tools:visibility="visible" />
-  </FrameLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
-    android:layout_margin="@dimen/fab_margin"
-    android:clickable="true"
-    android:focusable="true"
-    app:srcCompat="@drawable/ic_lock_open_white_24dp" />
+    <FrameLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <uk.co.barbuzz.beerprogressview.BeerProgressView
+            android:id="@+id/progressView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:beerColor="@color/rootBeerColor"
+            app:beerProgress="0"
+            app:waveAmplitude="3dp"
+            app:waveMax="100" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rootResultsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="4dp"
+            tools:listitem="@layout/item_root_check" />
+
+        <com.scottyab.rootbeer.sample.ui.RootedResultTextView
+            android:id="@+id/isRootedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#D50000"
+            android:textSize="34sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_lock_open_white_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
