@@ -19,6 +19,9 @@ android {
         externalNativeBuild {
             cmake {
                 arguments.add("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+                // added to improve security of binary #180
+                cFlags("-fPIC")
+                cppFlags("-fPIC")
             }
         }
 
