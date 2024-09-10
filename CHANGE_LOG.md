@@ -4,6 +4,7 @@ RootBeer Library Change Log
 # 0.1.1
 
 * Support for 16KB page sizes for native lib (Android 15 support) 
+* Removed `Util.isSelinuxFlagInEnabled()`. This was never part of the `isRooted()` check but as we are unable to get `ro.build.selinux` in later versions of Android it has been removed from the Util and sample app.
 
 Internal changes:
 * #229 Gradle, Build scripts, Maven Plugin, NDK update by @ArtsemKurantsou

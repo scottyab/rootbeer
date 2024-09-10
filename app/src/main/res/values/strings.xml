@@ -19,5 +19,4 @@
     <string name="root_checks_8">Dangerous Props</string>
     <string name="root_checks_9">Root Native</string>
     <string name="root_checks_10">Root Cloaking Apps</string>
-    <string name="root_checks_11">Selinux Flag Enabled (experimental)</string>
 </resources>
