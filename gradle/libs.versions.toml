@@ -4,15 +4,14 @@ android-min-sdk = "21"
 android-target-sdk = "35"
 android-build-tools = "35"
 android-ndk = "27.0.12077973"
-agp = "8.5.1"
+agp = "8.6.0"
 kotlin = "1.9.23"
 
 corektxVersion = '1.13.1'
 coroutinesVersion = '1.6.4'
 appcompatVersion = "1.7.0"
 materialDesignVersion = '1.12.0'
-constraintlayoutVersion = "2.1.4"
-timberVersion = '4.7.1'
+timberVersion = '5.0.1'
 beerProgressViewVersion = '0.0.6'
 nineoldandroidsVersion = '2.4.0'
 
@@ -22,7 +21,6 @@ mockito = "3.9.0"
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektxVersion" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
-androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
 android-google-material = { module = "com.google.android.material:material", version.ref = "materialDesignVersion" }
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }

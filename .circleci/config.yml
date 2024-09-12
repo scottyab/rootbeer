@@ -2,10 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-    # https://circleci.com/docs/2.0/circleci-images/#android
-      - image: circleci/android:api-30
+      # https://circleci.com/developer/images/image/cimg/android
+      - image: cimg/android:2024.09-ndk
     environment:
-        GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
     steps:
       - checkout
       - restore_cache:
@@ -29,12 +29,10 @@ jobs:
       - store_test_results:
           path: app/build/test-results
 
-      # Compile debug apks
       - run:
           name: Compile Debug APKs
           command: ./gradlew assembleDebug
 
-      # Compile release apks
       - run:
           name: Compile Release APKs
           command: ./gradlew assembleRelease
@@ -51,7 +49,7 @@ jobs:
             find . -name "*release.apk" -type f -exec cp {} /tmp/artifacts/ \;
             find . -name "*debug.apk" -type f -exec echo {} \;
             find . -name "*debug.apk" -type f -exec cp {} /tmp/artifacts/ \;
-            
+
       # Save artifacts
       - store_artifacts:
           name: Save APK Files

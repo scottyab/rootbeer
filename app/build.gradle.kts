@@ -5,13 +5,24 @@ plugins {
 
 android {
     namespace = "com.scottyab.rootbeer.sample"
-    compileSdk = libs.versions.android.compile.sdk.get().toInt()
-    buildToolsVersion = libs.versions.android.build.tools.get()
+    compileSdk =
+        libs.versions.android.compile.sdk
+            .get()
+            .toInt()
+    buildToolsVersion =
+        libs.versions.android.build.tools
+            .get()
 
     defaultConfig {
         applicationId = "com.scottyab.rootbeer.sample"
-        minSdk = libs.versions.android.min.sdk.get().toInt()
-        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        minSdk =
+            libs.versions.android.min.sdk
+                .get()
+                .toInt()
+        targetSdk =
+            libs.versions.android.target.sdk
+                .get()
+                .toInt()
         versionName = findProperty("VERSION_NAME").toString()
         versionCode = findProperty("VERSION_CODE").toString().toInt()
         vectorDrawables.useSupportLibrary = true
@@ -22,10 +33,10 @@ android {
         viewBinding = true
     }
 
-    //check if the keystore details are defined in gradle.properties (this is so the key is not in github)
+    // check if the keystore details are defined in gradle.properties (this is so the key is not in github)
     if (findProperty("ROOTBEER_SAMPLE_STORE") != null) {
         signingConfigs {
-            //from ~/user/.gradle/gradle.properties
+            // from ~/user/.gradle/gradle.properties
             create("release") {
                 storeFile = file(findProperty("ROOTBEER_SAMPLE_STORE").toString())
                 keyAlias = findProperty("ROOTBEER_SAMPLE_KEY").toString()
@@ -68,7 +79,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
     implementation(libs.android.google.material)
 
     implementation(libs.nineoldandroids)

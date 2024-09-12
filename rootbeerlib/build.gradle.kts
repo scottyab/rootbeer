@@ -6,12 +6,22 @@ plugins {
 
 android {
     namespace = "com.scottyab.rootbeer"
-    compileSdk = libs.versions.android.compile.sdk.get().toInt()
-    buildToolsVersion = libs.versions.android.build.tools.get()
-    ndkVersion = libs.versions.android.ndk.get()
+    compileSdk =
+        libs.versions.android.compile.sdk
+            .get()
+            .toInt()
+    buildToolsVersion =
+        libs.versions.android.build.tools
+            .get()
+    ndkVersion =
+        libs.versions.android.ndk
+            .get()
 
     defaultConfig {
-        minSdk = libs.versions.android.min.sdk.get().toInt()
+        minSdk =
+            libs.versions.android.min.sdk
+                .get()
+                .toInt()
 
         ndk {
             abiFilters.addAll(setOf("x86", "x86_64", "armeabi-v7a", "arm64-v8a"))
@@ -19,15 +29,23 @@ android {
         externalNativeBuild {
             cmake {
                 arguments.add("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+                // added to improve security of binary #180
+                cFlags("-fPIC")
+                cppFlags("-fPIC")
             }
         }
-
     }
     testOptions {
-        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        targetSdk =
+            libs.versions.android.target.sdk
+                .get()
+                .toInt()
     }
     lint {
-        targetSdk = libs.versions.android.target.sdk.get().toInt()
+        targetSdk =
+            libs.versions.android.target.sdk
+                .get()
+                .toInt()
     }
 
     buildTypes {
@@ -58,36 +76,31 @@ dependencies {
     testImplementation(libs.mockito)
 }
 
-fun getPropertyOrDefault(propertyName: String, default: String = ""): String {
-    return project.findProperty(propertyName)?.toString() ?: default
-}
+fun getPropertyOrDefault(
+    propertyName: String,
+    default: String = "",
+): String = project.findProperty(propertyName)?.toString() ?: default
 
 project.version = getPropertyOrDefault(propertyName = "VERSION_NAME")
 project.group = getPropertyOrDefault(propertyName = "GROUP")
 
-fun isReleaseBuild(): Boolean {
-    return !getPropertyOrDefault(
-        propertyName = "VERSION_NAME",
-    ).contains("SNAPSHOT")
-}
+fun isReleaseBuild(): Boolean = !getPropertyOrDefault(propertyName = "VERSION_NAME").contains("SNAPSHOT")
 
-fun getReleaseRepositoryUrl(): String = getPropertyOrDefault(
-    propertyName = "RELEASE_REPOSITORY_URL",
-    default = "https://oss.sonatype.org/service/local/staging/deploy/maven2/",
-)
+fun getReleaseRepositoryUrl(): String =
+    getPropertyOrDefault(
+        propertyName = "RELEASE_REPOSITORY_URL",
+        default = "https://oss.sonatype.org/service/local/staging/deploy/maven2/",
+    )
 
-fun getSnapshotRepositoryUrl(): String = getPropertyOrDefault(
-    propertyName = "SNAPSHOT_REPOSITORY_URL",
-    default = "https://oss.sonatype.org/content/repositories/snapshots/",
-)
+fun getSnapshotRepositoryUrl(): String =
+    getPropertyOrDefault(
+        propertyName = "SNAPSHOT_REPOSITORY_URL",
+        default = "https://oss.sonatype.org/content/repositories/snapshots/",
+    )
 
-fun getRepositoryUsername(): String = getPropertyOrDefault(
-    propertyName = "NEXUS_USERNAME",
-)
+fun getRepositoryUsername(): String = getPropertyOrDefault(propertyName = "NEXUS_USERNAME")
 
-fun getRepositoryPassword(): String = getPropertyOrDefault(
-    propertyName = "NEXUS_PASSWORD",
-)
+fun getRepositoryPassword(): String = getPropertyOrDefault(propertyName = "NEXUS_PASSWORD")
 
 publishing {
     publications {
@@ -146,8 +159,6 @@ publishing {
 }
 
 signing {
-    setRequired({
-        isReleaseBuild()
-    })
+    setRequired({ isReleaseBuild() })
     sign(publishing.publications["release"])
 }

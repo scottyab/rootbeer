@@ -9,26 +9,26 @@ import com.scottyab.rootbeer.sample.databinding.ItemRootCheckBinding
 class RootItemAdapter : RecyclerView.Adapter<RootItemAdapter.RootItemVH>() {
     private val items: MutableList<RootItemResult> = mutableListOf()
 
-    fun update(results: List<RootItemResult>) {
-        items.clear()
-        items.addAll(results)
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RootItemVH {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): RootItemVH {
         val inflater = LayoutInflater.from(parent.context)
         return RootItemVH(
             ItemRootCheckBinding.inflate(
                 inflater,
                 parent,
                 false,
-            )
+            ),
         )
     }
 
     override fun getItemCount() = items.size
 
-    override fun onBindViewHolder(holder: RootItemVH, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(
+        holder: RootItemVH,
+        position: Int,
+    ) = holder.bind(items[position])
 
     fun add(rootItemResult: RootItemResult) {
         items.add(rootItemResult)
@@ -40,14 +40,12 @@ class RootItemAdapter : RecyclerView.Adapter<RootItemAdapter.RootItemVH>() {
         notifyDataSetChanged()
     }
 
-    class RootItemVH(private val itemBinding: ItemRootCheckBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
-
+    class RootItemVH(
+        private val itemBinding: ItemRootCheckBinding,
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: RootItemResult) {
             itemBinding.rootItemText.text = item.text
             itemBinding.rootItemResultIcon.update(isRooted = item.result)
         }
     }
 }
-
-
