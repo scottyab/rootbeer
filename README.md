@@ -33,10 +33,10 @@ We call through to our native root checker to run some of its own checks. Native
 
 ## Disclaimer and limitations!
 
-One way to think about root checking is that **root==<insert your deity here>**, so there's no 100% guaranteed way to check for root! Please treat the results of this library as an *indication* of root together with other factors which will vary depending on your usecase rather than basing your whole security posture on the result.
+One way to think about root checking is that **root==god**, so there's no 100% guaranteed way to check for root! Please treat the results of this library as an *indication* of root together with other factors which will vary depending on your usecase rather than basing your whole security posture on the result.
 A more robust solution would be to use [Google Play Integrity API](https://developer.android.com/google/play/integrity) this will verify requests from your app are coming from your unmodified app binary, installed by Google Play, running on a genuine Android device (i.e not rooted).
 
-Rootbeer can be by-passed, there's several articles that illustrate how to do this. [here](https://medium.com/secarmalabs/bypassing-androids-rootbeer-library-part-1-a5f93918660d) one we found with a quick google search.
+Rootbeer can be bypassed, there's several articles that illustrate how to do this. [here](https://medium.com/secarmalabs/bypassing-androids-rootbeer-library-part-1-a5f93918660d) one we found with a quick Google search.
 
 ### Background 
 
@@ -72,7 +72,7 @@ You can also call each of the checks individually as the sample app does. It is 
 
 Manufacturers sometimes leave the busybox binary in production builds and this doesn't always mean that a device is rooted. We have removed the busybox check we used to include as standard in the isRooted() method to avoid these false positives.
 
-If you want to detect the busybox binary in your app you can use `checkForBinary(BINARY_BUSYBOX)` to detect it alone, or as part of the complete root detection method:
+If you want to detect the busybox binary in your app you can use `checkForBinary(BINARY_BUSYBOX)` to detect it alone or as part of the complete root detection method:
 
 ```java
 rootBeer.isRootedWithBusyBoxCheck();
@@ -89,7 +89,7 @@ Available on [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22
 
 ```java
 dependencies {
-    implementation 'com.scottyab:rootbeer-lib:0.1.0'
+    implementation 'com.scottyab:rootbeer-lib:0.1.1'
 }
 ```
 
@@ -101,7 +101,7 @@ The native library in this application will now be built via Gradle and the late
 
 ### Sample app
 
-The sample app is published on Google play to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results.
+The sample app is published on Google Play to allow you to quickly and easily test the library. Enjoy! And please do feedback to us if your tests produce different results.
 
 <a href="https://play.google.com/store/apps/details?id=com.scottyab.rootbeer.sample&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img width="200" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" /></a>
 
@@ -123,7 +123,7 @@ There must be more root checks to make this more complete. If you have one pleas
 If you dig this, you might like:
 
  * Tim Strazzere's [Anti emulator checks](https://github.com/strazzere/anti-emulator/) project
- * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
+ * Scott Alexander-Bown's [SafetyNet Helper library](https://github.com/scottyab/safetynethelper) - coupled with server-side validation this is one of the best root detection approaches. See the [Google SafetyNet helper docs](https://developer.android.com/training/safetynet/index.html).
 
 # Licence
 
