@@ -85,7 +85,7 @@ The following devices are known the have the busybox binary present on the stock
 
 ### Dependency
 
-Available on [maven central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeer-lib%22), to include using Gradle just add the following:
+Available on [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22rootbeer-lib%22), to include using Gradle just add the following:
 
 ```java
 dependencies {
@@ -93,7 +93,7 @@ dependencies {
 }
 ```
 
-Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer)
+Or use this [Jitpack.io link](https://jitpack.io/#scottyab/rootbeer/releases) - note prefer releases/tags rather than branches. 
 
 ### Building
 

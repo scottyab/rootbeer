@@ -84,10 +84,7 @@ fun getPropertyOrDefault(
 project.version = getPropertyOrDefault(propertyName = "VERSION_NAME")
 project.group = getPropertyOrDefault(propertyName = "GROUP")
 
-fun isReleaseBuild(): Boolean =
-    !getPropertyOrDefault(
-        propertyName = "VERSION_NAME",
-    ).contains("SNAPSHOT")
+fun isReleaseBuild(): Boolean = !getPropertyOrDefault(propertyName = "VERSION_NAME").contains("SNAPSHOT")
 
 fun getReleaseRepositoryUrl(): String =
     getPropertyOrDefault(
@@ -101,15 +98,9 @@ fun getSnapshotRepositoryUrl(): String =
         default = "https://oss.sonatype.org/content/repositories/snapshots/",
     )
 
-fun getRepositoryUsername(): String =
-    getPropertyOrDefault(
-        propertyName = "NEXUS_USERNAME",
-    )
+fun getRepositoryUsername(): String = getPropertyOrDefault(propertyName = "NEXUS_USERNAME")
 
-fun getRepositoryPassword(): String =
-    getPropertyOrDefault(
-        propertyName = "NEXUS_PASSWORD",
-    )
+fun getRepositoryPassword(): String = getPropertyOrDefault(propertyName = "NEXUS_PASSWORD")
 
 publishing {
     publications {
@@ -168,8 +159,6 @@ publishing {
 }
 
 signing {
-    setRequired({
-        isReleaseBuild()
-    })
+    setRequired({ isReleaseBuild() })
     sign(publishing.publications["release"])
 }
