@@ -67,6 +67,7 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
+            withJavadocJar()
         }
     }
 }
@@ -76,80 +77,64 @@ dependencies {
     testImplementation(libs.mockito)
 }
 
-fun getPropertyOrDefault(
-    propertyName: String,
-    default: String = "",
-): String = project.findProperty(propertyName)?.toString() ?: default
+// helper method to ensure we have a non null string for a property
+fun getPropertyOrEmpty(propertyName: String): String = project.findProperty(propertyName)?.toString().orEmpty()
 
-project.version = getPropertyOrDefault(propertyName = "VERSION_NAME")
-project.group = getPropertyOrDefault(propertyName = "GROUP")
+project.version = getPropertyOrEmpty("VERSION_NAME")
+project.group = getPropertyOrEmpty("GROUP")
 
-fun isReleaseBuild(): Boolean = !getPropertyOrDefault(propertyName = "VERSION_NAME").contains("SNAPSHOT")
+fun isReleaseBuild(): Boolean = !getPropertyOrEmpty("VERSION_NAME").contains("SNAPSHOT")
 
-fun getReleaseRepositoryUrl(): String =
-    getPropertyOrDefault(
-        propertyName = "RELEASE_REPOSITORY_URL",
-        default = "https://oss.sonatype.org/service/local/staging/deploy/maven2/",
-    )
+fun getReleaseRepositoryUrl(): String = getPropertyOrEmpty("RELEASE_REPOSITORY_URL")
 
-fun getSnapshotRepositoryUrl(): String =
-    getPropertyOrDefault(
-        propertyName = "SNAPSHOT_REPOSITORY_URL",
-        default = "https://oss.sonatype.org/content/repositories/snapshots/",
-    )
+fun getSnapshotRepositoryUrl(): String = getPropertyOrEmpty("SNAPSHOT_REPOSITORY_URL")
 
-fun getRepositoryUsername(): String = getPropertyOrDefault(propertyName = "NEXUS_USERNAME")
+fun getRepositoryUsername(): String = getPropertyOrEmpty("NEXUS_USERNAME")
 
-fun getRepositoryPassword(): String = getPropertyOrDefault(propertyName = "NEXUS_PASSWORD")
+fun getRepositoryPassword(): String = getPropertyOrEmpty("NEXUS_PASSWORD")
 
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = getPropertyOrDefault("GROUP")
-            artifactId = getPropertyOrDefault("POM_ARTIFACT_ID")
-            version = getPropertyOrDefault("VERSION_NAME")
+            groupId = getPropertyOrEmpty("GROUP")
+            artifactId = getPropertyOrEmpty("POM_ARTIFACT_ID")
+            version = getPropertyOrEmpty("VERSION_NAME")
             afterEvaluate {
                 from(components["release"])
             }
 
             pom {
-                name = getPropertyOrDefault("POM_NAME")
-                packaging = getPropertyOrDefault("POM_PACKAGING")
-                description = getPropertyOrDefault("POM_DESCRIPTION")
-                url = getPropertyOrDefault("POM_URL")
+                name = getPropertyOrEmpty("POM_NAME")
+                packaging = getPropertyOrEmpty("POM_PACKAGING")
+                description = getPropertyOrEmpty("POM_DESCRIPTION")
+                url = getPropertyOrEmpty("POM_URL")
 
                 scm {
-                    url = getPropertyOrDefault("POM_SCM_URL")
-                    connection = getPropertyOrDefault("POM_SCM_CONNECTION")
-                    developerConnection = getPropertyOrDefault("POM_SCM_DEV_CONNECTION")
+                    url = getPropertyOrEmpty("POM_SCM_URL")
+                    connection = getPropertyOrEmpty("POM_SCM_CONNECTION")
+                    developerConnection = getPropertyOrEmpty("POM_SCM_DEV_CONNECTION")
                 }
 
                 licenses {
                     license {
-                        name = getPropertyOrDefault("POM_LICENCE_NAME")
-                        url = getPropertyOrDefault("POM_LICENCE_URL")
-                        distribution = getPropertyOrDefault("POM_LICENCE_DIST")
+                        name = getPropertyOrEmpty("POM_LICENCE_NAME")
+                        url = getPropertyOrEmpty("POM_LICENCE_URL")
+                        distribution = getPropertyOrEmpty("POM_LICENCE_DIST")
                     }
                 }
 
                 developers {
                     developer {
-                        id = getPropertyOrDefault("POM_DEVELOPER_ID")
-                        name = getPropertyOrDefault("POM_DEVELOPER_NAME")
+                        id = getPropertyOrEmpty("POM_DEVELOPER_ID")
+                        name = getPropertyOrEmpty("POM_DEVELOPER_NAME")
+                        organizationUrl = getPropertyOrEmpty("POM_URL")
                     }
                 }
             }
         }
     }
     repositories {
-        maven(url = getReleaseRepositoryUrl()) {
-            credentials {
-                username = getRepositoryUsername()
-                password = getRepositoryPassword()
-            }
-        }
-        maven(url = getSnapshotRepositoryUrl()) {
-            name = "snapshot"
+        maven(url = if (isReleaseBuild()) getReleaseRepositoryUrl() else getSnapshotRepositoryUrl()) {
             credentials {
                 username = getRepositoryUsername()
                 password = getRepositoryPassword()
