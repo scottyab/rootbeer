@@ -71,6 +71,8 @@ android {
 
 dependencies {
     implementation(project(":rootbeerlib"))
+    // used when testing the snapshot lib
+    // implementation("com.scottyab:rootbeer-lib:0.1.1-SNAPSHOT")
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines.core)
