@@ -82,7 +82,7 @@ val clean by tasks.registering(type = Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
 
-private val Project.isReleaseBuild get() = version.toString().endsWith("SNAPSHOT")
+private val Project.isReleaseBuild get() = !version.toString().endsWith("SNAPSHOT")
 
 private fun Project.findStringPropertyOrDefault(propertyName: String, default: String? = "") =
     findProperty(propertyName)?.toString() ?: default
