@@ -4,7 +4,7 @@ android-min-sdk = "21"
 android-target-sdk = "35"
 android-build-tools = "35"
 android-ndk = "27.0.12077973"
-agp = "8.6.0"
+agp = "8.6.1"
 kotlin = "1.9.23"
 
 corektxVersion = '1.13.1'
@@ -23,7 +23,6 @@ androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektxV
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 android-google-material = { module = "com.google.android.material:material", version.ref = "materialDesignVersion" }
 
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutinesVersion" }
 
