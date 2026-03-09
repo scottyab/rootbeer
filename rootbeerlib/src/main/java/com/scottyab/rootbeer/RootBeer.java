@@ -264,6 +264,7 @@ public class RootBeer {
         final Map<String, String> dangerousProps = new HashMap<>();
         dangerousProps.put("ro.debuggable", "1");
         dangerousProps.put("ro.secure", "0");
+        dangerousProps.put("ro.adb.secure", "1"); // Added the new property for rooted Emulators from Android 14
 
         boolean result = false;
 
