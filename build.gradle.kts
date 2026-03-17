@@ -49,40 +49,8 @@ subprojects {
             }
         }
     }
-
-    plugins.withType<MavenPublishPlugin>().configureEach {
-        extensions.configure<PublishingExtension> {
-            repositories {
-                val repositoryUrl = if (isReleaseBuild) {
-                    requireNotNull(property("RELEASE_REPOSITORY_URL")?.toString())
-                } else {
-                    requireNotNull(property("SNAPSHOT_REPOSITORY_URL")?.toString())
-                }
-
-                maven {
-                    url = uri(repositoryUrl)
-
-                    credentials {
-                        username = findStringPropertyOrDefault("NEXUS_USERNAME")
-                        password = findStringPropertyOrDefault("NEXUS_PASSWORD")
-                    }
-                }
-            }
-        }
-    }
-
-    plugins.withType<SigningPlugin>().configureEach {
-        extensions.configure<SigningExtension> {
-            isRequired = isReleaseBuild
-        }
-    }
 }
 
 val clean by tasks.registering(type = Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }
-
-private val Project.isReleaseBuild get() = !version.toString().endsWith("SNAPSHOT")
-
-private fun Project.findStringPropertyOrDefault(propertyName: String, default: String? = "") =
-    findProperty(propertyName)?.toString() ?: default

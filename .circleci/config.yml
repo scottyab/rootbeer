@@ -3,7 +3,8 @@ jobs:
   build:
     docker:
       # https://circleci.com/developer/images/image/cimg/android
-      - image: cimg/android:2024.09-ndk
+      - image: cimg/android:2026.03.1-ndk
+
     environment:
       GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
     steps:

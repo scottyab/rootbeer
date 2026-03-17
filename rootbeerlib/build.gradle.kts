@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
-    `maven-publish`
-    signing
+    alias(libs.plugins.vanniktech.maven.publish)
 }
 
 android {
@@ -39,13 +38,6 @@ android {
             path = file("src/main/cpp/CMakeLists.txt")
         }
     }
-
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 dependencies {
@@ -53,50 +45,11 @@ dependencies {
     testImplementation(libs.mockito)
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            artifactId = findStringPropertyOrDefault("POM_ARTIFACT_ID")
+mavenPublishing {
+    coordinates(
+        artifactId = "rootbeer-lib"
+    )
 
-            afterEvaluate {
-                from(components["release"])
-            }
-
-            pom {
-                name = findStringPropertyOrDefault("POM_NAME")
-                packaging = findStringPropertyOrDefault("POM_PACKAGING")
-                description = findStringPropertyOrDefault("POM_DESCRIPTION")
-                url = findStringPropertyOrDefault("POM_URL")
-
-                scm {
-                    url = findStringPropertyOrDefault("POM_SCM_URL")
-                    connection = findStringPropertyOrDefault("POM_SCM_CONNECTION")
-                    developerConnection = findStringPropertyOrDefault("POM_SCM_DEV_CONNECTION")
-                }
-
-                licenses {
-                    license {
-                        name = findStringPropertyOrDefault("POM_LICENCE_NAME")
-                        url = findStringPropertyOrDefault("POM_LICENCE_URL")
-                        distribution = findStringPropertyOrDefault("POM_LICENCE_DIST")
-                    }
-                }
-
-                developers {
-                    developer {
-                        id = findStringPropertyOrDefault("POM_DEVELOPER_ID")
-                        name = findStringPropertyOrDefault("POM_DEVELOPER_NAME")
-                        organizationUrl = findStringPropertyOrDefault("POM_URL")
-                    }
-                }
-            }
-        }
-    }
+    publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
 }
-
-signing {
-    sign(publishing.publications["release"])
-}
-
-private fun Project.findStringPropertyOrDefault(propertyName: String, default: String? = "") =
-    findProperty(propertyName)?.toString() ?: default
