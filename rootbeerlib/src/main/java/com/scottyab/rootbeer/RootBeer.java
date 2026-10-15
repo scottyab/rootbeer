@@ -8,15 +8,12 @@ import com.scottyab.rootbeer.util.QLog;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import static com.scottyab.rootbeer.Const.BINARY_BUSYBOX;
 import static com.scottyab.rootbeer.Const.BINARY_SU;
@@ -208,26 +205,37 @@ public class RootBeer {
     }
 
     private String[] propsReader() {
-        try {
-            InputStream inputstream = Runtime.getRuntime().exec("getprop").getInputStream();
-            if (inputstream == null) return null;
-            String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
-            return propVal.split("\n");
-        } catch (IOException | NoSuchElementException e) {
-            QLog.e(e);
-            return null;
-        }
+        return readCommandOutput("getprop");
     }
 
     private String[] mountReader() {
+        return readCommandOutput("mount");
+    }
+
+    /**
+     * Runs a shell command and returns its output line by line.
+     * Reads with a BufferedReader instead of Scanner, which can throw ArrayIndexOutOfBoundsException
+     * on some devices, closes the stream and destroys the process when done.
+     * @param command - command to run
+     * @return output lines, or null if the command could not be run or read
+     */
+    private String[] readCommandOutput(String command) {
+        Process process = null;
         try {
-            InputStream inputstream = Runtime.getRuntime().exec("mount").getInputStream();
-            if (inputstream == null) return null;
-            String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
-            return propVal.split("\n");
-        } catch (IOException | NoSuchElementException e) {
+            process = Runtime.getRuntime().exec(command);
+            List<String> lines = new ArrayList<>();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    lines.add(line);
+                }
+            }
+            return lines.toArray(new String[0]);
+        } catch (IOException | RuntimeException e) {
             QLog.e(e);
             return null;
+        } finally {
+            if (process != null) process.destroy();
         }
     }
 
